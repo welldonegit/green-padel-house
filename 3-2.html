@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geologica:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior:smooth; scroll-padding-top:clamp(84px,10vw,108px); }
+  body { margin:0; font-family:'Geologica',-apple-system,BlinkMacSystemFont,sans-serif; background:#FFFFFF; color:#090909; overflow-x:hidden; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+  a { color:#090909; text-decoration:none; }
+  a:hover { color:#014C26; }
+  img { display:block; max-width:100%; }
+  h1,h2,h3,p { margin:0; text-wrap:pretty; }
+  @keyframes gphPulse { 0%,100% { transform:scale(1); opacity:1; } 50% { transform:scale(2.1); opacity:0; } }
+  .gph-pill { transition: transform .25s ease, background-color .25s ease, color .25s ease, border-color .25s ease; }
+  .gph-pill:hover { transform: translateY(-2px); }
+  .gph-media img { transition: transform .8s cubic-bezier(.2,.6,.2,1); }
+  .gph-fcard { transition: transform .25s ease; }
+  .gph-fcard:hover { transform: translateY(-3px); }
+  .gph-fcard:hover img { transform: scale(1.05); }
+  .gph-farrow { transition: transform .25s ease; }
+  .gph-fcard:hover .gph-farrow { transform: translateX(4px); }
+  .gph-media:hover img { transform: scale(1.04); }
+  /* club: asymmetric but strictly aligned — every tile snaps to the same 12 cols × row module */
+  #clubgrid { display:grid; grid-template-columns:repeat(12,1fr); grid-auto-rows:clamp(52px,6vw,88px); gap:clamp(12px,1.2vw,16px); }
+  #clubgrid > * { border-radius:24px; overflow:hidden; background:#F4F4F1; }
+  #clubgrid > * { cursor:url("assets/cursor-ball.png") 18 18, pointer; }
+  #clubgrid [data-cg="1"] { grid-column:1 / span 5; grid-row:1 / span 5; }
+  #clubgrid [data-cg="2"] { grid-column:6 / span 4; grid-row:1 / span 3; }
+  #clubgrid [data-cg="3"] { grid-column:10 / span 3; grid-row:1 / span 4; }
+  #clubgrid [data-cg="4"] { grid-column:6 / span 4; grid-row:4 / span 5; }
+  #clubgrid [data-cg="5"] { grid-column:1 / span 5; grid-row:6 / span 3; }
+  #clubgrid [data-cg="6"] { grid-column:10 / span 3; grid-row:5 / span 4; }
+  @media (max-width:900px) {
+    #clubgrid { grid-template-columns:repeat(2,1fr); grid-auto-rows:clamp(46px,11vw,84px); }
+    #clubgrid [data-cg="1"] { grid-column:1 / span 2; grid-row:1 / span 4; }
+    #clubgrid [data-cg="2"] { grid-column:1 / span 1; grid-row:5 / span 3; }
+    #clubgrid [data-cg="3"] { grid-column:2 / span 1; grid-row:5 / span 3; }
+    #clubgrid [data-cg="4"] { grid-column:1 / span 1; grid-row:8 / span 3; }
+    #clubgrid [data-cg="5"] { grid-column:2 / span 1; grid-row:8 / span 3; }
+    #clubgrid [data-cg="6"] { grid-column:1 / span 2; grid-row:11 / span 3; }
+  }
+  ::selection { background:#E1F07B; color:#090909; }
+</style>
+</helmet>
+<div style="width:100%;max-width:1680px;margin:0 auto;background:#FFFFFF;">
+
+  <!-- ░░ HERO · centred, white, photo cropped by edge ░░ -->
+  <section style="position:relative;overflow:hidden;background:#FFFFFF;padding:clamp(96px,11vw,152px) clamp(14px,3vw,40px) 0;">
+
+    <header ref="{{ headerRef }}" style="position:fixed;top:clamp(14px,2vw,24px);left:calc((100% - min(100%, 1680px)) / 2 + clamp(14px,3vw,40px));right:calc((100% - min(100%, 1680px)) / 2 + clamp(14px,3vw,40px));z-index:80;transition:box-shadow .3s ease,transform .3s ease;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 10px 10px clamp(16px,2vw,26px);border-radius:999px;background:#090909;border:1px solid rgba(255,255,255,0.12);">
+      <a href="#" style="flex:none;display:flex;align-items:center;"><img src="assets/logo-light.svg" alt="Green Padel House" style="height:clamp(18px,1.6vw,22px);width:auto;"></a>
+      <nav ref="{{ navRef }}" style="display:flex;align-items:center;gap:clamp(16px,2vw,30px);">
+        <a href="#plan" style="font-size:14px;font-weight:400;color:rgba(255,255,255,0.74);white-space:nowrap;" style-hover="color:#FFFFFF;">Бронювання</a>
+        <a href="#steps" style="font-size:14px;font-weight:400;color:rgba(255,255,255,0.74);white-space:nowrap;" style-hover="color:#FFFFFF;">Як це працює</a>
+        <a href="#club" style="font-size:14px;font-weight:400;color:rgba(255,255,255,0.74);white-space:nowrap;" style-hover="color:#FFFFFF;">Клуб</a>
+        <a href="#contacts" style="font-size:14px;font-weight:400;color:rgba(255,255,255,0.74);white-space:nowrap;" style-hover="color:#FFFFFF;">Контакти</a>
+      </nav>
+      <div style="flex:none;display:flex;align-items:center;gap:8px;">
+        <div style="display:flex;align-items:center;gap:4px;padding:4px;border-radius:999px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);">
+          <a href="#formats" style="display:inline-flex;align-items:center;height:38px;padding:0 18px;border-radius:999px;color:rgba(255,255,255,0.78);font-size:14px;font-weight:500;line-height:1;white-space:nowrap;transition:color .25s ease,background-color .25s ease;" style-hover="color:#FFFFFF;background:rgba(255,255,255,0.12);">Гра з тренером</a>
+          <a href="#plan" style="display:inline-flex;align-items:center;height:38px;padding:0 20px;border-radius:999px;background:#014C26;color:#FFFFFF;font-size:14px;font-weight:600;line-height:1;white-space:nowrap;box-shadow:0 4px 12px rgba(9,9,9,0.28);transition:transform .25s ease;" style-hover="transform:translateY(-1px);">Забронювати корт</a>
+        </div>
+        <button aria-label="Меню" ref="{{ burgerRef }}" style="display:none;width:44px;height:44px;border-radius:999px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.16);align-items:center;justify-content:center;padding:0;cursor:pointer;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 8h16M4 16h16" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"></path></svg></button>
+      </div>
+    </header>
+
+    <div style="position:relative;z-index:2;max-width:1180px;margin:0 auto;text-align:center;">
+      <h1 style="font-size:clamp(40px,9vw,132px);line-height:0.92;font-weight:700;letter-spacing:-0.045em;color:#090909;">Падел у Львові</h1>
+      <p style="margin:clamp(20px,2.2vw,30px) auto 0;font-size:clamp(17px,1.5vw,21px);line-height:1.55;font-weight:300;color:#090909;opacity:0.66;max-width:620px;">Динамічна гра на закритому корті, в яку грають<br>і новачки, і ті, хто вже не може зупинитися.</p>
+      <div style="margin-top:clamp(26px,3vw,40px);display:flex;flex-wrap:wrap;justify-content:center;gap:12px;">
+        <a href="#plan" class="gph-pill" style="display:inline-flex;align-items:center;justify-content:center;height:60px;padding:0 32px;border-radius:999px;background:#014C26;color:#FFFFFF;font-size:16px;font-weight:600;line-height:1;white-space:nowrap;">Забронювати корт</a>
+        <a href="#steps" class="gph-pill" style="display:inline-flex;align-items:center;justify-content:center;height:60px;padding:0 32px;border-radius:999px;border:1.5px solid rgba(9,9,9,0.7);color:#090909;font-size:16px;font-weight:500;line-height:1;white-space:nowrap;" style-hover="background:#090909;color:#FFFFFF;border-color:#090909;">Як це працює</a>
+      </div>
+    </div>
+
+    <div class="gph-media" style="position:relative;z-index:2;margin:clamp(40px,5vw,80px) auto 0;max-width:1560px;border-radius:32px;overflow:hidden;aspect-ratio:16/9;background:#014C26;">
+      <img src="assets/club3.png" alt="Гра на критому корті Green Padel House" style="width:100%;height:100%;object-fit:cover;object-position:center 38%;">
+    </div>
+  </section>
+
+  <!-- ░░ NUMBERS · clean white ░░ -->
+  <section style="padding:clamp(52px,6.5vw,96px) clamp(16px,3vw,40px) 0;">
+    <div ref="{{ statsRef }}" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));">
+      <div style="padding:0 clamp(14px,2vw,32px) 48px;">
+        <div style="display:flex;align-items:baseline;gap:6px;"><span style="font-size:clamp(19px,3vw,26px);font-weight:500;color:#090909;opacity:0.55;line-height:1;">від</span><span style="font-size:clamp(42px,7vw,68px);font-weight:700;color:#090909;line-height:0.9;letter-spacing:-0.035em;">{{ c3 }}</span><span style="font-size:clamp(19px,3vw,26px);font-weight:600;color:#014C26;line-height:1;">₴</span></div>
+        <div style="margin-top:12px;font-size:15px;font-weight:300;color:#090909;opacity:0.62;">з гравця за годину</div>
+      </div>
+      <div style="padding:0 clamp(14px,2vw,32px) 48px;border-left:1px solid rgba(9,9,9,0.08);">
+        <div style="display:flex;align-items:baseline;gap:6px;"><span style="font-size:clamp(42px,7vw,68px);font-weight:700;color:#090909;line-height:0.9;letter-spacing:-0.035em;">{{ c2 }}</span><span style="font-size:clamp(19px,3vw,26px);font-weight:600;color:#014C26;line-height:1;">м²</span></div>
+        <div style="margin-top:12px;font-size:15px;font-weight:300;color:#090909;opacity:0.62;">простору клубу</div>
+      </div>
+      <div style="padding:0 clamp(14px,2vw,32px) 48px;border-left:1px solid rgba(9,9,9,0.08);">
+        <div style="font-size:clamp(42px,7vw,68px);font-weight:700;color:#090909;line-height:0.9;letter-spacing:-0.035em;">{{ c1 }}</div>
+        <div style="margin-top:12px;font-size:15px;font-weight:300;color:#090909;opacity:0.62;">критих кортів</div>
+      </div>
+      <div style="padding:0 clamp(14px,2vw,32px) 48px;border-left:1px solid rgba(9,9,9,0.08);">
+        <div style="font-size:clamp(42px,7vw,68px);font-weight:700;color:#090909;line-height:0.9;letter-spacing:-0.035em;">{{ c4 }}</div>
+        <div style="margin-top:12px;font-size:15px;font-weight:300;color:#090909;opacity:0.62;">ракеток у прокаті</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ FORMATS · photo cards ░░ -->
+  <section id="formats" style="padding:clamp(64px,8vw,120px) clamp(16px,3vw,40px) 0;">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+      <h2 style="font-size:clamp(30px,4.4vw,56px);font-weight:700;line-height:1.02;letter-spacing:-0.03em;color:#090909;">Оберіть свій <span style="color:#014C26;">формат</span></h2>
+      <p style="font-size:16px;font-weight:300;line-height:1.55;color:#090909;opacity:0.62;max-width:320px;">Шість форматів — від разової гри до регулярних тренувань і корпоративів.</p>
+    </div>
+    <div ref="{{ formatsGridRef }}" style="margin-top:clamp(28px,3.4vw,48px);display:grid;grid-template-columns:1fr;gap:clamp(14px,1.6vw,20px);">
+      <a href="#plan" class="gph-fcard" style="position:relative;display:block;border-radius:32px;overflow:hidden;aspect-ratio:1/1;background:#090909;">
+        <img src="assets/club1.png" alt="Оренда корту — Green Padel House" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;transition:transform .8s cubic-bezier(.2,.6,.2,1);">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(9,9,9,0.58) 0%,rgba(9,9,9,0.28) 30%,rgba(9,9,9,0.22) 55%,rgba(9,9,9,0.62) 100%);"></div>
+        <h3 style="position:absolute;left:clamp(20px,2.4vw,34px);top:clamp(18px,2.2vw,30px);right:clamp(20px,2.4vw,34px);font-size:clamp(21px,2.1vw,30px);font-weight:700;line-height:1.12;letter-spacing:-0.02em;color:#FFFFFF;">Оренда корту</h3>
+        <div style="position:absolute;left:clamp(20px,2.4vw,34px);bottom:clamp(20px,2.4vw,34px);right:clamp(88px,8.5vw,116px);display:flex;flex-wrap:wrap;gap:10px;"><span style="padding:9px 16px;border-radius:999px;background:rgba(255,255,255,0.22);border:1px solid rgba(255,255,255,0.30);font-size:clamp(13px,1.2vw,15px);font-weight:400;color:#FFFFFF;white-space:nowrap;">Критий корт</span><span style="padding:9px 16px;border-radius:999px;background:rgba(255,255,255,0.22);border:1px solid rgba(255,255,255,0.30);font-size:clamp(13px,1.2vw,15px);font-weight:400;color:#FFFFFF;white-space:nowrap;">Година гри</span></div>
+        <span style="position:absolute;right:clamp(18px,2.2vw,30px);bottom:clamp(18px,2.2vw,30px);width:clamp(50px,4.6vw,66px);height:clamp(50px,4.6vw,66px);border-radius:999px;background:#FFFFFF;display:flex;align-items:center;justify-content:center;"><span class="gph-farrow" style="display:flex;"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M5 12h13M12 5.5L18.5 12L12 18.5" stroke="#090909" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></span>
+      </a>
+      <a href="#plan" class="gph-fcard" style="position:relative;display:block;border-radius:32px;overflow:hidden;aspect-ratio:1/1;background:#090909;">
+        <img src="assets/club2.png" alt="Тренування з тренером — Green Padel House" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;transition:transform .8s cubic-bezier(.2,.6,.2,1);">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(9,9,9,0.58) 0%,rgba(9,9,9,0.28) 30%,rgba(9,9,9,0.22) 55%,rgba(9,9,9,0.62) 100%);"></div>
+        <h3 style="position:absolute;left:clamp(20px,2.4vw,34px);top:clamp(18px,2.2vw,30px);right:clamp(20px,2.4vw,34px);font-size:clamp(21px,2.1vw,30px);font-weight:700;line-height:1.12;letter-spacing:-0.02em;color:#FFFFFF;">Тренування з тренером</h3>
+        <div style="position:absolute;left:clamp(20px,2.4vw,34px);bottom:clamp(20px,2.4vw,34px);right:clamp(88px,8.5vw,116px);display:flex;flex-wrap:wrap;gap:10px;"><span style="padding:9px 16px;border-radius:999px;background:rgba(255,255,255,0.22);border:1px solid rgba(255,255,255,0.30);font-size:clamp(13px,1.2vw,15px);font-weight:400;color:#FFFFFF;white-space:nowrap;">З тренером</span><span style="padding:9px 16px;border-radius:999px;background:rgba(255,255,255,0.22);border:1px solid rgba(255,255,255,0.30);font-size:clamp(13px,1.2vw,15px);font-weight:400;color:#FFFFFF;white-space:nowrap;">Навіть з нуля</span></div>
+        <span style="position:absolute;right:clamp(18px,2.2vw,30px);bottom:clamp(18px,2.2vw,30px);width:clamp(50px,4.6vw,66px);height:clamp(50px,4.6vw,66px);border-radius:999px;background:#FFFFFF;display:flex;align-items:center;justify-content:center;"><span class="gph-farrow" style="display:flex;"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M5 12h13M12 5.5L18.5 12L12 18.5" stroke="#090909" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></span>
+      </a>
+      <a href="#plan" class="gph-fcard" style="position:relative;display:block;border-radius:32px;overflow:hidden;aspect-ratio:1/1;background:#090909;">
+        <img src="assets/club3.png" alt="Падел-тайми — Green Padel House" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 35%;transition:transform .8s cubic-bezier(.2,.6,.2,1);">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(9,9,9,0.58) 0%,rgba(9,9,9,0.28) 30%,rgba(9,9,9,0.22) 55%,rgba(9,9,9,0.62) 100%);"></div>
+        <h3 style="position:absolute;left:clamp(20px,2.4vw,34px);top:clamp(18px,2.2vw,30px);right:clamp(20px,2.4vw,34px);font-size:clamp(21px,2.1vw,30px);font-weight:700;line-height:1.12;letter-spacing:-0.02em;color:#FFFFFF;">Падел-тайми</h3>
+        <div style="position:absolute;left:clamp(20px,2.4vw,34px);bottom:clamp(20px,2.4vw,34px);right:clamp(88px,8.5vw,116px);display:flex;flex-wrap:wrap;gap:10px;"><span style="padding:9px 16px;border-radius:999px;background:rgba(255,255,255,0.22);border:1px solid rgba(255,255,255,0.30);font-size:clamp(13px,1.2vw,15px);font-weight:400;color:#FFFFFF;white-space:nowrap;">Без своєї пари</span><span style="padding:9px 16px;border-radius:999px;background:rgba(255,255,255,0.22);border:1px solid rgba(255,255,255,0.30);font-size:clamp(13px,1.2vw,15px);font-weight:400;color:#FFFFFF;white-space:nowrap;">Американо</span></div>
+        <span style="position:absolute;right:clamp(18px,2.2vw,30px);bottom:clamp(18px,2.2vw,30px);width:clamp(50px,4.6vw,66px);height:clamp(50px,4.6vw,66px);border-radius:999px;background:#FFFFFF;display:flex;align-items:center;justify-content:center;"><span class="gph-farrow" style="display:flex;"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M5 12h13M12 5.5L18.5 12L12 18.5" stroke="#090909" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></span>
+      </a>
+      <a href="#plan" class="gph-fcard" style="position:relative;display:block;border-radius:32px;overflow:hidden;aspect-ratio:1/1;background:#090909;">
+        <img src="assets/club4.png" alt="Абонементи — Green Padel House" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;transition:transform .8s cubic-bezier(.2,.6,.2,1);">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(9,9,9,0.58) 0%,rgba(9,9,9,0.28) 30%,rgba(9,9,9,0.22) 55%,rgba(9,9,9,0.62) 100%);"></div>
+        <h3 style="position:absolute;left:clamp(20px,2.4vw,34px);top:clamp(18px,2.2vw,30px);right:clamp(20px,2.4vw,34px);font-size:clamp(21px,2.1vw,30px);font-weight:700;line-height:1.12;letter-spacing:-0.02em;color:#FFFFFF;">Абонементи</h3>
+        <div style="position:absolute;left:clamp(20px,2.4vw,34px);bottom:clamp(20px,2.4vw,34px);right:clamp(88px,8.5vw,116px);display:flex;flex-wrap:wrap;gap:10px;"><span style="padding:9px 16px;border-radius:999px;background:rgba(255,255,255,0.22);border:1px solid rgba(255,255,255,0.30);font-size:clamp(13px,1.2vw,15px);font-weight:400;color:#FFFFFF;white-space:nowrap;">Пакет годин</span><span style="padding:9px 16px;border-radius:999px;background:rgba(255,255,255,0.22);border:1px solid rgba(255,255,255,0.30);font-size:clamp(13px,1.2vw,15px);font-weight:400;color:#FFFFFF;white-space:nowrap;">Вигідніше</span></div>
+        <span style="position:absolute;right:clamp(18px,2.2vw,30px);bottom:clamp(18px,2.2vw,30px);width:clamp(50px,4.6vw,66px);height:clamp(50px,4.6vw,66px);border-radius:999px;background:#FFFFFF;display:flex;align-items:center;justify-content:center;"><span class="gph-farrow" style="display:flex;"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M5 12h13M12 5.5L18.5 12L12 18.5" stroke="#090909" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></span>
+      </a>
+      <a href="#plan" class="gph-fcard" style="position:relative;display:block;border-radius:32px;overflow:hidden;aspect-ratio:1/1;background:#090909;">
+        <img src="assets/club5.png" alt="Оренда інвентарю — Green Padel House" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 35%;transition:transform .8s cubic-bezier(.2,.6,.2,1);">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(9,9,9,0.58) 0%,rgba(9,9,9,0.28) 30%,rgba(9,9,9,0.22) 55%,rgba(9,9,9,0.62) 100%);"></div>
+        <h3 style="position:absolute;left:clamp(20px,2.4vw,34px);top:clamp(18px,2.2vw,30px);right:clamp(20px,2.4vw,34px);font-size:clamp(21px,2.1vw,30px);font-weight:700;line-height:1.12;letter-spacing:-0.02em;color:#FFFFFF;">Оренда інвентарю</h3>
+        <div style="position:absolute;left:clamp(20px,2.4vw,34px);bottom:clamp(20px,2.4vw,34px);right:clamp(88px,8.5vw,116px);display:flex;flex-wrap:wrap;gap:10px;"><span style="padding:9px 16px;border-radius:999px;background:rgba(255,255,255,0.22);border:1px solid rgba(255,255,255,0.30);font-size:clamp(13px,1.2vw,15px);font-weight:400;color:#FFFFFF;white-space:nowrap;">Ракетки</span><span style="padding:9px 16px;border-radius:999px;background:rgba(255,255,255,0.22);border:1px solid rgba(255,255,255,0.30);font-size:clamp(13px,1.2vw,15px);font-weight:400;color:#FFFFFF;white-space:nowrap;">Мʼячі</span></div>
+        <span style="position:absolute;right:clamp(18px,2.2vw,30px);bottom:clamp(18px,2.2vw,30px);width:clamp(50px,4.6vw,66px);height:clamp(50px,4.6vw,66px);border-radius:999px;background:#FFFFFF;display:flex;align-items:center;justify-content:center;"><span class="gph-farrow" style="display:flex;"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M5 12h13M12 5.5L18.5 12L12 18.5" stroke="#090909" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></span>
+      </a>
+      <a href="#contacts" class="gph-fcard" style="position:relative;display:block;border-radius:32px;overflow:hidden;aspect-ratio:1/1;background:#090909;">
+        <img src="assets/club6.png" alt="Корпоративи — Green Padel House" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;transition:transform .8s cubic-bezier(.2,.6,.2,1);">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(9,9,9,0.58) 0%,rgba(9,9,9,0.28) 30%,rgba(9,9,9,0.22) 55%,rgba(9,9,9,0.62) 100%);"></div>
+        <h3 style="position:absolute;left:clamp(20px,2.4vw,34px);top:clamp(18px,2.2vw,30px);right:clamp(20px,2.4vw,34px);font-size:clamp(21px,2.1vw,30px);font-weight:700;line-height:1.12;letter-spacing:-0.02em;color:#FFFFFF;">Корпоративи</h3>
+        <div style="position:absolute;left:clamp(20px,2.4vw,34px);bottom:clamp(20px,2.4vw,34px);right:clamp(88px,8.5vw,116px);display:flex;flex-wrap:wrap;gap:10px;"><span style="padding:9px 16px;border-radius:999px;background:rgba(255,255,255,0.22);border:1px solid rgba(255,255,255,0.30);font-size:clamp(13px,1.2vw,15px);font-weight:400;color:#FFFFFF;white-space:nowrap;">Для команди</span><span style="padding:9px 16px;border-radius:999px;background:rgba(255,255,255,0.22);border:1px solid rgba(255,255,255,0.30);font-size:clamp(13px,1.2vw,15px);font-weight:400;color:#FFFFFF;white-space:nowrap;">Проводили не раз</span></div>
+        <span style="position:absolute;right:clamp(18px,2.2vw,30px);bottom:clamp(18px,2.2vw,30px);width:clamp(50px,4.6vw,66px);height:clamp(50px,4.6vw,66px);border-radius:999px;background:#FFFFFF;display:flex;align-items:center;justify-content:center;"><span class="gph-farrow" style="display:flex;"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M5 12h13M12 5.5L18.5 12L12 18.5" stroke="#090909" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ░░ STEPS · SCROLL PROGRESS ░░ -->
+  <section id="steps" style="padding:clamp(64px,8vw,120px) clamp(16px,3vw,40px);">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+      <h2 style="font-size:clamp(30px,4.4vw,56px);font-weight:700;line-height:1.02;letter-spacing:-0.03em;color:#090909;"><span style="color:#014C26;">Три кроки</span> до гри</h2>
+      <p style="font-size:16px;font-weight:300;line-height:1.55;color:#090909;opacity:0.62;max-width:320px;">Від вибору корту до підтвердження бронювання — усе онлайн.</p>
+    </div>
+
+    <div ref="{{ svcListRef }}" style="position:relative;margin-top:clamp(40px,5vw,72px);">
+      <div ref="{{ svcTrackRef }}" style="position:absolute;top:0;width:2px;height:100%;background:rgba(9,9,9,0.10);pointer-events:none;z-index:0;"></div>
+      <div ref="{{ svcFillRef }}" style="position:absolute;top:0;width:2px;height:0%;background:#014C26;pointer-events:none;z-index:0;"></div>
+
+      <div ref="{{ svcRow0 }}" style="position:relative;z-index:1;display:grid;margin-bottom:clamp(40px,5vw,72px);">
+        <div class="gph-media" style="grid-area:img;border-radius:24px;overflow:hidden;aspect-ratio:4/3;background:#F4F4F1;"><img src="assets/step-book.jpg" alt="Бронювання корту в застосунку" style="width:100%;height:100%;object-fit:cover;object-position:center 40%;"></div>
+        <div ref="{{ svcDot0 }}" style="grid-area:track;justify-self:center;align-self:center;width:40px;height:40px;border-radius:999px;border:1.5px solid rgba(9,9,9,0.16);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:#090909;background:#FFFFFF;transition:background-color .35s ease,border-color .35s ease,color .35s ease;">1</div>
+        <div style="grid-area:text;align-self:center;">
+          <h3 style="font-size:clamp(20px,2.2vw,28px);font-weight:600;line-height:1.18;letter-spacing:-0.015em;color:#090909;">Оберіть корт і час</h3>
+          <p style="margin-top:12px;font-size:15px;font-weight:300;line-height:1.6;color:#090909;opacity:0.62;max-width:420px;">Розклад відкритий на два тижні наперед — вільні години видно одразу.</p>
+        </div>
+      </div>
+
+      <div ref="{{ svcRow1 }}" style="position:relative;z-index:1;display:grid;margin-bottom:clamp(40px,5vw,72px);">
+        <div class="gph-media" style="grid-area:img;border-radius:24px;overflow:hidden;aspect-ratio:4/3;background:#F4F4F1;"><img src="assets/step-pay.jpg" alt="Оплата карткою" style="width:100%;height:100%;object-fit:cover;object-position:center center;"></div>
+        <div ref="{{ svcDot1 }}" style="grid-area:track;justify-self:center;align-self:center;width:40px;height:40px;border-radius:999px;border:1.5px solid rgba(9,9,9,0.16);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:#090909;background:#FFFFFF;transition:background-color .35s ease,border-color .35s ease,color .35s ease;">2</div>
+        <div style="grid-area:text;align-self:center;">
+          <h3 style="font-size:clamp(20px,2.2vw,28px);font-weight:600;line-height:1.18;letter-spacing:-0.015em;color:#090909;">Оплатіть карткою</h3>
+          <p style="margin-top:12px;font-size:15px;font-weight:300;line-height:1.6;color:#090909;opacity:0.62;max-width:420px;">Бронь підтверджується миттєво, без дзвінків і очікування.</p>
+        </div>
+      </div>
+
+      <div ref="{{ svcRow2 }}" style="position:relative;z-index:1;display:grid;">
+        <div class="gph-media" style="grid-area:img;border-radius:24px;overflow:hidden;aspect-ratio:4/3;background:#F4F4F1;"><img src="assets/step-name.jpg" alt="Гравці на рецепції Green Padel House" style="width:100%;height:100%;object-fit:cover;object-position:center 40%;"></div>
+        <div ref="{{ svcDot2 }}" style="grid-area:track;justify-self:center;align-self:center;width:40px;height:40px;border-radius:999px;border:1.5px solid rgba(9,9,9,0.16);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:#090909;background:#FFFFFF;transition:background-color .35s ease,border-color .35s ease,color .35s ease;">3</div>
+        <div style="grid-area:text;align-self:center;">
+          <h3 style="font-size:clamp(20px,2.2vw,28px);font-weight:600;line-height:1.18;letter-spacing:-0.015em;color:#090909;">Приходьте і грайте</h3>
+          <p style="margin-top:12px;font-size:15px;font-weight:300;line-height:1.6;color:#090909;opacity:0.62;max-width:420px;">Назвіть імʼя на рецепції — і виходьте на корт.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ BOOKING · radial #295DC5 → #FFFFFF ░░ -->
+  <section id="plan" style="position:relative;overflow:hidden;background:repeating-linear-gradient(45deg, rgba(255,255,255,0.05) 0 1px, rgba(255,255,255,0) 1px 7px),linear-gradient(#295DC5,#295DC5);padding:clamp(64px,7.5vw,112px) clamp(16px,3vw,40px);">
+    <div style="position:relative;z-index:2;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+      <h2 style="font-size:clamp(28px,4vw,50px);font-weight:700;line-height:1.02;letter-spacing:-0.03em;color:#FFFFFF;">Оберіть корт і час</h2>
+      <span style="display:inline-flex;align-items:center;gap:9px;padding:9px 16px;border-radius:999px;border:1px solid rgba(255,255,255,0.34);font-size:13px;font-weight:400;color:#FFFFFF;">Розклад відкритий на два тижні наперед</span>
+    </div>
+    <div style="position:relative;z-index:2;margin-top:clamp(24px,3vw,40px);border-radius:32px;background:#FFFFFF;padding:clamp(20px,2.4vw,32px);">
+      <div ref="{{ fieldsRef }}" style="display:grid;grid-template-columns:1fr;gap:12px;">
+        <div style="border-radius:16px;border:1px solid rgba(9,9,9,0.12);padding:14px 18px;display:flex;flex-direction:column;gap:8px;cursor:pointer;" style-hover="border-color:rgba(9,9,9,0.4);">
+          <span style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:#090909;opacity:0.5;">Дата</span>
+          <span style="font-size:16px;font-weight:500;color:#090909;">Сьогодні, 27 лип</span>
+        </div>
+        <div style="border-radius:16px;border:1px solid rgba(9,9,9,0.12);padding:14px 18px;display:flex;flex-direction:column;gap:8px;cursor:pointer;" style-hover="border-color:rgba(9,9,9,0.4);">
+          <span style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:#090909;opacity:0.5;">Час</span>
+          <span style="font-size:16px;font-weight:500;color:#090909;">18:00</span>
+        </div>
+        <div style="border-radius:16px;border:1px solid rgba(9,9,9,0.12);padding:14px 18px;display:flex;flex-direction:column;gap:8px;cursor:pointer;" style-hover="border-color:rgba(9,9,9,0.4);">
+          <span style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:#090909;opacity:0.5;">Корт</span>
+          <span style="font-size:16px;font-weight:500;color:#090909;">Корт 3 · критий</span>
+        </div>
+        <div style="border-radius:16px;border:1px solid rgba(9,9,9,0.12);padding:14px 18px;display:flex;flex-direction:column;gap:8px;cursor:pointer;" style-hover="border-color:rgba(9,9,9,0.4);">
+          <span style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:#090909;opacity:0.5;">Тривалість</span>
+          <span style="font-size:16px;font-weight:500;color:#090909;">90 хв</span>
+        </div>
+      </div>
+      <div style="margin-top:20px;padding-top:20px;border-top:1px solid rgba(9,9,9,0.10);display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;">
+        <span style="flex:1;min-width:200px;font-size:15px;font-weight:300;color:#090909;opacity:0.62;">Безкоштовне скасування за 24 години до гри</span>
+        <a href="#" class="gph-pill" style="flex:none;display:inline-flex;align-items:center;justify-content:center;height:56px;padding:0 30px;border-radius:999px;background:#014C26;color:#FFFFFF;font-size:15px;font-weight:600;line-height:1;white-space:nowrap;">Показати вільний час</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ CLUB · aligned mosaic ░░ -->
+  <section id="club" style="padding:clamp(56px,7vw,104px) 0 clamp(64px,8vw,120px);">
+    <div style="padding:0 clamp(16px,3vw,40px);display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+      <h2 style="font-size:clamp(30px,4.4vw,56px);font-weight:700;line-height:1.02;letter-spacing:-0.03em;color:#090909;">Клуб, куди<br>повертаються</h2>
+      <p style="font-size:16px;font-weight:300;line-height:1.55;color:#090909;opacity:0.62;max-width:340px;">Green Padel House відкрився в лютому 2025 року. Тут збирають пари на гру, знайомляться і залишаються після матчу на каву.</p>
+    </div>
+    <div id="clubgrid" style="margin-top:clamp(28px,3.4vw,52px);padding:0 clamp(16px,3vw,40px);">
+      <div data-cg="1"><img src="assets/club2.png" alt="Гравці Green Padel House" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;"></div>
+      <div data-cg="2"><img src="assets/club4.png" alt="Рецепція та прокат ракеток" style="width:100%;height:100%;object-fit:cover;object-position:center 40%;"></div>
+      <div data-cg="3"><img src="assets/club3.png" alt="Гра на корті" style="width:100%;height:100%;object-fit:cover;object-position:center 35%;"></div>
+      <div data-cg="4"><img src="assets/club6.png" alt="Простір клубу" style="width:100%;height:100%;object-fit:cover;object-position:center 40%;"></div>
+      <div data-cg="5"><img src="assets/club1.png" alt="Гра на критому корті" style="width:100%;height:100%;object-fit:cover;object-position:center 40%;"></div>
+      <div data-cg="6"><img src="assets/club5.png" alt="Комʼюніті клубу" style="width:100%;height:100%;object-fit:cover;object-position:center 35%;"></div>
+    </div>
+  </section>
+
+  <!-- ░░ FOOTER · huge lime card ░░ -->
+  <footer id="contacts" style="padding:0 clamp(12px,1.6vw,20px) 0;">
+    <div style="position:relative;overflow:hidden;border-radius:32px;background:#014C26;min-height:clamp(560px,74vw,880px);padding:clamp(28px,4vw,64px);display:flex;flex-direction:column;">
+      <div style="position:relative;z-index:2;display:flex;align-items:flex-start;justify-content:space-between;gap:clamp(20px,3vw,48px);flex-wrap:wrap;">
+        <div style="min-width:0;">
+          <h2 style="font-size:clamp(20px,4.4vw,64px);font-weight:700;line-height:1.08;letter-spacing:-0.03em;color:#FFFFFF;"><span style="display:block;white-space:nowrap;">Твій корт уже чекає.</span><span style="display:block;white-space:nowrap;">Бронюй і виходь на гру.</span></h2>
+          <div style="margin-top:clamp(22px,2.6vw,40px);display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+            <a href="#plan" class="gph-pill" style="display:inline-flex;align-items:center;justify-content:center;height:52px;padding:0 28px;border-radius:999px;border:1.5px solid #FFFFFF;color:#FFFFFF;font-size:15px;font-weight:600;line-height:1;white-space:nowrap;" style-hover="background:#FFFFFF;color:#014C26;">Забронювати корт</a>
+          </div>
+        </div>
+        <div style="flex:none;display:flex;flex-direction:column;gap:10px;">
+          <a href="#" aria-label="App Store"><img src="assets/appstore.svg" alt="Завантажити в App Store" style="height:clamp(38px,3.4vw,46px);width:auto;"></a>
+          <a href="#" aria-label="Google Play"><img src="assets/googleplay.svg" alt="Завантажити в Google Play" style="height:clamp(38px,3.4vw,46px);width:auto;"></a>
+        </div>
+      </div>
+      <img src="assets/logo-lime-wm.svg" alt="Green Padel House" style="position:absolute;left:clamp(20px,3vw,56px);right:clamp(20px,3vw,56px);bottom:clamp(-8px,-1vw,-24px);width:auto;max-width:calc(100% - clamp(40px,6vw,112px));height:auto;pointer-events:none;">
+    </div>
+    <div style="padding:clamp(20px,2.4vw,32px) clamp(6px,1.4vw,24px) clamp(20px,2.4vw,32px);display:flex;align-items:center;justify-content:space-between;gap:16px 24px;flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:clamp(12px,1.6vw,26px);flex-wrap:wrap;">
+        <span style="font-size:14px;font-weight:400;color:#090909;opacity:0.72;">© 2026 Green Padel House</span>
+        <a href="#" style="font-size:14px;font-weight:400;color:#090909;opacity:0.72;" style-hover="opacity:1;color:#014C26;">Політика конфіденційності</a>
+        <a href="#" style="font-size:14px;font-weight:400;color:#090909;opacity:0.72;" style-hover="opacity:1;color:#014C26;">Публічна оферта</a>
+      </div>
+      <div style="display:flex;align-items:center;gap:7px;">
+        <span style="font-size:14px;font-weight:400;color:#090909;opacity:0.6;">Створено з душею</span>
+        <img src="assets/welldone.svg" alt="welldone" style="height:18px;width:auto;filter:brightness(0) saturate(0);">
+      </div>
+    </div>
+  </footer>
+
+  <!-- ░░ LIGHTBOX ░░ -->
+  <div ref="{{ lbRef }}" role="dialog" aria-modal="true" aria-label="Галерея клубу" style="position:fixed;inset:0;z-index:120;display:none;align-items:center;justify-content:center;padding:clamp(16px,4vw,56px);background:rgba(9,9,9,0.90);opacity:0;transition:opacity .3s ease;">
+    <img ref="{{ lbImgRef }}" src="" alt="" style="max-width:min(92vw,1440px);max-height:80vh;border-radius:24px;object-fit:contain;opacity:0;transform:scale(0.98);transition:opacity .35s ease,transform .35s cubic-bezier(.2,.7,.2,1);">
+    <button ref="{{ lbCloseRef }}" aria-label="Закрити галерею" style="position:absolute;top:clamp(16px,2.4vw,32px);right:clamp(16px,2.4vw,32px);width:52px;height:52px;border-radius:999px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.24);display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer;transition:background-color .25s ease;" style-hover="background:rgba(255,255,255,0.22);">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+    <button ref="{{ lbPrevRef }}" aria-label="Попереднє фото" style="position:absolute;left:clamp(12px,2.4vw,32px);top:50%;transform:translateY(-50%);width:56px;height:56px;border-radius:999px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.24);display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer;transition:background-color .25s ease;" style-hover="background:rgba(255,255,255,0.22);">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M19 12H6M12 5.5L5.5 12L12 18.5" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+    </button>
+    <button ref="{{ lbNextRef }}" aria-label="Наступне фото" style="position:absolute;right:clamp(12px,2.4vw,32px);top:50%;transform:translateY(-50%);width:56px;height:56px;border-radius:999px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.24);display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer;transition:background-color .25s ease;" style-hover="background:rgba(255,255,255,0.22);">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M5 12h13M12 5.5L18.5 12L12 18.5" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+    </button>
+    <div ref="{{ lbCountRef }}" style="position:absolute;bottom:clamp(18px,3vw,40px);left:50%;transform:translateX(-50%);padding:8px 18px;border-radius:999px;background:rgba(255,255,255,0.10);border:1px solid rgba(255,255,255,0.20);font-size:13px;font-weight:500;letter-spacing:0.06em;color:#FFFFFF;">1 / 6</div>
+  </div>
+
+  <div style="position:fixed;right:clamp(12px,1.4vw,20px);bottom:clamp(12px,1.4vw,20px);z-index:90;display:flex;flex-direction:column;gap:9px;padding:11px 12px;background:#090909;border:1px solid rgba(255,255,255,0.16);border-radius:12px;box-shadow:0 16px 38px rgba(9,9,9,0.34);">
+    <span style="font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.42);">Концепти</span>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <div style="display:flex;gap:5px;">
+        <a href="1-1.html" title="Концепт 1.1 · базовий перший екран" style="display:inline-flex;align-items:center;justify-content:center;height:30px;padding:0 11px;min-width:auto;border-radius:8px;font-size:12px;font-weight:600;line-height:1;white-space:nowrap;text-decoration:none;border:1px solid rgba(255,255,255,0.22);color:rgba(255,255,255,0.85);" style-hover="border-color:#E1F07B;color:#E1F07B;">1.1</a>
+        <a href="1-2.html" title="Концепт 1.2 · відео на фоні" style="display:inline-flex;align-items:center;justify-content:center;height:30px;padding:0 11px;min-width:auto;border-radius:8px;font-size:12px;font-weight:600;line-height:1;white-space:nowrap;text-decoration:none;border:1px solid rgba(255,255,255,0.22);color:rgba(255,255,255,0.85);" style-hover="border-color:#E1F07B;color:#E1F07B;">1.2</a>
+        <a href="1-3.html" title="Концепт 1.3 · бігучий рядок" style="display:inline-flex;align-items:center;justify-content:center;height:30px;padding:0 11px;min-width:auto;border-radius:8px;font-size:12px;font-weight:600;line-height:1;white-space:nowrap;text-decoration:none;border:1px solid rgba(255,255,255,0.22);color:rgba(255,255,255,0.85);" style-hover="border-color:#E1F07B;color:#E1F07B;">1.3</a>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:5px;border-top:1px solid rgba(255,255,255,0.12);padding-top:9px;">
+      <a href="2.html" title="Концепт 2" style="display:inline-flex;align-items:center;justify-content:center;height:30px;padding:0 11px;border-radius:8px;font-size:12px;font-weight:600;line-height:1;white-space:nowrap;text-decoration:none;border:1px solid rgba(255,255,255,0.22);color:rgba(255,255,255,0.85);" style-hover="border-color:#E1F07B;color:#E1F07B;">2</a>
+      <a href="3-1.html" title="Концепт 3.1 · лаймові CTA" style="display:inline-flex;align-items:center;justify-content:center;height:30px;padding:0 11px;border-radius:8px;font-size:12px;font-weight:600;line-height:1;white-space:nowrap;text-decoration:none;border:1px solid rgba(255,255,255,0.22);color:rgba(255,255,255,0.85);" style-hover="border-color:#E1F07B;color:#E1F07B;">3.1</a><span style="display:inline-flex;align-items:center;justify-content:center;height:30px;padding:0 11px;border-radius:8px;font-size:12px;font-weight:600;line-height:1;white-space:nowrap;background:#E1F07B;color:#090909;">3.2</span>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: &quot;100%&quot;, &quot;height&quot;: &quot;100%&quot;}}">
+class Component extends DCLogic {
+  state = { c1: 0, c2: 0, c3: 0, c4: 0, started: false };
+  statsRef = React.createRef();
+  navRef = React.createRef();
+  burgerRef = React.createRef();
+  stepsGridRef = React.createRef();
+  formatsGridRef = React.createRef();
+  headerRef = React.createRef();
+  lbRef = React.createRef();
+  lbImgRef = React.createRef();
+  lbCloseRef = React.createRef();
+  lbPrevRef = React.createRef();
+  lbNextRef = React.createRef();
+  lbCountRef = React.createRef();
+  svcListRef = React.createRef();
+  svcTrackRef = React.createRef();
+  svcFillRef = React.createRef();
+  svcRow0 = React.createRef();
+  svcRow1 = React.createRef();
+  svcRow2 = React.createRef();
+  svcDot0 = React.createRef();
+  svcDot1 = React.createRef();
+  svcDot2 = React.createRef();
+  fieldsRef = React.createRef();
+  clubGridRef = React.createRef();
+  footGridRef = React.createRef();
+
+  componentDidMount() {
+    this.applyLayout();
+    this._onResize = () => this.applyLayout();
+    window.addEventListener('resize', this._onResize);
+    this._onScroll = () => { if (!this._raf) this._raf = requestAnimationFrame(() => this.onScroll()); };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    document.addEventListener('scroll', this._onScroll, true);
+    this.onScroll();
+    this.initLightbox();
+    const el = this.statsRef.current;
+    if (!el || typeof IntersectionObserver === 'undefined') { this.run(); return; }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting && !this.state.started) { this.setState({ started: true }); this.run(); io.disconnect(); } });
+    }, { threshold: 0.3 });
+    io.observe(el);
+  }
+  componentWillUnmount() {
+    if (this._onResize) window.removeEventListener('resize', this._onResize);
+    if (this._onScroll) { window.removeEventListener('scroll', this._onScroll); document.removeEventListener('scroll', this._onScroll, true); }
+    if (this._lbKeys) window.removeEventListener('keydown', this._lbKeys);
+  }
+
+initLightbox() {
+    const grid = document.getElementById('clubgrid');
+    const box = this.lbRef.current, img = this.lbImgRef.current;
+    if (!grid || !box || !img) return;
+    const tiles = Array.prototype.slice.call(grid.querySelectorAll('img'));
+    if (!tiles.length) return;
+    this._lbItems = tiles.map((t) => ({ src: t.getAttribute('src'), alt: t.getAttribute('alt') || '' }));
+    this._lbIndex = 0;
+    tiles.forEach((t, i) => {
+      const host = t.parentElement || t;
+      if (host._lbBound) return;
+      host._lbBound = 1;
+      host.addEventListener('click', () => this.lbOpen(i));
+    });
+    if (!box._lbBound) {
+      box._lbBound = 1;
+      box.addEventListener('click', (e) => { if (e.target === box) this.lbClose(); });
+      if (this.lbCloseRef.current) this.lbCloseRef.current.addEventListener('click', (e) => { e.stopPropagation(); this.lbClose(); });
+      if (this.lbPrevRef.current) this.lbPrevRef.current.addEventListener('click', (e) => { e.stopPropagation(); this.lbStep(-1); });
+      if (this.lbNextRef.current) this.lbNextRef.current.addEventListener('click', (e) => { e.stopPropagation(); this.lbStep(1); });
+      this._lbKeys = (e) => {
+        if (!this._lbOpen) return;
+        if (e.key === 'Escape') this.lbClose();
+        else if (e.key === 'ArrowLeft') this.lbStep(-1);
+        else if (e.key === 'ArrowRight') this.lbStep(1);
+      };
+      window.addEventListener('keydown', this._lbKeys);
+    }
+  }
+  lbShow(i) {
+    const items = this._lbItems || [], img = this.lbImgRef.current;
+    if (!items.length || !img) return;
+    const n = items.length;
+    this._lbIndex = ((i % n) + n) % n;
+    const it = items[this._lbIndex];
+    img.style.opacity = '0';
+    img.style.transform = 'scale(0.98)';
+    const reveal = () => { img.style.opacity = '1'; img.style.transform = 'scale(1)'; };
+    window.setTimeout(() => {
+      img.setAttribute('src', it.src);
+      img.setAttribute('alt', it.alt);
+      if (img.complete) reveal(); else img.addEventListener('load', reveal, { once: true });
+    }, 140);
+    if (this.lbCountRef.current) this.lbCountRef.current.textContent = (this._lbIndex + 1) + ' / ' + n;
+  }
+  lbOpen(i) {
+    const box = this.lbRef.current;
+    if (!box) return;
+    this._lbOpen = true;
+    box.style.display = 'flex';
+    requestAnimationFrame(() => { box.style.opacity = '1'; });
+    this.lbShow(i);
+  }
+  lbClose() {
+    const box = this.lbRef.current;
+    if (!box) return;
+    this._lbOpen = false;
+    box.style.opacity = '0';
+    window.setTimeout(() => { if (!this._lbOpen) box.style.display = 'none'; }, 300);
+  }
+  lbStep(d) { this.lbShow((this._lbIndex || 0) + d); }
+
+  onScroll() {
+    this._raf = 0;
+    const hd = this.headerRef.current;
+    if (hd) {
+      const y = window.scrollY || document.documentElement.scrollTop || 0;
+      const stuck = y > 8;
+      const inset = 'calc((100% - min(100%, 1680px)) / 2 + clamp(14px,3vw,40px))';
+      hd.style.transitionProperty = 'box-shadow,border-radius,top,left,right,padding';
+      hd.style.transitionDuration = '.3s';
+      hd.style.transitionTimingFunction = 'cubic-bezier(.4,0,.2,1)';
+      hd.style.top = stuck ? '0px' : 'clamp(14px,2vw,24px)';
+      hd.style.left = stuck ? '0px' : inset;
+      hd.style.right = stuck ? '0px' : inset;
+      hd.style.borderRadius = stuck ? '0px' : '999px';
+      hd.style.paddingLeft = stuck ? 'clamp(16px,3vw,40px)' : 'clamp(16px,2vw,26px)';
+      hd.style.paddingRight = '10px';
+      hd.style.boxShadow = stuck ? '0 14px 34px rgba(9,9,9,0.22)' : 'none';
+    }
+    const svcEl = this.svcListRef.current;
+    if (!svcEl) return;
+    const r = svcEl.getBoundingClientRect();
+    const ref = window.innerHeight * 0.6;
+    const p = Math.min(1, Math.max(0, (ref - r.top) / r.height));
+    if (this.svcFillRef.current) this.svcFillRef.current.style.height = (p * 100) + '%';
+    const dots = [this.svcDot0, this.svcDot1, this.svcDot2];
+    const n = dots.length;
+    dots.forEach((d, i) => {
+      const el = d.current; if (!el) return;
+      const reached = p >= (i + 1) / n - 0.001;
+      el.style.background = reached ? '#014C26' : '#FFFFFF';
+      el.style.borderColor = reached ? '#014C26' : 'rgba(9,9,9,0.16)';
+      el.style.color = reached ? '#FFFFFF' : '#090909';
+    });
+  }
+
+  applyLayout() {
+    const w = window.innerWidth;
+    const navHide = w <= 940;
+    if (this.navRef.current) this.navRef.current.style.display = navHide ? 'none' : 'flex';
+    if (this.burgerRef.current) this.burgerRef.current.style.display = navHide ? 'flex' : 'none';
+    const mobile = w <= 860;
+    [this.svcRow0, this.svcRow1, this.svcRow2].forEach((r, i) => {
+      const el = r.current; if (!el) return;
+      if (mobile) { el.style.gridTemplateColumns = '40px 1fr'; el.style.gridTemplateAreas = '"track img" "track text"'; el.style.columnGap = '16px'; el.style.rowGap = '14px'; }
+      else {
+        el.style.gridTemplateColumns = '1fr 88px 1fr';
+        el.style.gridTemplateAreas = i % 2 === 0 ? '"img track text"' : '"text track img"';
+        el.style.columnGap = 'clamp(20px,3vw,48px)'; el.style.rowGap = '0';
+      }
+    });
+    const svcLeft = mobile ? '20px' : '50%';
+    if (this.svcTrackRef.current) { this.svcTrackRef.current.style.left = svcLeft; this.svcTrackRef.current.style.transform = 'translateX(-50%)'; }
+    if (this.svcFillRef.current) { this.svcFillRef.current.style.left = svcLeft; this.svcFillRef.current.style.transform = 'translateX(-50%)'; }
+    if (this.formatsGridRef.current) this.formatsGridRef.current.style.gridTemplateColumns = w > 1180 ? 'repeat(3,1fr)' : (w > 760 ? 'repeat(2,1fr)' : '1fr');
+    if (this.fieldsRef.current) this.fieldsRef.current.style.gridTemplateColumns = w > 860 ? 'repeat(4,1fr)' : (w > 520 ? 'repeat(2,1fr)' : '1fr');
+    if (this.clubGridRef.current) this.clubGridRef.current.style.gridTemplateColumns = w > 900 ? '0.9fr 1.1fr' : '1fr';
+  }
+
+  run() {
+    const targets = [5, 2400, 275, 30];
+    const dur = 1500, t0 = performance.now();
+    const ease = (t) => 1 - Math.pow(1 - t, 3);
+    const tick = (now) => {
+      const p = Math.min(1, (now - t0) / dur), e = ease(p);
+      this.setState({ c1: Math.round(targets[0] * e), c2: Math.round(targets[1] * e), c3: Math.round(targets[2] * e), c4: Math.round(targets[3] * e) });
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+
+  renderVals() {
+    return {
+      statsRef: this.statsRef, navRef: this.navRef, burgerRef: this.burgerRef,
+      formatsGridRef: this.formatsGridRef, headerRef: this.headerRef,
+      lbRef: this.lbRef, lbImgRef: this.lbImgRef, lbCloseRef: this.lbCloseRef, lbPrevRef: this.lbPrevRef, lbNextRef: this.lbNextRef, lbCountRef: this.lbCountRef,
+      svcListRef: this.svcListRef, svcTrackRef: this.svcTrackRef, svcFillRef: this.svcFillRef,
+      svcRow0: this.svcRow0, svcRow1: this.svcRow1, svcRow2: this.svcRow2,
+      svcDot0: this.svcDot0, svcDot1: this.svcDot1, svcDot2: this.svcDot2, fieldsRef: this.fieldsRef, clubGridRef: this.clubGridRef, footGridRef: this.footGridRef,
+      c1: this.state.c1, c2: this.state.c2, c3: this.state.c3, c4: this.state.c4,
+    };
+  }
+}
+</script>
+</body>
+</html>
