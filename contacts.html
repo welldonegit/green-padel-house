@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geologica:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior:smooth; scroll-padding-top:96px; }
+  body { margin:0; font-family:'Geologica',-apple-system,BlinkMacSystemFont,sans-serif; background:#F5F5F8;overflow-x:hidden; color:#323235; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+  a { color:#323235; text-decoration:none; }
+  a:hover { color:#323235; }
+  img { display:block; max-width:100%; }
+  h1,h2,h3,p { margin:0; text-wrap:pretty; }
+  @keyframes gphBubble { 0% { transform:scale(0); opacity:0; } 10% { transform:scale(1.18); opacity:1; } 20% { transform:scale(1); opacity:1; } 66% { transform:scale(1); opacity:1; } 100% { transform:scale(0.25); opacity:0; } }
+  @keyframes gphStepFill { 0% { opacity:0; } 4% { opacity:1; } 28% { opacity:1; } 33% { opacity:0; } 100% { opacity:0; } }
+  @keyframes gphKB { 0%,100% { transform:scale(1); } 50% { transform:scale(1.08); } }
+  @keyframes gphIconPulse { 0%,100% { transform:scale(1); } 50% { transform:scale(1.18); } }
+  @keyframes gphIconBob { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-2.5px); } }
+  @keyframes gphIconSpin { to { transform:rotate(360deg); } }
+  @keyframes gphDiagSlide { 0%,100% { transform:translate(0,0); } 50% { transform:translate(2px,-2px); } }
+  @keyframes gphVoidDraw { 0% { stroke-dashoffset:19; } 40% { stroke-dashoffset:0; } 78% { stroke-dashoffset:0; } 100% { stroke-dashoffset:19; } }
+  @keyframes gphTicker { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+  @keyframes gphRacketFloat { 0%,100% { transform:translateY(0) rotate(0deg); } 50% { transform:translateY(-9px) rotate(3.5deg); } }
+  @keyframes gphIconDraw { 0% { stroke-dashoffset:16; } 35% { stroke-dashoffset:0; } 75% { stroke-dashoffset:0; } 100% { stroke-dashoffset:16; } }
+  .gph-fcard { transition: transform .25s ease; }
+  .gph-fcard:hover { transform: translateY(-3px); }
+  .gph-fcard:hover img { transform: scale(1.05); }
+  .gph-farrow { transition: transform .25s ease; }
+  .gph-fcard:hover .gph-farrow { transform: translateX(4px); }
+  .gph-cta { transition: transform .25s ease, box-shadow .25s ease; }
+  .gph-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(9,9,9,0.18); }
+  .gph-cta > span { transition: background-color .25s ease; }
+  .gph-cta:hover > span { background-color: #090909 !important; }
+  .gph-cta > span svg { transition: transform .25s ease; }
+  .gph-cta:hover > span svg { transform: translate(3px,-3px); }
+  .gph-cta > span svg path { transition: stroke .25s ease; }
+  .gph-cta:hover > span svg path { stroke: #E1F07B !important; }
+  .gph-faq { background: #090909; transition: background-color .3s ease; }
+  .gph-faq h3 { color: #FFFFFF; transition: color .3s ease; }
+  .gph-faq [data-faq-body] p { color: #FFFFFF; opacity: 0.7; transition: color .3s ease, opacity .3s ease; }
+  .gph-faq:hover { background: #FFFFFF; }
+  .gph-faq:hover h3 { color: #090909; }
+  .gph-faq:hover [data-faq-body] p { color: #323235; opacity: 1; }
+  .gph-faq [data-faq-icon] { background: #FFFFFF; transition: transform .3s ease, background-color .3s ease; }
+  .gph-faq:hover [data-faq-icon] { background: #090909; }
+  .gph-faq:hover [data-faq-icon] path { stroke: #FFFFFF; }
+  .gph-wave { position:relative; overflow:hidden; }
+  .gph-wave > span { position:relative; z-index:2; transition:color .28s ease; }
+  .gph-wave::before {
+    content:''; position:absolute; left:50%; bottom:0; z-index:1; pointer-events:none;
+    width:150%; height:230%; background:#E1F07B;
+    border-radius:44% 48% 0 0 / 56% 62% 0 0;
+    transform:translate(-50%,100%) scaleX(0.55);
+    transition:transform .32s cubic-bezier(.28,.86,.4,1);
+  }
+  .gph-wave:hover::before { transform:translate(-50%,10%) scaleX(1); }
+  .gph-wave:hover > span { color:#090909; }
+  @media (max-width:700px) { [style*="rotate(-4deg)"] { --hhShift:-6px; } }
+  @keyframes gphSwipeHand { 0%,100% { transform:translateX(-4px); } 50% { transform:translateX(6px); } }
+  .gph-navpill { background:#323235; color:#FFFFFF; transition:background-color .25s ease, transform .2s ease; }
+  .gph-navpill:hover { background:#090909; transform:translateY(-1px); }
+  .gph-navpill[data-on="1"] { background:#090909; }
+  .gph-navpill[data-on="1"]:hover { background:#090909; transform:none; }
+  @media (max-width:900px) {
+  }
+  @media (prefers-reduced-motion: reduce) {
+  }
+  @media (max-width:860px) {
+    .gph-hdr2 a[href^="tel:"] { width:48px; padding:0 !important; }
+    .gph-hdr2 a[href^="tel:"] > span:first-child { display:none; }
+    .gph-hdr2 a[href^="tel:"] > span:last-child { display:flex !important; }
+  }
+  .gph-hdr2 [data-hdr2-icon] { display:none; }
+  .gph-hdr2 [data-hdr2-label] { display:inline; }
+  @media (max-width:860px) {
+    .gph-hdr2 [data-hdr2-label] { display:none; }
+    .gph-hdr2 [data-hdr2-icon] { display:flex; }
+    .gph-hdr2 [data-hdr2-call] { width:44px; padding:0; }
+  }
+  .gph-tcard { min-height:420px; }
+  @media (min-width:1101px) { .gph-tcard { aspect-ratio:4/3; min-height:0; } }
+  .gph-tcard { transition:transform .25s ease; }
+  .gph-tcard:hover { transform:translateY(-2px); }
+  .gph-timg { transition:transform .6s cubic-bezier(.2,.6,.2,1); }
+  .gph-tcard:hover .gph-timg { transform:scale(1.04); }
+  .gph-tarrow { transition:transform .25s ease; }
+  .gph-tcard:hover .gph-tarrow { transform:translateX(3px); }
+  .gph-ccard { transition:transform .25s ease; }
+  .gph-ccard:hover { transform:translateY(-2px); }
+  .gph-carrow { transition:transform .25s ease; }
+  .gph-ccard:hover .gph-carrow { transform:translate(3px,-3px); }
+  .gph-wave:hover .gph-wave-label { color:#090909; }
+  ::selection { background:#E1F07B; color:#323235; }
+</style>
+</helmet>
+<div style="width:100%;background:#F5F5F8;">
+  <div style="width:100%;max-width:1600px;margin:0 auto;background:#F5F5F8;">
+
+    <!-- ░░ HERO ░░ -->
+    <section id="hero" style="padding:24px 24px 0;">
+      <div style="position:relative;overflow:hidden;background:#295DC5;border-radius:32px;padding:clamp(20px,2.4vw,32px) clamp(28px,4vw,64px) clamp(28px,4vw,64px);">
+<header class="gph-hdr2" style="position:relative;z-index:8;margin:0 0 clamp(20px,2.4vw,32px);display:flex;align-items:center;justify-content:space-between;gap:16px;padding:clamp(12px,1.4vw,18px) clamp(20px,3vw,40px) clamp(12px,1.4vw,18px);border-bottom:1px solid rgba(255,255,255,0.24);">
+        <button aria-label="Меню"  style="flex:none;display:flex;align-items:center;justify-content:center;width:44px;height:44px;background:transparent;border:none;padding:0;cursor:pointer;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M3 7h18M3 12h18M3 17h18" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"></path></svg></button>
+        <a href="#" style="position:absolute;left:50%;top:clamp(12px,1.4vw,18px);transform:translateX(-50%);height:48px;display:flex;align-items:center;"><img src="assets/logo-light.svg" alt="Green Padel House" style="height:26px;width:auto;"></a>
+        <a href="tel:+380756368890" data-hdr2-call aria-label="Замовити дзвінок" style="flex:none;display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 28px;border-radius:999px;border:1px solid rgba(255,255,255,0.7);color:#FFFFFF;font-size:14px;font-weight:700;line-height:1;white-space:nowrap;transition:background-color .25s ease,color .25s ease;" style-hover="background:#FFFFFF;color:#295DC5;"><span data-hdr2-label>Замовити дзвінок</span><span data-hdr2-icon style="align-items:center;justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" stroke="#FFFFFF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></a>
+      </header>
+        <div style="position:relative;z-index:2;padding-top:clamp(40px,12vw,60px);">
+          <h1 style="font-size:clamp(56px, 8vw, 112px);font-weight:700;line-height:1.05;letter-spacing:-0.02em;color:#FFFFFF;max-width:16ch;text-wrap:balance;">Контакти</h1>
+          <p style="margin-top:32px;font-size:16px;font-weight:300;line-height:1.6;color:#FFFFFF;opacity:0.7;max-width:520px;">Клуб на вул. Зеленій — щодня з 07:00 до 23:00. Телефонуйте, пишіть у Telegram або приходьте одразу на корт.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ░░ CONTACT ░░ -->
+    <section id="contact" style="padding:clamp(96px,11vw,128px) 24px clamp(64px,8vw,96px);">
+      <div ref="{{ contactGridRef }}" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(48px,6vw,96px);align-items:start;">
+
+        <div ref="{{ stickyRef }}" style="min-width:0;align-self:start;position:sticky;top:24px;background:#090909;border-radius:24px;padding:clamp(28px,3vw,48px);display:flex;flex-direction:column;gap:24px;">
+          <span style="display:flex;flex-direction:column;gap:16px;">
+            <span style="font-size:clamp(40px, 4.4vw, 56px);font-weight:700;line-height:1.1;letter-spacing:-0.02em;color:#FFFFFF;text-wrap:balance;">Хочете зіграти?</span>
+            <span style="font-size:16px;font-weight:300;line-height:1.6;color:#FFFFFF;opacity:0.7;max-width:36ch;">Оберіть корт і час онлайн</span>
+          </span>
+          <a ref="{{ submitRef }}" href="booking.html" class="gph-wave" style="position:relative;align-self:flex-start;display:inline-flex;align-items:center;justify-content:center;height:56px;padding:0 28px;border-radius:999px;background:#FFFFFF;color:#090909;font-size:14px;font-weight:700;line-height:1;white-space:nowrap;"><span class="gph-wave-fill" style="background:#E1F07B;"></span><span class="gph-wave-label" style="position:relative;z-index:2;transition:color .32s ease;">Забронювати корт</span></a>
+        </div>
+
+        <div style="min-width:0;display:flex;flex-direction:column;gap:clamp(40px,4.4vw,56px);">
+          <div>
+            <h3 style="font-size:22px;font-weight:700;line-height:1.35;letter-spacing:-0.02em;color:#090909;">Телефон</h3>
+            <a href="tel:+380756368890" style="margin-top:16px;display:inline-block;font-size:clamp(28px,3vw,40px);font-weight:700;line-height:1.2;letter-spacing:-0.02em;color:#090909;">+380 75 636 8890</a>
+          </div>
+
+          <div>
+            <h3 style="font-size:22px;font-weight:700;line-height:1.35;letter-spacing:-0.02em;color:#090909;">Адреса</h3>
+            <p style="margin-top:16px;font-size:16px;font-weight:300;line-height:1.6;color:#090909;">вул. Зелена, 238-з<br>Львів, 79035</p>
+            <p style="margin-top:12px;font-size:14px;font-weight:400;line-height:1.5;color:#323235;max-width:40ch;">Сихівський район, біля кільцевої розвʼязки. Орієнтир — завод «ГалПідшипник».</p>
+          </div>
+
+          <div ref="{{ infoRowRef }}" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;">
+            <div>
+              <h3 style="font-size:22px;font-weight:700;line-height:1.35;letter-spacing:-0.02em;color:#090909;">Графік</h3>
+              <p style="margin-top:16px;font-size:16px;font-weight:300;line-height:1.6;color:#323235;">Щодня<br>07:00–23:00</p>
+            </div>
+            <div>
+              <h3 style="font-size:22px;font-weight:700;line-height:1.35;letter-spacing:-0.02em;color:#090909;">Паркінг</h3>
+              <p style="margin-top:16px;font-size:16px;font-weight:300;line-height:1.6;color:#323235;">20 місць, безкоштовно<br>за 100 м від клубу</p>
+            </div>
+          </div>
+
+          <div>
+            <h3 style="font-size:22px;font-weight:700;line-height:1.35;letter-spacing:-0.02em;color:#090909;">Соцмережі та месенджери</h3>
+            <div style="margin-top:16px;display:flex;flex-wrap:wrap;gap:12px;">
+              <a href="#" style="display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 18px;border-radius:999px;background:#FFFFFF;color:#090909;font-size:14px;font-weight:700;line-height:1;white-space:nowrap;transition:transform .25s ease;" style-hover="transform:translateY(-2px);"><span style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:8px;overflow:hidden;flex:none;"><img src="assets/instagram.svg" alt="" style="width:100%;height:100%;object-fit:contain;"></span>Instagram</a>
+              <a href="#" style="display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 18px;border-radius:999px;background:#FFFFFF;color:#090909;font-size:14px;font-weight:700;line-height:1;white-space:nowrap;transition:transform .25s ease;" style-hover="transform:translateY(-2px);"><span style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:8px;overflow:hidden;flex:none;"><img src="assets/tiktok.svg" alt="" style="width:100%;height:100%;object-fit:contain;"></span>TikTok</a>
+              <a href="#" style="display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 18px;border-radius:999px;background:#FFFFFF;color:#090909;font-size:14px;font-weight:700;line-height:1;white-space:nowrap;transition:transform .25s ease;" style-hover="transform:translateY(-2px);"><span style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:8px;overflow:hidden;flex:none;"><img src="assets/telegram.svg" alt="" style="width:100%;height:100%;object-fit:contain;"></span>Telegram</a>
+              <a href="viber://chat?number=%2B380756368890" style="display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 18px;border-radius:999px;background:#FFFFFF;color:#090909;font-size:14px;font-weight:700;line-height:1;white-space:nowrap;transition:transform .25s ease;" style-hover="transform:translateY(-2px);"><span style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:8px;overflow:hidden;flex:none;"><img src="assets/viber.svg" alt="" style="width:100%;height:100%;object-fit:contain;"></span>Viber</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ░░ MAP ░░ -->
+    <section id="map" style="padding:0 0 clamp(96px,11vw,128px);">
+      <div style="position:relative;overflow:hidden;height:clamp(360px,42vw,560px);background:#F5F5F8;">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2574.9952378022394!2d24.062096!3d49.8049572!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473ae971c6d8a35b%3A0xe7c68be6a3c2391e!2sGreen%20Padel%20House!5e0!3m2!1sru!2sua!4v1786436364155!5m2!1sru!2sua" title="Green Padel House на мапі" width="600" height="450" style="position:absolute;inset:0;width:100%;height:100%;border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contacts" style="padding:0 24px 24px;">
+      <div style="background:#090909;color:#FFFFFF;border-radius:32px;padding:clamp(32px,4vw,64px);">
+
+        <div ref="{{ footGridRef }}" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(32px,4vw,48px);">
+        <div>
+          <div onClick="{{ acc0.toggle }}" style="display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:{{ acc0.cursor }};">
+            <span style="font-size:22px;font-weight:700;line-height:1.35;letter-spacing:-0.02em;color:#FFFFFF;">Навігація</span>
+            <span style="display:{{ acc0.chevDisplay }};align-items:center;transform:{{ acc0.chevRot }};transition:transform .3s;color:rgba(255,255,255,0.7);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+          </div>
+          <div style="margin-top:24px;display:{{ acc0.bodyDisplay }};flex-direction:column;gap:12px;">
+            <a href="index.html" style="font-size:16px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.7);" style-hover="color:#FFFFFF;">Головна</a>
+            <a href="booking.html" style="font-size:16px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.7);" style-hover="color:#FFFFFF;">Бронювання</a>
+            <a href="services.html" style="font-size:16px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.7);" style-hover="color:#FFFFFF;">Послуги</a>
+            <a href="prices.html" style="font-size:16px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.7);" style-hover="color:#FFFFFF;">Ціни</a>
+            <a href="#" style="font-size:16px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.7);" style-hover="color:#FFFFFF;">Події</a>
+            <a href="#" style="font-size:16px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.7);" style-hover="color:#FFFFFF;">Блог</a>
+            <a href="#" style="font-size:16px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.7);" style-hover="color:#FFFFFF;">Контакти</a>
+          </div>
+        </div>
+        <div>
+          <div onClick="{{ acc1.toggle }}" style="display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:{{ acc1.cursor }};">
+            <span style="font-size:22px;font-weight:700;line-height:1.35;letter-spacing:-0.02em;color:#FFFFFF;">Послуги</span>
+            <span style="display:{{ acc1.chevDisplay }};align-items:center;transform:{{ acc1.chevRot }};transition:transform .3s;color:rgba(255,255,255,0.7);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+          </div>
+          <div style="margin-top:24px;display:{{ acc1.bodyDisplay }};flex-direction:column;gap:12px;">
+            <a href="#" style="font-size:16px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.7);" style-hover="color:#FFFFFF;">Оренда корту</a>
+            <a href="#" style="font-size:16px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.7);" style-hover="color:#FFFFFF;">Тренування з тренером</a>
+            <a href="#" style="font-size:16px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.7);" style-hover="color:#FFFFFF;">Падел-тайми</a>
+            <a href="#" style="font-size:16px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.7);" style-hover="color:#FFFFFF;">Абонементи</a>
+            <a href="#" style="font-size:16px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.7);" style-hover="color:#FFFFFF;">Оренда інвентарю</a>
+            <a href="#" style="font-size:16px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.7);" style-hover="color:#FFFFFF;">Корпоративи</a>
+          </div>
+        </div>
+        <div>
+          <div onClick="{{ acc2.toggle }}" style="display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:{{ acc2.cursor }};">
+            <span style="font-size:22px;font-weight:700;line-height:1.35;letter-spacing:-0.02em;color:#FFFFFF;">Контакти</span>
+            <span style="display:{{ acc2.chevDisplay }};align-items:center;transform:{{ acc2.chevRot }};transition:transform .3s;color:rgba(255,255,255,0.7);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+          </div>
+          <div style="margin-top:24px;display:{{ acc2.bodyDisplay }};flex-direction:column;gap:12px;">
+            <a href="tel:+380756368890" style="font-size:16px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.7);" style-hover="color:#FFFFFF;">+380 75 636 8890</a>
+            <span style="font-size:16px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.7);">вул. Зелена, 238-з, Львів</span>
+            <span style="font-size:16px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.7);">Щодня 07:00–23:00</span>
+          </div>
+        </div>
+          <div style="display:flex;flex-direction:column;gap:24px;">
+            <span style="font-size:22px;font-weight:700;line-height:1.35;letter-spacing:-0.02em;color:#FFFFFF;">Застосунок</span>
+            <p style="font-size:16px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.7);">Розклад і бронювання у вашому смартфоні.</p>
+            <div ref="{{ storeRowRef }}" style="display:flex;flex-wrap:nowrap;gap:8px;">
+              <a href="#" aria-label="App Store" style="min-width:0;flex:0 1 auto;"><img ref="{{ storeImg1Ref }}" src="assets/appstore.svg" alt="Завантажити в App Store" style="height:48px;width:auto;max-width:100%;display:block;"></a>
+              <a href="#" aria-label="Google Play" style="min-width:0;flex:0 1 auto;"><img ref="{{ storeImg2Ref }}" src="assets/googleplay.svg" alt="Завантажити в Google Play" style="height:48px;width:auto;max-width:100%;display:block;"></a>
+            </div>
+          </div>
+        </div>
+
+        <div ref="{{ footBottomRef }}" style="margin-top:clamp(48px,6vw,96px);display:flex;align-items:flex-end;justify-content:space-between;gap:32px;flex-wrap:wrap;">
+          <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+            <span style="font-size:16px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.7);">Ми тут:</span>
+            <a href="#" aria-label="Instagram" style="display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:999px;background:rgba(255,255,255,0.08);transition:background-color .25s ease;" style-hover="background:rgba(255,255,255,0.18);"><span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:8px;overflow:hidden;flex:none;"><img src="assets/instagram.svg" alt="" style="width:100%;height:100%;object-fit:contain;"></span></a>
+            <a href="#" aria-label="TikTok" style="display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:999px;background:rgba(255,255,255,0.08);transition:background-color .25s ease;" style-hover="background:rgba(255,255,255,0.18);"><span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:8px;overflow:hidden;flex:none;"><img src="assets/tiktok.svg" alt="" style="width:100%;height:100%;object-fit:contain;"></span></a>
+            <a href="#" aria-label="Telegram" style="display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:999px;background:rgba(255,255,255,0.08);transition:background-color .25s ease;" style-hover="background:rgba(255,255,255,0.18);"><span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:8px;overflow:hidden;flex:none;"><img src="assets/telegram.svg" alt="" style="width:100%;height:100%;object-fit:contain;"></span></a>
+            <a href="viber://chat?number=%2B380756368890" aria-label="Viber" style="display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:999px;background:rgba(255,255,255,0.08);transition:background-color .25s ease;" style-hover="background:rgba(255,255,255,0.18);"><span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:8px;overflow:hidden;flex:none;"><img src="assets/viber.svg" alt="" style="width:100%;height:100%;object-fit:contain;"></span></a>
+          </div>
+
+          <a ref="{{ footOfferRef }}" href="booking.html" style="display:flex;flex-direction:column;gap:16px;flex:1 1 332px;max-width:392px;min-width:280px;">
+            <span style="font-size:22px;font-weight:700;line-height:1.35;letter-spacing:-0.02em;color:#FFFFFF;">Забронюйте корт</span>
+            <span style="position:relative;display:block;width:100%;height:auto;border-radius:24px;overflow:hidden;background:#090909;aspect-ratio:16/9;">
+              <video ref="{{ footVidRef }}" loop="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" aria-label="Гра на корті Green Padel House" style="position:absolute;inset:0;width:100%;height:100%;aspect-ratio:16/9;object-fit:cover;display:block;"></video>
+              <span style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(9,9,9,0.55) 0%, rgba(9,9,9,0.25) 45%, rgba(9,9,9,0.60) 100%);"></span>
+              <span style="position:absolute;left:24px;bottom:24px;right:84px;font-size:16px;font-weight:700;line-height:1.6;letter-spacing:-0.02em;color:#FFFFFF;white-space:nowrap;">Обрати час</span>
+              <span style="position:absolute;right:24px;bottom:24px;display:flex;align-items:center;justify-content:center;width:48px;height:48px;flex:none;border-radius:999px;background:#FFFFFF;">
+                <span class="gph-tarrow" style="display:flex;"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M5 12h13M12 5.5L18.5 12L12 18.5" stroke="#090909" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+              </span>
+            </span>
+          </a>
+        </div>
+
+        <svg ref="{{ wordmarkRef }}" aria-hidden="true" viewBox="0 0 1000 118" preserveAspectRatio="xMidYMid meet" style="display:block;margin-top:clamp(48px,6vw,96px);width:100%;height:auto;overflow:visible;"><text x="0" y="96" textLength="1000" lengthAdjust="spacingAndGlyphs" style="font-family:'Geologica',sans-serif;font-size:118px;font-weight:700;letter-spacing:-0.04em;fill:rgba(255,255,255,0.10);">Green Padel House</text></svg>
+      </div>
+
+      <div style="margin-top:16px;background:#090909;border-radius:32px;padding:clamp(20px,2.4vw,32px) clamp(24px,3vw,48px);display:flex;align-items:center;justify-content:space-between;gap:16px 32px;flex-wrap:wrap;">
+        <span style="font-size:13px;font-weight:400;line-height:1.4;color:rgba(255,255,255,0.7);">© 2026 Green Padel House</span>
+        <div ref="{{ legalRowRef }}" style="display:flex;gap:24px;flex-wrap:wrap;">
+          <a href="#" style="font-size:13px;font-weight:400;line-height:1.4;color:rgba(255,255,255,0.7);" style-hover="color:#FFFFFF;">Політика конфіденційності</a>
+          <a href="#" style="font-size:13px;font-weight:400;line-height:1.4;color:rgba(255,255,255,0.7);" style-hover="color:#FFFFFF;">Публічна оферта</a>
+        </div>
+        <span style="display:flex;align-items:center;gap:8px;">
+          <span style="font-size:13px;font-weight:400;line-height:1.4;color:rgba(255,255,255,0.7);">Створено з душею</span>
+          <img src="assets/welldone.svg" alt="welldone" style="height:14px;width:auto;display:block;">
+        </span>
+      </div>
+    </footer>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: &quot;100%&quot;, &quot;height&quot;: &quot;100%&quot;}}">
+class Component extends DCLogic {
+  state = { acc: [false, false, false], isMobile: false };
+  infoRowRef = React.createRef();
+  contactGridRef = React.createRef();
+  infoRowRef = React.createRef();
+  submitRef = React.createRef();
+  stickyRef = React.createRef();
+  footGridRef = React.createRef();
+  storeRowRef = React.createRef();
+  storeImg1Ref = React.createRef();
+  storeImg2Ref = React.createRef();
+  legalRowRef = React.createRef();
+  footBottomRef = React.createRef();
+  footOfferRef = React.createRef();
+  footVidRef = React.createRef();
+  wordmarkRef = React.createRef();
+
+  initFootVid() {
+    const v = this.footVidRef.current;
+    if (!v || v._init) return;
+    v._init = 1;
+    v.muted = true; v.defaultMuted = true; v.playsInline = true; v.loop = true;
+    fetch('assets/hero.mp4?v=2').then((r) => r.blob()).then((b) => {
+      v.src = URL.createObjectURL(b);
+      try { v.load(); } catch (e) {}
+      const pr = v.play(); if (pr && pr.catch) pr.catch(() => {});
+    }).catch(() => {});
+  }
+  componentDidMount() {
+    try { this.applyLayout(); } catch (e) { console.warn(e); }
+    try { this.initFootVid(); } catch (e) { console.warn(e); }
+    this._onResize = () => this.applyLayout();
+    window.addEventListener('resize', this._onResize);
+    try { this.initCtaFx(); } catch (e) { console.warn(e); }
+  }
+  componentWillUnmount() { if (this._onResize) window.removeEventListener('resize', this._onResize); }
+
+  applyLayout() {
+    const compact = window.innerWidth <= 760;
+    if (compact !== this.state.isMobile) this.setState({ isMobile: compact });
+    if (this.contactGridRef.current) this.contactGridRef.current.style.gridTemplateColumns = compact ? 'minmax(0,1fr)' : 'repeat(2,minmax(0,1fr))';
+    if (this.infoRowRef.current) this.infoRowRef.current.style.gridTemplateColumns = window.innerWidth <= 480 ? 'minmax(0,1fr)' : 'repeat(2,minmax(0,1fr))';
+    if (this.stickyRef.current) { this.stickyRef.current.style.position = compact ? 'static' : 'sticky'; }
+    if (this.submitRef.current) { this.submitRef.current.style.width = compact ? '100%' : 'auto'; this.submitRef.current.style.alignSelf = compact ? 'stretch' : 'flex-start'; }
+    if (this.footOfferRef.current) this.footOfferRef.current.style.maxWidth = compact ? '100%' : '392px';
+    [this.storeImg1Ref, this.storeImg2Ref].forEach((r) => { if (r.current) r.current.style.height = compact ? '40px' : '48px'; });
+    if (this.legalRowRef.current) { const s = this.legalRowRef.current.style; s.flexDirection = compact ? 'column' : 'row'; s.alignItems = compact ? 'flex-start' : 'center'; s.gap = compact ? '12px' : '24px'; }
+    if (this.footGridRef.current) this.footGridRef.current.style.gridTemplateColumns = compact ? 'minmax(0,1fr)' : (window.innerWidth <= 1100 ? 'repeat(2,minmax(0,1fr))' : 'repeat(4,minmax(0,1fr))');
+  }
+
+  initCtaFx() {
+    Array.prototype.slice.call(document.querySelectorAll('.gph-wave')).forEach((btn) => {
+      if (btn._fx) return;
+      btn._fx = 1;
+      btn.addEventListener('mouseenter', () => {
+        for (let i = 0; i < 3; i++) {
+          const b = document.createElement('span');
+          const dx = (Math.random() * 2 - 1) * 90, dy = -40 - Math.random() * 70, rot = (Math.random() * 2 - 1) * 220;
+          const r = btn.getBoundingClientRect();
+          b.style.cssText = 'position:fixed;left:' + (r.left + r.width * (0.2 + Math.random() * 0.6)) + 'px;top:' + (r.bottom - 14) + 'px;width:12px;height:12px;border-radius:50%;background:#E1F07B;box-shadow:inset -2px -2px 0 rgba(9,9,9,0.18);pointer-events:none;z-index:120;';
+          b.animate([
+            { transform: 'translate(0,0) scale(0.6) rotate(0deg)', opacity: 1 },
+            { transform: 'translate(' + dx * 0.6 + 'px,' + dy + 'px) scale(1) rotate(' + rot * 0.6 + 'deg)', opacity: 1, offset: 0.6 },
+            { transform: 'translate(' + dx + 'px,' + (dy * 0.4) + 'px) scale(0.7) rotate(' + rot + 'deg)', opacity: 0 }
+          ], { duration: 620 + Math.random() * 220, easing: 'cubic-bezier(.25,.6,.3,1)' });
+          document.body.appendChild(b);
+          window.setTimeout(() => b.remove(), 900);
+        }
+      });
+    });
+  }
+
+  renderVals() {
+    const _m = this.state.isMobile, _acc = this.state.acc;
+    const accCol = (i) => ({
+      bodyDisplay: (!_m || _acc[i]) ? 'flex' : 'none',
+      chevDisplay: _m ? 'flex' : 'none',
+      chevRot: _acc[i] ? 'rotate(180deg)' : 'rotate(0deg)',
+      cursor: _m ? 'pointer' : 'default',
+      toggle: () => this.setState((s) => { const a = s.acc.slice(); a[i] = !a[i]; return { acc: a }; })
+    });
+    return {
+      infoRowRef: this.infoRowRef, contactGridRef: this.contactGridRef, infoRowRef: this.infoRowRef, submitRef: this.submitRef, stickyRef: this.stickyRef, footGridRef: this.footGridRef, storeRowRef: this.storeRowRef, storeImg1Ref: this.storeImg1Ref, storeImg2Ref: this.storeImg2Ref, legalRowRef: this.legalRowRef, footBottomRef: this.footBottomRef, footOfferRef: this.footOfferRef, footVidRef: this.footVidRef, wordmarkRef: this.wordmarkRef,
+      acc0: accCol(0), acc1: accCol(1), acc2: accCol(2)
+    };
+  }
+}
+</script>
+</body>
+</html>
