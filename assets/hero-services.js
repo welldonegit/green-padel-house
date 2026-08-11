@@ -9,7 +9,7 @@
     if (!frame || !card || !man || !woman) { requestAnimationFrame(tick); return; }
 
     var vh = window.innerHeight;
-    var p = Math.min(1, Math.max(0, -sec.getBoundingClientRect().top / vh));
+    var p = Math.min(1, Math.max(0, -sec.getBoundingClientRect().top / (vh + (window.innerWidth > 900 ? 500 : 200))));
     var ease = 1 - Math.pow(1 - p, 3);
 
     var inset = 24 * ease;
@@ -20,7 +20,8 @@
 
     var cw = card.getBoundingClientRect().width;
     var size = cw > 900 ? 'min(87.12%,851px)' : (cw > 600 ? 'min(44%,352px)' : 'min(39.6%,304px)');
-    man.style.height = size;
+    var manSize = cw > 900 ? 'min(82%,800px)' : (cw > 600 ? 'calc(min(44%,352px) + 8px)' : 'calc(min(39.6%,304px) - 4px)');
+    man.style.height = manSize;
     woman.style.height = size;
     man.style.opacity = '1';
     woman.style.opacity = '1';
