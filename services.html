@@ -110,6 +110,23 @@
   }
   .gph-hero-lead { white-space:nowrap; }
   @media (max-width:1000px) { .gph-hero-lead { white-space:normal; max-width:520px; } }
+  .gph-rac-bubble { position:relative; }
+  .gph-rac-bubble::after { content:''; position:absolute; left:-7px; bottom:24px; width:16px; height:16px; background:#FFFFFF; border-radius:3px; transform:rotate(45deg); }
+  .gph-rac-bubble-r::after { left:auto; right:-7px; }
+  .gph-racbtn { transition: background-color .25s ease, color .25s ease, border-color .25s ease; }
+  .gph-racbtn:hover { background:#090909 !important; color:#FFFFFF !important; border-color:#090909 !important; }
+  .gph-racgrid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:clamp(14px,1.6vw,20px); }
+  @media (max-width:760px) { .gph-racgrid { grid-template-columns:minmax(0,1fr); } }
+  .gph-racdock { transition: opacity .32s ease, transform .32s cubic-bezier(.2,.7,.2,1); }
+  .gph-racpeek img { transition: transform .3s ease; }
+  .gph-racpeek:hover img { transform: translateY(-4px); }
+  @media (max-width:600px) {
+    .gph-raccard { flex-direction: column !important; align-items: flex-start !important; }
+    .gph-raccard > img { width: 84px !important; }
+    .gph-rachead { flex-direction: column !important; align-items: flex-start !important; }
+    .gph-racdock img { width: 64px !important; }
+    .gph-racpattern { transform: translate(-50%,-50%) translateY(-120px) !important; }
+  }
   ::selection { background:#E1F07B; color:#323235; }
 </style>
 <script src="assets/hero-services.js"></script>
@@ -200,7 +217,7 @@
 
     <!-- ░░ FREE PLAY ░░ -->
     <section id="free-play" style="padding:clamp(96px,11vw,128px) 24px clamp(96px,11vw,128px);">
-      <div style="display:flex;align-items:baseline;justify-content:space-between;gap:32px;flex-wrap:wrap;margin-bottom:48px;">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:32px;flex-wrap:wrap;margin-bottom:48px;">
         <h2 style="font-size:clamp(40px, 4.4vw, 56px);font-weight:700;line-height:1.1;letter-spacing:-0.02em;color:#090909;">Вільна <span style="display:inline-block;padding:0 0.30em 3px;line-height:1.028;border-radius:999px;background:#014C26;color:#FFFFFF;">гра</span></h2>
         <p style="font-size:16px;font-weight:300;line-height:1.6;color:#323235;max-width:440px;">Обирайте свій формат: приходьте готовою четвіркою, шукайте нову компанію або влаштовуйте незабутній день для своєї команди.</p>
       </div>
@@ -255,6 +272,115 @@
         </a>
       </div>
     </section>
+
+    <!-- ░░ RACCOON HELPER ░░ -->
+    <div ref="{{ racPeekRef }}" style="position:fixed;left:0;bottom:0;z-index:90;display:flex;align-items:flex-end;gap:14px;transform:translateX(-115%);opacity:0;transition:transform .65s cubic-bezier(.2,.7,.2,1),opacity .45s ease;pointer-events:none;">
+      <button type="button" class="gph-racpeek" data-rac-open aria-label="Відкрити підказки" style="flex:none;background:none;border:none;padding:0;margin:0;cursor:pointer;pointer-events:auto;">
+        <img src="assets/raccoon-ask.png" alt="Помічник клубу" style="width:clamp(112px,12vw,168px);height:auto;display:block;" draggable="false">
+      </button>
+      <button ref="{{ racBubbleRef }}" type="button" data-rac-open class="gph-rac-bubble" style="margin-bottom:clamp(24px,4vw,56px);background:#FFFFFF;border:none;border-radius:20px;padding:14px 20px;box-shadow:0 12px 34px rgba(9,9,9,0.14);font-family:inherit;font-size:15px;font-weight:700;line-height:1.4;letter-spacing:-0.01em;color:#323235;text-align:left;cursor:pointer;pointer-events:auto;opacity:0;transform:translateY(6px);transition:opacity .3s ease,transform .3s ease;max-width:min(280px,60vw);">Привіт! Дай пʼятюню, допоможу 👋</button>
+    </div>
+
+    <div ref="{{ racModalRef }}" role="dialog" aria-modal="true" aria-label="Підказки помічника" style="position:fixed;inset:0;z-index:130;display:none;align-items:center;justify-content:center;padding:clamp(12px,4vw,48px);background:rgba(9,9,9,0.45);opacity:0;transition:opacity .28s ease;">
+      <div ref="{{ racSheetRef }}" style="position:relative;width:min(940px,100%);max-height:88vh;overflow-y:auto;background:#FFFFFF;border-radius:32px;padding:clamp(20px,3vw,40px);transform:translateY(14px) scale(0.99);transition:transform .32s cubic-bezier(.2,.7,.2,1);">
+        <span aria-hidden="true" style="position:absolute;inset:0;z-index:0;overflow:hidden;border-radius:32px;pointer-events:none;">
+          <img class="gph-racpattern" src="assets/pattern-gph.svg" alt="" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(120%,1100px);height:auto;opacity:0.02;">
+        </span>
+        <button type="button" data-rac-close aria-label="Закрити" style="z-index:3;position:absolute;top:clamp(14px,1.8vw,22px);right:clamp(14px,1.8vw,22px);width:44px;height:44px;border-radius:999px;background:#F5F5F8;border:none;padding:0;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background-color .25s ease;" style-hover="background:#E9E9EF;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="#323235" stroke-width="1.8" stroke-linecap="round"></path></svg>
+        </button>
+
+        <div class="gph-rachead" style="position:relative;z-index:1;display:flex;align-items:center;gap:clamp(12px,1.6vw,24px);padding-right:56px;">
+          <img src="assets/raccoon-mind.png" alt="" style="width:clamp(96px,11vw,140px);height:auto;flex:none;display:block;" draggable="false">
+          <span class="gph-rac-bubble" style="background:#FFFFFF;border-radius:20px;padding:14px 20px;box-shadow:0 12px 34px rgba(9,9,9,0.14);font-size:clamp(18px,2vw,22px);font-weight:700;line-height:1.3;letter-spacing:-0.02em;color:#323235;">Обери питання яке тебе цікавить</span>
+        </div>
+
+        <div class="gph-racgrid" style="position:relative;z-index:1;margin-top:clamp(20px,2.6vw,32px);">
+          <div class="gph-raccard" style="display:flex;align-items:flex-start;gap:clamp(10px,1.2vw,16px);background:#F5F5F8;border-radius:24px;padding:clamp(16px,1.8vw,22px);">
+            <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:12px;">
+              <span style="font-size:clamp(20px,2vw,24px);font-weight:700;line-height:1.2;letter-spacing:-0.02em;color:#323235;">Оренда корту</span>
+              <div style="display:flex;flex-direction:column;gap:12px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:12px;border-top:1px solid rgba(9,9,9,0.10);">
+                <span style="flex:1;min-width:0;font-size:15px;font-weight:400;line-height:1.45;color:#323235;">Чи потрібна власна ракетка?</span>
+                <button type="button" class="gph-racbtn" data-rac-answer="Ні. Ракетку та мʼячі можна взяти напрокат у клубі." data-rac-pose="right" style="flex:none;display:inline-flex;align-items:center;justify-content:center;height:36px;padding:0 16px;border-radius:999px;background:#FFFFFF;border:1px solid rgba(9,9,9,0.14);color:#323235;font-family:inherit;font-size:13px;font-weight:700;line-height:1;letter-spacing:-0.01em;cursor:pointer;white-space:nowrap;">Дізнатись</button>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:12px;border-top:1px solid rgba(9,9,9,0.10);">
+                <span style="flex:1;min-width:0;font-size:15px;font-weight:400;line-height:1.45;color:#323235;">Що вдягнути на першу гру?</span>
+                <button type="button" class="gph-racbtn" data-rac-answer="Зручний спортивний одяг і звичайні кросівки — спеціальне екіпірування не потрібне." data-rac-pose="left" style="flex:none;display:inline-flex;align-items:center;justify-content:center;height:36px;padding:0 16px;border-radius:999px;background:#FFFFFF;border:1px solid rgba(9,9,9,0.14);color:#323235;font-family:inherit;font-size:13px;font-weight:700;line-height:1;letter-spacing:-0.01em;cursor:pointer;white-space:nowrap;">Дізнатись</button>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:12px;border-top:1px solid rgba(9,9,9,0.10);">
+                <span style="flex:1;min-width:0;font-size:15px;font-weight:400;line-height:1.45;color:#323235;">А якщо ми не знаємо правил?</span>
+                <button type="button" class="gph-racbtn" data-rac-answer="Перед грою коротко пояснимо правила та допоможемо зорієнтуватися на корті." data-rac-pose="mind" style="flex:none;display:inline-flex;align-items:center;justify-content:center;height:36px;padding:0 16px;border-radius:999px;background:#FFFFFF;border:1px solid rgba(9,9,9,0.14);color:#323235;font-family:inherit;font-size:13px;font-weight:700;line-height:1;letter-spacing:-0.01em;cursor:pointer;white-space:nowrap;">Дізнатись</button>
+              </div>
+              </div>
+            </div>
+          </div>
+          <div class="gph-raccard" style="display:flex;align-items:flex-start;gap:clamp(10px,1.2vw,16px);background:#F5F5F8;border-radius:24px;padding:clamp(16px,1.8vw,22px);">
+            <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:12px;">
+              <span style="font-size:clamp(20px,2vw,24px);font-weight:700;line-height:1.2;letter-spacing:-0.02em;color:#323235;">Падел-тайми</span>
+              <div style="display:flex;flex-direction:column;gap:12px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:12px;border-top:1px solid rgba(9,9,9,0.10);">
+                <span style="flex:1;min-width:0;font-size:15px;font-weight:400;line-height:1.45;color:#323235;">Як зрозуміти, який тайм підійде моєму рівню?</span>
+                <button type="button" class="gph-racbtn" data-rac-answer="Рівень вказаний у події, а якщо сумніваєтеся — підкажемо." data-rac-pose="left" style="flex:none;display:inline-flex;align-items:center;justify-content:center;height:36px;padding:0 16px;border-radius:999px;background:#FFFFFF;border:1px solid rgba(9,9,9,0.14);color:#323235;font-family:inherit;font-size:13px;font-weight:700;line-height:1;letter-spacing:-0.01em;cursor:pointer;white-space:nowrap;">Дізнатись</button>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:12px;border-top:1px solid rgba(9,9,9,0.10);">
+                <span style="flex:1;min-width:0;font-size:15px;font-weight:400;line-height:1.45;color:#323235;">Як формуються пари під час гри?</span>
+                <button type="button" class="gph-racbtn" data-rac-answer="Залежить від формату. Наприклад, в Американо партнери та суперники змінюються." data-rac-pose="right" style="flex:none;display:inline-flex;align-items:center;justify-content:center;height:36px;padding:0 16px;border-radius:999px;background:#FFFFFF;border:1px solid rgba(9,9,9,0.14);color:#323235;font-family:inherit;font-size:13px;font-weight:700;line-height:1;letter-spacing:-0.01em;cursor:pointer;white-space:nowrap;">Дізнатись</button>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:12px;border-top:1px solid rgba(9,9,9,0.10);">
+                <span style="flex:1;min-width:0;font-size:15px;font-weight:400;line-height:1.45;color:#323235;">Що буде, якщо інші грають сильніше за мене?</span>
+                <button type="button" class="gph-racbtn" data-rac-answer="Намагаємося збирати гравців близького рівня для комфортної гри." data-rac-pose="mind" style="flex:none;display:inline-flex;align-items:center;justify-content:center;height:36px;padding:0 16px;border-radius:999px;background:#FFFFFF;border:1px solid rgba(9,9,9,0.14);color:#323235;font-family:inherit;font-size:13px;font-weight:700;line-height:1;letter-spacing:-0.01em;cursor:pointer;white-space:nowrap;">Дізнатись</button>
+              </div>
+              </div>
+            </div>
+            </div>
+          <div class="gph-raccard" style="display:flex;align-items:flex-start;gap:clamp(10px,1.2vw,16px);background:#F5F5F8;border-radius:24px;padding:clamp(16px,1.8vw,22px);">
+            <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:12px;">
+              <span style="font-size:clamp(20px,2vw,24px);font-weight:700;line-height:1.2;letter-spacing:-0.02em;color:#323235;">1×1</span>
+              <div style="display:flex;flex-direction:column;gap:12px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:12px;border-top:1px solid rgba(9,9,9,0.10);">
+                <span style="flex:1;min-width:0;font-size:15px;font-weight:400;line-height:1.45;color:#323235;">Чим 1×1 відрізняється від звичайного паделу?</span>
+                <button type="button" class="gph-racbtn" data-rac-answer="Більше контакту з мʼячем, менше пауз і вищий темп гри." data-rac-pose="right" style="flex:none;display:inline-flex;align-items:center;justify-content:center;height:36px;padding:0 16px;border-radius:999px;background:#FFFFFF;border:1px solid rgba(9,9,9,0.14);color:#323235;font-family:inherit;font-size:13px;font-weight:700;line-height:1;letter-spacing:-0.01em;cursor:pointer;white-space:nowrap;">Дізнатись</button>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:12px;border-top:1px solid rgba(9,9,9,0.10);">
+                <span style="flex:1;min-width:0;font-size:15px;font-weight:400;line-height:1.45;color:#323235;">Чи можна починати з формату 1×1?</span>
+                <button type="button" class="gph-racbtn" data-rac-answer="Так, особливо якщо вже знаєте базові правила." data-rac-pose="left" style="flex:none;display:inline-flex;align-items:center;justify-content:center;height:36px;padding:0 16px;border-radius:999px;background:#FFFFFF;border:1px solid rgba(9,9,9,0.14);color:#323235;font-family:inherit;font-size:13px;font-weight:700;line-height:1;letter-spacing:-0.01em;cursor:pointer;white-space:nowrap;">Дізнатись</button>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:12px;border-top:1px solid rgba(9,9,9,0.10);">
+                <span style="flex:1;min-width:0;font-size:15px;font-weight:400;line-height:1.45;color:#323235;">1×1 фізично складніше?</span>
+                <button type="button" class="gph-racbtn" data-rac-answer="Трохи інтенсивніше, але темп легко підлаштувати під себе." data-rac-pose="mind" style="flex:none;display:inline-flex;align-items:center;justify-content:center;height:36px;padding:0 16px;border-radius:999px;background:#FFFFFF;border:1px solid rgba(9,9,9,0.14);color:#323235;font-family:inherit;font-size:13px;font-weight:700;line-height:1;letter-spacing:-0.01em;cursor:pointer;white-space:nowrap;">Дізнатись</button>
+              </div>
+              </div>
+            </div>
+          </div>
+          <div class="gph-raccard" style="display:flex;align-items:flex-start;gap:clamp(10px,1.2vw,16px);background:#F5F5F8;border-radius:24px;padding:clamp(16px,1.8vw,22px);">
+            <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:12px;">
+              <span style="font-size:clamp(20px,2vw,24px);font-weight:700;line-height:1.2;letter-spacing:-0.02em;color:#323235;">Корпоративний формат</span>
+              <div style="display:flex;flex-direction:column;gap:12px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:12px;border-top:1px solid rgba(9,9,9,0.10);">
+                <span style="flex:1;min-width:0;font-size:15px;font-weight:400;line-height:1.45;color:#323235;">Що робити, якщо в команді різний рівень гри?</span>
+                <button type="button" class="gph-racbtn" data-rac-answer="Підберемо формат, комфортний і новачкам, і досвідченим гравцям." data-rac-pose="left" style="flex:none;display:inline-flex;align-items:center;justify-content:center;height:36px;padding:0 16px;border-radius:999px;background:#FFFFFF;border:1px solid rgba(9,9,9,0.14);color:#323235;font-family:inherit;font-size:13px;font-weight:700;line-height:1;letter-spacing:-0.01em;cursor:pointer;white-space:nowrap;">Дізнатись</button>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:12px;border-top:1px solid rgba(9,9,9,0.10);">
+                <span style="flex:1;min-width:0;font-size:15px;font-weight:400;line-height:1.45;color:#323235;">Нам потрібно самим придумувати формат турніру?</span>
+                <button type="button" class="gph-racbtn" data-rac-answer="Ні. Запропонуємо механіку гри та організуємо ротацію." data-rac-pose="right" style="flex:none;display:inline-flex;align-items:center;justify-content:center;height:36px;padding:0 16px;border-radius:999px;background:#FFFFFF;border:1px solid rgba(9,9,9,0.14);color:#323235;font-family:inherit;font-size:13px;font-weight:700;line-height:1;letter-spacing:-0.01em;cursor:pointer;white-space:nowrap;">Дізнатись</button>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:12px;border-top:1px solid rgba(9,9,9,0.10);">
+                <span style="flex:1;min-width:0;font-size:15px;font-weight:400;line-height:1.45;color:#323235;">Що, якщо кількість учасників не ділиться на чотири?</span>
+                <button type="button" class="gph-racbtn" data-rac-answer="Не проблема — організуємо ротацію, щоб пограли всі." data-rac-pose="mind" style="flex:none;display:inline-flex;align-items:center;justify-content:center;height:36px;padding:0 16px;border-radius:999px;background:#FFFFFF;border:1px solid rgba(9,9,9,0.14);color:#323235;font-family:inherit;font-size:13px;font-weight:700;line-height:1;letter-spacing:-0.01em;cursor:pointer;white-space:nowrap;">Дізнатись</button>
+              </div>
+              </div>
+            </div>
+            </div>
+        </div>
+
+        <div ref="{{ racDockRef }}" class="gph-racdock" style="z-index:2;position:sticky;bottom:0;margin-top:clamp(16px,2vw,24px);display:none;align-items:flex-end;gap:12px;opacity:0;transform:translateY(12px);pointer-events:none;">
+          <img ref="{{ racDockImgRef }}" src="assets/raccoon-right.png" alt="" style="width:clamp(72px,8vw,104px);height:auto;flex:none;display:block;" draggable="false">
+          <span ref="{{ racDockBubbleRef }}" class="gph-rac-bubble" style="flex:1;min-width:0;margin-bottom:8px;background:#FFFFFF;border-radius:20px;padding:14px 20px;box-shadow:0 14px 36px rgba(9,9,9,0.16);font-size:16px;font-weight:400;line-height:1.5;color:#323235;"></span>
+        </div>
+      </div>
+    </div>
+
 
 
     <!-- FOOTER -->
@@ -374,8 +500,96 @@ class Component extends DCLogic {
   coachGridRef = React.createRef();
   freeGridRef = React.createRef();
   footGridRef = React.createRef();
+  racPeekRef = React.createRef();
+  racBubbleRef = React.createRef();
+  racModalRef = React.createRef();
+  racSheetRef = React.createRef();
+  racDockRef = React.createRef();
+  racDockImgRef = React.createRef();
+  racDockBubbleRef = React.createRef();
+
+  initRaccoon() {
+    const peek = this.racPeekRef.current, bubble = this.racBubbleRef.current, modal = this.racModalRef.current, sheet = this.racSheetRef.current;
+    const sec = document.getElementById('free-play');
+    if (!peek || !modal || !sheet || !sec || peek._bound) return;
+    peek._bound = 1;
+
+    const showPeek = () => {
+      if (peek._shown) return;
+      peek._shown = 1;
+      peek.style.transform = 'translateX(0)';
+      peek.style.opacity = '1';
+      window.setTimeout(() => { if (bubble) { bubble.style.opacity = '1'; bubble.style.transform = 'translateY(0)'; } }, 220);
+    };
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((en) => {
+          if (en.isIntersecting && en.intersectionRatio > 0.25) {
+            if (!peek._timer) peek._timer = window.setTimeout(() => { showPeek(); io.disconnect(); }, 5000);
+          } else if (peek._timer) { window.clearTimeout(peek._timer); peek._timer = null; }
+        });
+      }, { threshold: [0, 0.25, 0.5] });
+      io.observe(sec);
+    } else {
+      window.setTimeout(showPeek, 5000);
+    }
+
+    const dock = this.racDockRef.current, dockImg = this.racDockImgRef.current, dockBubble = this.racDockBubbleRef.current;
+    const hideDock = () => {
+      if (!dock) return;
+      dock.style.opacity = '0';
+      dock.style.transform = 'translateY(12px)';
+      window.setTimeout(() => { if (dock.style.opacity === '0') dock.style.display = 'none'; }, 320);
+    };
+    const open = () => {
+      modal.style.display = 'flex';
+      requestAnimationFrame(() => { modal.style.opacity = '1'; sheet.style.transform = 'translateY(0) scale(1)'; });
+      peek.style.opacity = '0';
+      document.documentElement.style.overflow = 'hidden';
+    };
+    const close = () => {
+      modal.style.opacity = '0';
+      sheet.style.transform = 'translateY(14px) scale(0.99)';
+      document.documentElement.style.overflow = '';
+      window.setTimeout(() => {
+        modal.style.display = 'none';
+        if (dock) { dock.style.display = 'none'; dock.style.opacity = '0'; dock.style.transform = 'translateY(12px)'; }
+        if (peek._shown) peek.style.opacity = '1';
+      }, 300);
+    };
+    Array.prototype.slice.call(document.querySelectorAll('[data-rac-open]')).forEach((el) => el.addEventListener('click', (e) => { e.preventDefault(); open(); }));
+    Array.prototype.slice.call(sheet.querySelectorAll('[data-rac-close]')).forEach((el) => el.addEventListener('click', (e) => { e.preventDefault(); close(); }));
+    modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+    this._onRacKey = (e) => { if (e.key === 'Escape' && modal.style.display === 'flex') close(); };
+    window.addEventListener('keydown', this._onRacKey);
+
+    Array.prototype.slice.call(sheet.querySelectorAll('[data-rac-answer]')).forEach((btn) => {
+      btn.addEventListener('click', () => {
+        if (!dock || !dockImg || !dockBubble) return;
+        const pose = btn.getAttribute('data-rac-pose') || 'right';
+        const text = btn.getAttribute('data-rac-answer') || '';
+        const paint = () => {
+          dockImg.src = 'assets/raccoon-' + pose + '.png';
+          dockBubble.textContent = text;
+          const bubbleLeft = pose === 'left';
+          dock.style.flexDirection = bubbleLeft ? 'row-reverse' : 'row';
+          dockBubble.className = bubbleLeft ? 'gph-rac-bubble gph-rac-bubble-r' : 'gph-rac-bubble';
+          dock.style.display = 'flex';
+          requestAnimationFrame(() => { dock.style.opacity = '1'; dock.style.transform = 'translateY(0)'; });
+        };
+        if (dock.style.display === 'flex' && dock.style.opacity === '1') {
+          dock.style.opacity = '0';
+          dock.style.transform = 'translateY(10px)';
+          window.setTimeout(paint, 200);
+        } else {
+          paint();
+        }
+      });
+    });
+  }
 
   componentDidMount() {
+    try { this.initRaccoon(); } catch (e) { console.warn(e); }
     try { this.initFootVid(); } catch (e) { console.warn(e); }
     try { this.applyLayout(); } catch (e) { console.warn(e); }
     window.addEventListener('load', () => { try { this.equalizeGlass(); } catch (e) {} });
@@ -497,6 +711,7 @@ class Component extends DCLogic {
       heroSecRef: this.heroSecRef, heroFrameRef: this.heroFrameRef, heroCardRef: this.heroCardRef,
       heroManRef: this.heroManRef, heroWomanRef: this.heroWomanRef, heroTextRef: this.heroTextRef, freeGridRef: this.freeGridRef, footGridRef: this.footGridRef,
       storeRowRef: this.storeRowRef, storeImg1Ref: this.storeImg1Ref, storeImg2Ref: this.storeImg2Ref, footBottomRef: this.footBottomRef, footOfferRef: this.footOfferRef, footVidRef: this.footVidRef, wordmarkRef: this.wordmarkRef, legalRowRef: this.legalRowRef,
+      racPeekRef: this.racPeekRef, racBubbleRef: this.racBubbleRef, racModalRef: this.racModalRef, racSheetRef: this.racSheetRef, racDockRef: this.racDockRef, racDockImgRef: this.racDockImgRef, racDockBubbleRef: this.racDockBubbleRef,
       acc0: accCol(0), acc1: accCol(1), acc2: accCol(2)
     };
   }
