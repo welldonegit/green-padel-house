@@ -89,6 +89,22 @@
   }
   .gph-wave:hover::before { transform:translate(-50%,10%) scaleX(1); }
   .gph-wave:hover > span { color:#FFFFFF; }
+  .gph-wave.gph-wave-light::before { background:#FFFFFF; }
+  .gph-wave.gph-wave-lime::before { background:#E1F07B; }
+  .gph-evcard .gph-evmedia > img, .gph-evcard .gph-evmedia > video { transition: transform .8s cubic-bezier(.2,.6,.2,1); }
+  .gph-evcard:hover .gph-evmedia > img, .gph-evcard:hover .gph-evmedia > video { transform: scale(1.045); }
+  .gph-evbody { transition: transform .35s cubic-bezier(.2,.7,.2,1); }
+  .gph-evcard:hover .gph-evbody { transform: translateY(-4px); }
+  .gph-evrail { scrollbar-width: none; }
+  .gph-evrail::-webkit-scrollbar { display: none; }
+  @media (max-width:1180px) { .gph-evrail { grid-template-columns: repeat(3,minmax(0,1fr)) !important; } }
+  @media (max-width:900px) { .gph-evrail { grid-template-columns: repeat(2,minmax(0,1fr)) !important; } }
+  @media (max-width:640px) {
+    .gph-evrail { display:flex !important; overflow-x:auto; scroll-snap-type:x proximity; cursor:grab; gap:14px !important; }
+    .gph-evcard { flex:none; width:min(78vw,320px); }
+  }
+  .gph-wave.gph-wave-lime:hover > span { color:#323235; }
+  .gph-wave.gph-wave-light:hover > span { color:#090909; }
   @keyframes gphBallFly {
     0%   { transform:translate(0,0) rotate(0deg) scale(0.55); opacity:0; }
     14%  { opacity:1; }
@@ -118,7 +134,7 @@
           <div style="font-size:clamp(56px, 8vw, 112px);line-height:0.92;font-weight:700;letter-spacing:-0.035em;color:#FFFFFF;max-width:100%;">Падел у <span style="color:#FFFFFF;">Львові</span></div>
           <p style="margin:clamp(24px,3.4vw,44px) 0 0;font-size:22px;line-height:1.45;font-weight:300;letter-spacing:0;color:rgba(255,255,255,0.7);max-width:520px;">Динамічна гра на закритому корті, в яку грають і новачки, і ті, хто вже не може зупинитися.</p>
           <div style="margin-top:clamp(28px,3.4vw,44px);display:flex;flex-wrap:wrap;gap:12px;">
-            <a href="#booking" style="display:inline-flex;align-items:center;justify-content:center;flex:1 1 240px;min-width:min(300px,100%);max-width:340px;height:56px;padding:0 28px;border-radius:999px;background:#FFFFFF;color:#323235;font-size:14px;font-weight:700;line-height:1;white-space:nowrap;transition:background-color .25s ease,color .25s ease,transform .25s ease;" style-hover="background:#E1F07B;transform:translateY(-2px);box-shadow:0 14px 30px rgba(9,9,9,0.24);">Забронювати корт</a>
+            <a href="#booking" class="gph-wave gph-wave-lime" style="position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;flex:1 1 240px;min-width:min(300px,100%);max-width:340px;height:56px;padding:0 28px;border-radius:999px;background:#FFFFFF;color:#323235;font-size:14px;font-weight:700;line-height:1;white-space:nowrap;transition:transform .25s ease,box-shadow .25s ease;" style-hover="transform:translateY(-2px);box-shadow:0 14px 30px rgba(9,9,9,0.24);"><span style="position:relative;z-index:2;">Забронювати корт</span></a>
             <a href="#booking" style="display:inline-flex;align-items:center;justify-content:center;flex:1 1 240px;min-width:min(300px,100%);max-width:340px;height:56px;padding:0 28px;border-radius:999px;border:1px solid rgba(255,255,255,0.75);color:#FFFFFF;font-size:14px;font-weight:700;line-height:1;white-space:nowrap;transition:background-color .25s ease,color .25s ease,transform .25s ease;" style-hover="background:rgba(255,255,255,0.14);color:#FFFFFF;transform:translateY(-2px);">Дізнатися ціни</a>
           </div>
         </div>
@@ -350,7 +366,7 @@
         </div>
         <div style="margin-top:24px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.22);display:flex;align-items:center;justify-content:space-between;gap:16px 24px;flex-wrap:wrap;">
           <span style="flex:1;min-width:220px;font-size:16px;font-weight:300;color:#FFFFFF;line-height:1.45;">Обрано: <span style="color:#FFFFFF;font-weight:400;">сьогодні, 24 лип · 18:00 · Корт 3 · 90 хв</span></span>
-          <a href="#" style="flex:none;width:min(320px,100%);display:flex;align-items:center;justify-content:center;background:#E1F07B;color:#090909;border-radius:999px;height:56px;padding:0 28px;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;line-height:1;" class="gph-cta">Показати вільний час</a>
+          <a href="#" style="position:relative;overflow:hidden;flex:none;width:min(320px,100%);display:flex;align-items:center;justify-content:center;background:#E1F07B;color:#090909;border-radius:999px;height:56px;padding:0 28px;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;line-height:1;" class="gph-cta gph-wave gph-wave-light"><span style="position:relative;z-index:2;">Показати вільний час</span></a>
         </div>
       </div>
     </section>
@@ -561,7 +577,7 @@
           <div style="background:#090909;border-radius:24px;padding:16px;display:flex;flex-direction:column;">
             <h3 style="margin-top:4px;font-size:22px;font-weight:700;line-height:1.18;letter-spacing:-0.02em;color:#FFFFFF;">Не знаєте, кого обрати?</h3>
             <p style="margin-top:8px;font-size:16px;font-weight:300;line-height:1.55;color:rgba(255,255,255,0.7);">Запис — мінімум за 3 години до початку. Якщо ваш тренер зайнятий — запропонуємо альтернативу.</p>
-            <a href="#booking" style="position:relative;overflow:hidden;margin-top:auto;display:inline-flex;align-items:center;justify-content:center;height:56px;padding:0 28px;border-radius:999px;background:#E1F07B;color:#090909;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;line-height:1;white-space:nowrap;align-self:flex-start;transition:transform .25s ease;" style-hover="transform:translateY(-2px);box-shadow:0 14px 30px rgba(9,9,9,0.14);" class="gph-wave"><span style="position:relative;z-index:2;">Записатись на тренування</span></a>
+            <a href="#booking" style="position:relative;overflow:hidden;margin-top:auto;display:inline-flex;align-items:center;justify-content:center;height:56px;padding:0 28px;border-radius:999px;background:#E1F07B;color:#090909;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;line-height:1;white-space:nowrap;align-self:flex-start;transition:transform .25s ease;" style-hover="transform:translateY(-2px);box-shadow:0 14px 30px rgba(9,9,9,0.14);" class="gph-wave gph-wave-light"><span style="position:relative;z-index:2;">Записатись на тренування</span></a>
           </div>
         </div>
       </div>
@@ -650,6 +666,59 @@
 
 
 
+    <!-- EVENTS -->
+    <section id="events" style="padding:clamp(48px,6vw,96px) 0 clamp(64px,8vw,120px);">
+      <div style="padding:0 24px;">
+        <h2 style="font-size:clamp(40px,4.4vw,56px);font-weight:700;line-height:1.02;letter-spacing:-0.03em;color:#323235;">Події в <span style="display:inline-block;padding:0 0.30em 3px;line-height:1.028;border-radius:999px;background:#014C26;color:#FFFFFF;">Green Padel House</span></h2>
+      </div>
+      <div ref="{{ evRef }}" class="gph-evrail" style="margin-top:clamp(24px,3vw,40px);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(16px,1.8vw,24px);align-items:stretch;padding:4px 24px 12px;">
+        <article class="gph-evcard" style="scroll-snap-align:start;min-width:0;height:100%;display:flex;flex-direction:column;">
+          <span class="gph-evmedia" style="position:relative;display:block;width:100%;aspect-ratio:1/1;border-radius:32px;overflow:hidden;background:#F2F5F0;">
+            <img src="assets/club2.png" alt="Клубний турнір Americano" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;" draggable="false">
+            <span style="position:absolute;left:16px;top:16px;padding:10px 16px;border-radius:999px;background:rgba(9,9,9,0.30);border:1px solid rgba(255,255,255,0.28);box-shadow:inset 0 1px 0 rgba(255,255,255,0.30);backdrop-filter:blur(24px) saturate(1.6);-webkit-backdrop-filter:blur(24px) saturate(1.6);font-size:15px;font-weight:700;letter-spacing:-0.01em;line-height:1;color:#FFFFFF;white-space:nowrap;">23 серпня, 18:00</span>
+          </span>
+          <span class="gph-evbody" style="flex:1;display:flex;flex-direction:column;gap:12px;padding:clamp(16px,1.8vw,24px) 4px 0;">
+            <span style="font-size:clamp(22px,2vw,28px);font-weight:700;line-height:1.15;letter-spacing:-0.02em;color:#323235;text-wrap:balance;">Клубний турнір Americano</span>
+            <span style="font-size:16px;font-weight:300;line-height:1.6;color:#323235;">Мікс-формат на 16 гравців: кожен раунд — нова пара, підсумок за особистими балами.</span>
+            <a href="#booking" class="gph-cta gph-wave" style="position:relative;overflow:hidden;margin-top:auto;align-self:flex-start;display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 26px;border-radius:999px;background:#E1F07B;color:#090909;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;line-height:1;white-space:nowrap;"><span style="position:relative;z-index:2;">Зареєструватися</span></a>
+          </span>
+        </article>
+        <article class="gph-evcard" style="scroll-snap-align:start;min-width:0;height:100%;display:flex;flex-direction:column;">
+          <span class="gph-evmedia" style="position:relative;display:block;width:100%;aspect-ratio:1/1;border-radius:32px;overflow:hidden;background:#F2F5F0;">
+            <img src="assets/club4.png" alt="Падел-тайм для новачків" style="width:100%;height:100%;object-fit:cover;object-position:center 35%;display:block;" draggable="false">
+            <span style="position:absolute;left:16px;top:16px;padding:10px 16px;border-radius:999px;background:rgba(9,9,9,0.30);border:1px solid rgba(255,255,255,0.28);box-shadow:inset 0 1px 0 rgba(255,255,255,0.30);backdrop-filter:blur(24px) saturate(1.6);-webkit-backdrop-filter:blur(24px) saturate(1.6);font-size:15px;font-weight:700;letter-spacing:-0.01em;line-height:1;color:#FFFFFF;white-space:nowrap;">29 серпня, 19:00</span>
+          </span>
+          <span class="gph-evbody" style="flex:1;display:flex;flex-direction:column;gap:12px;padding:clamp(16px,1.8vw,24px) 4px 0;">
+            <span style="font-size:clamp(22px,2vw,28px);font-weight:700;line-height:1.15;letter-spacing:-0.02em;color:#323235;text-wrap:balance;">Падел-тайм для новачків</span>
+            <span style="font-size:16px;font-weight:300;line-height:1.6;color:#323235;">Знайомство з грою, базові подачі й розіграші під наглядом тренера.</span>
+            <a href="#booking" class="gph-cta gph-wave" style="position:relative;overflow:hidden;margin-top:auto;align-self:flex-start;display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 26px;border-radius:999px;background:#E1F07B;color:#090909;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;line-height:1;white-space:nowrap;"><span style="position:relative;z-index:2;">Зареєструватися</span></a>
+          </span>
+        </article>
+        <article class="gph-evcard" style="scroll-snap-align:start;min-width:0;height:100%;display:flex;flex-direction:column;">
+          <span class="gph-evmedia" style="position:relative;display:block;width:100%;aspect-ratio:1/1;border-radius:32px;overflow:hidden;background:#F2F5F0;">
+            <img src="assets/club5.png" alt="Жіночий падел-ранок" style="width:100%;height:100%;object-fit:cover;object-position:center 35%;display:block;" draggable="false">
+            <span style="position:absolute;left:16px;top:16px;padding:10px 16px;border-radius:999px;background:rgba(9,9,9,0.30);border:1px solid rgba(255,255,255,0.28);box-shadow:inset 0 1px 0 rgba(255,255,255,0.30);backdrop-filter:blur(24px) saturate(1.6);-webkit-backdrop-filter:blur(24px) saturate(1.6);font-size:15px;font-weight:700;letter-spacing:-0.01em;line-height:1;color:#FFFFFF;white-space:nowrap;">6 вересня, 10:00</span>
+          </span>
+          <span class="gph-evbody" style="flex:1;display:flex;flex-direction:column;gap:12px;padding:clamp(16px,1.8vw,24px) 4px 0;">
+            <span style="font-size:clamp(22px,2vw,28px);font-weight:700;line-height:1.15;letter-spacing:-0.02em;color:#323235;text-wrap:balance;">Жіночий падел-ранок</span>
+            <span style="font-size:16px;font-weight:300;line-height:1.6;color:#323235;">Дві години гри у форматі 2×2, кава та фото на корті.</span>
+            <a href="#booking" class="gph-cta gph-wave" style="position:relative;overflow:hidden;margin-top:auto;align-self:flex-start;display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 26px;border-radius:999px;background:#E1F07B;color:#090909;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;line-height:1;white-space:nowrap;"><span style="position:relative;z-index:2;">Зареєструватися</span></a>
+          </span>
+        </article>
+        <article class="gph-evcard" style="scroll-snap-align:start;min-width:0;height:100%;display:flex;flex-direction:column;">
+          <span class="gph-evmedia" style="position:relative;display:block;width:100%;aspect-ratio:1/1;border-radius:32px;overflow:hidden;background:#F2F5F0;">
+            <img src="assets/coach-group.jpg" alt="Корпоративна ліга" style="width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block;" draggable="false">
+            <span style="position:absolute;left:16px;top:16px;padding:10px 16px;border-radius:999px;background:rgba(9,9,9,0.30);border:1px solid rgba(255,255,255,0.28);box-shadow:inset 0 1px 0 rgba(255,255,255,0.30);backdrop-filter:blur(24px) saturate(1.6);-webkit-backdrop-filter:blur(24px) saturate(1.6);font-size:15px;font-weight:700;letter-spacing:-0.01em;line-height:1;color:#FFFFFF;white-space:nowrap;">14 вересня, 17:00</span>
+          </span>
+          <span class="gph-evbody" style="flex:1;display:flex;flex-direction:column;gap:12px;padding:clamp(16px,1.8vw,24px) 4px 0;">
+            <span style="font-size:clamp(22px,2vw,28px);font-weight:700;line-height:1.15;letter-spacing:-0.02em;color:#323235;text-wrap:balance;">Корпоративна ліга</span>
+            <span style="font-size:16px;font-weight:300;line-height:1.6;color:#323235;">Командний турнір між компаніями: груповий етап і фінал на двох кортах.</span>
+            <a href="#booking" class="gph-cta gph-wave" style="position:relative;overflow:hidden;margin-top:auto;align-self:flex-start;display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 26px;border-radius:999px;background:#E1F07B;color:#090909;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;line-height:1;white-space:nowrap;"><span style="position:relative;z-index:2;">Зареєструватися</span></a>
+          </span>
+        </article>
+      </div>
+    </section>
+
     <!-- ░░ LIGHTBOX ░░ -->
     <div ref="{{ lbRef }}" role="dialog" aria-modal="true" aria-label="Галерея клубу" style="position:fixed;inset:0;z-index:120;display:none;align-items:center;justify-content:center;padding:clamp(16px,4vw,56px);background:rgba(9,9,9,0.90);opacity:0;transition:opacity .3s ease;">
       <img ref="{{ lbImgRef }}" src="" alt="" style="max-width:min(92vw,1440px);max-height:80vh;border-radius:24px;object-fit:contain;opacity:0;transform:scale(0.98);transition:opacity .35s ease,transform .35s cubic-bezier(.2,.7,.2,1);">
@@ -736,7 +805,7 @@
               <span style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(9,9,9,0.55) 0%, rgba(9,9,9,0.25) 45%, rgba(9,9,9,0.60) 100%);"></span>
               <span style="position:absolute;left:24px;bottom:24px;right:84px;font-size:16px;font-weight:700;line-height:1.6;letter-spacing:-0.02em;color:#FFFFFF;white-space:nowrap;">Обрати час</span>
               <span style="position:absolute;right:24px;bottom:24px;display:flex;align-items:center;justify-content:center;width:48px;height:48px;flex:none;border-radius:999px;background:#FFFFFF;">
-                <span class="gph-tarrow" style="display:flex;"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M5 12h13M12 5.5L18.5 12L12 18.5" stroke="#090909" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+                <span class="gph-tarrow" style="display:flex;"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M7.5 16.5L16.5 7.5M16.5 7.5H9M16.5 7.5V15" stroke="#090909" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
               </span>
             </span>
           </a>
@@ -814,6 +883,7 @@ class Component extends DCLogic {
   nbBar2 = React.createRef();
   igRef = React.createRef();
   igVideoRef = React.createRef();
+  evRef = React.createRef();
   callRef = React.createRef();
   callTextRef = React.createRef();
   callIconRef = React.createRef();
@@ -1048,7 +1118,24 @@ class Component extends DCLogic {
       const el = r.current; if (el) el.style.background = i <= idx ? '#014C26' : 'rgba(9,9,9,0.14)';
     });
   }
+  bindDragScroll(g) {
+    if (!g || g._dragBound) return;
+    g._dragBound = 1;
+    let down = false, sx = 0, sl = 0, moved = 0;
+    g.addEventListener('pointerdown', (e) => { down = true; moved = 0; sx = e.clientX; sl = g.scrollLeft; g.style.cursor = 'grabbing'; });
+    const end = () => { down = false; g.style.cursor = 'grab'; };
+    g.addEventListener('pointerup', end);
+    g.addEventListener('pointerleave', end);
+    g.addEventListener('pointermove', (e) => {
+      if (!down) return;
+      const d = e.clientX - sx;
+      moved = Math.abs(d);
+      if (moved > 4) { g.scrollLeft = sl - d; e.preventDefault(); }
+    });
+    g.addEventListener('click', (e) => { if (moved > 6) { e.preventDefault(); e.stopPropagation(); } }, true);
+  }
   initFeed() {
+    try { this.bindDragScroll(this.evRef.current); } catch (e) {}
     const g = this.igRef.current;
     if (g && !g._igBound) {
       g._igBound = 1;
@@ -1164,7 +1251,7 @@ class Component extends DCLogic {
       pbHeadRef: this.pbHeadRef, pbGridRef: this.pbGridRef,
       paHeadRef: this.paHeadRef, paGridRef: this.paGridRef, paHeroRef: this.paHeroRef, paColRef: this.paColRef, paC1Ref: this.paC1Ref, paC2Ref: this.paC2Ref, paSubRef: this.paSubRef,
       nbSecRef: this.nbSecRef, nbStageRef: this.nbStageRef, nbTagRef: this.nbTagRef, nbStageTitle: this.nbStageTitle, nbStageNote: this.nbStageNote, nbPrevRef: this.nbPrevRef, nbNextRef: this.nbNextRef, nbCardNum: this.nbCardNum, nbCardText: this.nbCardText, nbMedia0: this.nbMedia0, nbMedia1: this.nbMedia1, nbMedia2: this.nbMedia2, nbRow0: this.nbRow0, nbRow1: this.nbRow1, nbRow2: this.nbRow2, nbRowK0: this.nbRowK0, nbRowK1: this.nbRowK1, nbRowK2: this.nbRowK2, nbRowV0: this.nbRowV0, nbRowV1: this.nbRowV1, nbRowV2: this.nbRowV2, nbGridRef: this.nbGridRef, nbBar0: this.nbBar0, nbBar1: this.nbBar1, nbBar2: this.nbBar2,
-      igRef: this.igRef, igVideoRef: this.igVideoRef,
+      igRef: this.igRef, igVideoRef: this.igVideoRef, evRef: this.evRef,
                   callRef: this.callRef, callTextRef: this.callTextRef, callIconRef: this.callIconRef,
       lbRef: this.lbRef, lbImgRef: this.lbImgRef, lbCloseRef: this.lbCloseRef, lbPrevRef: this.lbPrevRef, lbNextRef: this.lbNextRef, lbCountRef: this.lbCountRef,
       navRef: this.navRef, burgerRef: this.burgerRef,
