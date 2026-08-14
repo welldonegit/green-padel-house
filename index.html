@@ -90,6 +90,12 @@
   .gph-wave:hover::before { transform:translate(-50%,10%) scaleX(1); }
   .gph-wave:hover > span { color:#FFFFFF; }
   .gph-wave.gph-wave-light::before { background:#FFFFFF; }
+  .gph-stickycta { position:fixed; right:24px; bottom:24px; z-index:120; transition:opacity .32s ease, transform .32s ease; }
+  .gph-stickycta[data-off="1"] { opacity:0; transform:translateY(16px); pointer-events:none; }
+  @media (max-width:700px) {
+    .gph-stickycta { left:16px; right:16px; bottom:16px; display:flex; justify-content:center; }
+    .gph-stickycta > a { width:100%; }
+  }
   .gph-wave.gph-wave-lime::before { background:#E1F07B; }
   .gph-evcard .gph-evmedia > img, .gph-evcard .gph-evmedia > video { transition: transform .8s cubic-bezier(.2,.6,.2,1); }
   .gph-evcard:hover .gph-evmedia > img, .gph-evcard:hover .gph-evmedia > video { transform: scale(1.045); }
@@ -158,8 +164,8 @@
           <div style="font-size:clamp(56px, 8vw, 112px);line-height:0.92;font-weight:700;letter-spacing:-0.035em;color:#FFFFFF;max-width:100%;">Падел у <span style="color:#FFFFFF;">Львові</span></div>
           <p style="margin:clamp(24px,3.4vw,44px) 0 0;font-size:22px;line-height:1.45;font-weight:300;letter-spacing:0;color:rgba(255,255,255,0.7);max-width:520px;">Динамічна гра на закритому корті, в яку грають і новачки, і ті, хто вже не може зупинитися.</p>
           <div style="margin-top:clamp(28px,3.4vw,44px);display:flex;flex-wrap:wrap;gap:12px;">
-            <a href="booking.html" class="gph-wave gph-wave-lime" style="position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;flex:1 1 240px;min-width:min(300px,100%);max-width:340px;height:56px;padding:0 28px;border-radius:999px;background:#FFFFFF;color:#323235;font-size:14px;font-weight:700;line-height:1;white-space:nowrap;transition:transform .25s ease,box-shadow .25s ease;" style-hover="transform:translateY(-2px);box-shadow:0 14px 30px rgba(9,9,9,0.24);"><span style="position:relative;z-index:2;">Забронювати корт</span></a>
-            <a href="prices.html" style="display:inline-flex;align-items:center;justify-content:center;flex:1 1 240px;min-width:min(300px,100%);max-width:340px;height:56px;padding:0 28px;border-radius:999px;border:1px solid rgba(255,255,255,0.75);color:#FFFFFF;font-size:14px;font-weight:700;line-height:1;white-space:nowrap;transition:background-color .25s ease,color .25s ease,transform .25s ease;" style-hover="background:rgba(255,255,255,0.14);color:#FFFFFF;transform:translateY(-2px);">Дізнатися ціни</a>
+            <a href="https://green-padel-house.vercel.app/booking.html" class="gph-wave gph-wave-lime" style="position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;flex:1 1 240px;min-width:min(300px,100%);max-width:340px;height:56px;padding:0 28px;border-radius:999px;background:#FFFFFF;color:#323235;font-size:14px;font-weight:700;line-height:1;white-space:nowrap;transition:transform .25s ease,box-shadow .25s ease;" style-hover="transform:translateY(-2px);box-shadow:0 14px 30px rgba(9,9,9,0.24);"><span style="position:relative;z-index:2;">Забронювати корт</span></a>
+            <a href="https://green-padel-house.vercel.app/prices.html" style="display:inline-flex;align-items:center;justify-content:center;flex:1 1 240px;min-width:min(300px,100%);max-width:340px;height:56px;padding:0 28px;border-radius:999px;border:1px solid rgba(255,255,255,0.75);color:#FFFFFF;font-size:14px;font-weight:700;line-height:1;white-space:nowrap;transition:background-color .25s ease,color .25s ease,transform .25s ease;" style-hover="background:rgba(255,255,255,0.14);color:#FFFFFF;transform:translateY(-2px);">Дізнатися ціни</a>
           </div>
         </div>
         <div style="border-top:1px solid rgba(255,255,255,0.28);overflow:hidden;">
@@ -953,6 +959,11 @@
       </div>
     </footer>
 
+    <!-- ░░ STICKY CTA ░░ -->
+    <div class="gph-stickycta" ref="{{ stickyCtaRef }}">
+      <a href="booking.html" class="gph-cta gph-wave" style="position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;height:56px;padding:0 32px;border-radius:999px;background:#E1F07B;color:#323235;font-size:14px;font-weight:700;line-height:1;white-space:nowrap;box-shadow:0 14px 34px rgba(9,9,9,0.20);"><span style="position:relative;z-index:2;">Забронювати корт</span></a>
+    </div>
+
   </div>
 </div>
 </x-dc>
@@ -1050,6 +1061,7 @@ class Component extends DCLogic {
   footGridRef = React.createRef();
   navRef = React.createRef();
   burgerRef = React.createRef();
+  stickyCtaRef = React.createRef();
   cardRef0 = React.createRef();
   cardRef1 = React.createRef();
   cardRef2 = React.createRef();
@@ -1068,6 +1080,7 @@ class Component extends DCLogic {
   aboutRef = React.createRef();
   patternRef = React.createRef();
   componentDidMount() {
+    try { this.initStickyCta(); } catch (e) { console.warn(e); }
     try { this.initBurger(); } catch (e) { console.warn(e); }
     try { this.initFootVid(); } catch (e) { console.warn(e); }
     try { this.applyLayout(); } catch (e) { console.warn(e); }
@@ -1080,6 +1093,21 @@ class Component extends DCLogic {
     if (this.footOfferRef.current) this.footOfferRef.current.style.maxWidth = compact ? '100%' : '392px';
     if (this.legalRowRef.current) { const s = this.legalRowRef.current.style; s.flexDirection = compact ? 'column' : 'row'; s.alignItems = compact ? 'flex-start' : 'center'; s.gap = compact ? '12px' : '24px'; }
     if (this.footGridRef.current) this.footGridRef.current.style.gridTemplateColumns = compact ? 'minmax(0,1fr)' : (window.innerWidth <= 1100 ? 'repeat(2,minmax(0,1fr))' : 'repeat(4,minmax(0,1fr))');
+  }
+  initStickyCta() {
+    const el = this.stickyCtaRef.current;
+    if (!el) return;
+    const tick = () => {
+      this._sraf = 0;
+      const y = window.scrollY || document.documentElement.scrollTop || 0;
+      const foot = document.getElementById('contacts');
+      const atFoot = foot ? foot.getBoundingClientRect().top < window.innerHeight - 40 : false;
+      el.setAttribute('data-off', (y > window.innerHeight * 0.55 && !atFoot) ? '0' : '1');
+    };
+    this._onStickyScroll = () => { if (!this._sraf) this._sraf = requestAnimationFrame(tick); };
+    window.addEventListener('scroll', this._onStickyScroll, { passive: true });
+    document.addEventListener('scroll', this._onStickyScroll, true);
+    tick();
   }
   initVideo() {
     if (this._vidInit || this._vidPending) return;
@@ -1409,7 +1437,7 @@ class Component extends DCLogic {
       igRef: this.igRef, igVideoRef: this.igVideoRef, evRef: this.evRef,
                   callRef: this.callRef, callTextRef: this.callTextRef, callIconRef: this.callIconRef,
       lbRef: this.lbRef, lbImgRef: this.lbImgRef, lbCloseRef: this.lbCloseRef, lbPrevRef: this.lbPrevRef, lbNextRef: this.lbNextRef, lbCountRef: this.lbCountRef,
-      navRef: this.navRef, burgerRef: this.burgerRef,
+      navRef: this.navRef, burgerRef: this.burgerRef, stickyCtaRef: this.stickyCtaRef,
     };
   }
 }
