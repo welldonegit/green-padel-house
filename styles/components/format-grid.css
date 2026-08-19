@@ -17,3 +17,21 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* Вариант для главной (formats): брейкпоинты 1080/700, «текучий» gap. */
+.format-grid-home {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(14px, 1.6vw, 20px);
+  align-items: stretch;
+}
+@media (max-width: 1080px) {
+  .format-grid-home {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 700px) {
+  .format-grid-home {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

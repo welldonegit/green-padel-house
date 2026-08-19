@@ -1,0 +1,36 @@
+/* Лента событий: 3 → 2 колонки, на узких — горизонтальный drag-скролл со снапом.
+   Логика перетаскивания — scripts/event-rail.js. */
+
+.event-rail {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 1.8vw, 24px);
+  align-items: stretch;
+  padding: var(--space-4) var(--space-24) var(--space-12);
+  scrollbar-width: none;
+}
+.event-rail::-webkit-scrollbar {
+  display: none;
+}
+@media (max-width: 900px) {
+  .event-rail {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 640px) {
+  .event-rail {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scroll-padding-left: var(--space-24);
+    cursor: grab;
+    gap: var(--space-12); /* 14→12 (Δ2) */
+    align-items: stretch;
+  }
+  .event-rail > .event-card {
+    flex: none;
+    width: min(78vw, 320px);
+    height: auto;
+    align-self: stretch;
+  }
+}

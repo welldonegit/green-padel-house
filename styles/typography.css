@@ -15,6 +15,18 @@
   max-width: 18ch;
 }
 
+/* Заголовок секции на главной (плотнее: lh 1.02, ls -0.03, цвет text) */
+.heading-2 {
+  font-size: var(--font-size-display-md); /* clamp(40px,4.4vw,56px) */
+  font-weight: var(--font-weight-bold);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  color: var(--color-text);
+}
+.heading-2--light {
+  color: var(--color-white);
+}
+
 .section-lead {
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-light);

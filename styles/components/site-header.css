@@ -82,6 +82,8 @@
   font-size: var(--font-size-sm); /* 14 */
   font-weight: var(--font-weight-bold);
   line-height: 1;
+  text-transform: uppercase; /* единый регистр кнопок */
+  letter-spacing: 0.04em;
   white-space: nowrap;
   transition: background-color .25s ease, color .25s ease;
 }

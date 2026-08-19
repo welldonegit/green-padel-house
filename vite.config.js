@@ -25,6 +25,7 @@ export default defineConfig({
     emptyOutDir: true,
     rollupOptions: {
       input: {
+        index: resolve(root, 'index.html'),
         services: resolve(root, 'services.html'),
       },
     },

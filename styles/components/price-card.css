@@ -1,0 +1,84 @@
+/* Карточка цены: иконка сверху, лейбл, крупная сумма + юнит с верхней линией.
+   Ядро для prices.html. Модификатор --blue — фото-карточка с синим фоном. */
+
+.price-card {
+  position: relative;
+  overflow: hidden;
+  min-width: 0;
+  min-height: clamp(300px, 26vw, 400px);
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-xl); /* 24 */
+  padding: clamp(20px, 2.2vw, 28px);
+  background: var(--color-white);
+}
+.price-card--blue {
+  background: var(--color-blue);
+}
+.price-card__media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.price-card__tint {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.10);
+}
+.price-card__icon {
+  position: relative;
+  display: block;
+  width: var(--icon-xl); /* 40 */
+  height: var(--icon-xl);
+  flex: none;
+  pointer-events: none;
+}
+.price-card__label {
+  position: relative;
+  margin-top: auto;
+  padding-top: clamp(28px, 4vw, 72px);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+}
+.price-card__price {
+  position: relative;
+  margin-top: clamp(14px, 1.6vw, 20px);
+  padding-top: clamp(14px, 1.6vw, 20px);
+  border-top: var(--bw-1) solid rgba(9, 9, 9, 0.10);
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-8);
+  flex-wrap: wrap;
+}
+.price-card__from {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text);
+}
+.price-card__amount {
+  font-size: var(--font-size-display-md); /* clamp(40px,4.4vw,56px) */
+  font-weight: var(--font-weight-bold);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: var(--color-text);
+}
+.price-card__unit {
+  font-size: var(--font-size-sm); /* 14 */
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text);
+  white-space: nowrap;
+}
+
+/* Инверсия цветов на синей карточке */
+.price-card--blue .price-card__label,
+.price-card--blue .price-card__from,
+.price-card--blue .price-card__amount,
+.price-card--blue .price-card__unit {
+  color: var(--color-white);
+}
+.price-card--blue .price-card__price {
+  border-top-color: rgba(255, 255, 255, 0.34);
+}

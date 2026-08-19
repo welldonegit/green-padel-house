@@ -1,0 +1,22 @@
+/* Сетка тренеров: 3 → 2 → 1. */
+
+.coach-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: var(--space-24);
+  row-gap: var(--space-48);
+  align-items: stretch;
+}
+.coach-grid > * {
+  min-width: 0;
+}
+@media (max-width: 900px) {
+  .coach-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 560px) {
+  .coach-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

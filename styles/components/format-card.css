@@ -125,6 +125,26 @@
   opacity: 0.85;
 }
 
+/* Компактный вариант (formats на главной): 4/5, радиус 32,
+   стеклянная панель в один ряд «тайтл + стрелка», без абзаца. */
+.format-card--compact {
+  aspect-ratio: 4 / 5;
+  min-height: 0;
+  border-radius: var(--radius-2xl); /* 32 */
+}
+.format-card--compact .format-card__glass {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: var(--radius-xl); /* 24 */
+}
+@media (max-width: 760px) {
+  .format-card--compact {
+    aspect-ratio: 4 / 5;
+    min-height: 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .format-card,
   .format-card__media,

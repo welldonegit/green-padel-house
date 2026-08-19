@@ -1,0 +1,71 @@
+/* Полноэкранная галерея (мозаика клуба). По умолчанию display:none —
+   в Figma-экспорт не попадает. Логика — scripts/lightbox.js. */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(16px, 4vw, 56px);
+  background: rgba(9, 9, 9, 0.90);
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+.lightbox__img {
+  max-width: min(92vw, 1440px);
+  max-height: 80vh;
+  border-radius: var(--radius-xl); /* 24 */
+  object-fit: contain;
+  opacity: 0;
+  transform: scale(0.98);
+  transition: opacity .35s ease, transform .35s cubic-bezier(.2, .7, .2, 1);
+}
+.lightbox__btn {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.12);
+  border: var(--bw-1) solid rgba(255, 255, 255, 0.24);
+  cursor: pointer;
+  transition: background-color .25s ease;
+}
+.lightbox__btn:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+.lightbox__close {
+  top: clamp(16px, 2.4vw, 32px);
+  right: clamp(16px, 2.4vw, 32px);
+  width: var(--control-h-lg); /* 52→48 (Δ4) */
+  height: var(--control-h-lg);
+}
+.lightbox__nav {
+  top: 50%;
+  transform: translateY(-50%);
+  width: var(--control-h-xl); /* 56 */
+  height: var(--control-h-xl);
+}
+.lightbox__prev {
+  left: clamp(12px, 2.4vw, 32px);
+}
+.lightbox__next {
+  right: clamp(12px, 2.4vw, 32px);
+}
+.lightbox__count {
+  position: absolute;
+  bottom: clamp(18px, 3vw, 40px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: var(--space-4) var(--space-12); /* 6 14 → 4 12 */
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.10);
+  border: var(--bw-1) solid rgba(255, 255, 255, 0.20);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-regular);
+  letter-spacing: 0.06em;
+  color: var(--color-white);
+}

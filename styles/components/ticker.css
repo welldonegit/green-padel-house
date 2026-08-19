@@ -1,0 +1,41 @@
+/* Бегущая строка фактов (hero). Дублируется в разметке два раза для
+   бесшовной прокрутки на -50%. */
+
+@keyframes gphTicker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.ticker {
+  border-top: var(--bw-1) solid rgba(255, 255, 255, 0.28);
+  overflow: hidden;
+}
+.ticker__track {
+  display: flex;
+  width: max-content;
+  animation: gphTicker 34s linear infinite;
+}
+.ticker__group {
+  display: flex;
+  align-items: center;
+}
+.ticker__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  padding: var(--space-20) var(--space-32);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-white);
+  white-space: nowrap;
+}
+.ticker__sep {
+  flex: none;
+  width: var(--bw-1);
+  height: var(--space-24); /* 26→24 */
+  background: rgba(255, 255, 255, 0.28);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker__track { animation: none; }
+}
