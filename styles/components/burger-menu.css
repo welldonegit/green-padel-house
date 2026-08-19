@@ -1,0 +1,122 @@
+/* Выезжающее меню-бургер (быв. gph-bmpanel). Общее для всех страниц.
+   Стаггер пунктов при открытии — в scripts/burger-menu.js. */
+
+.burger-menu__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 140;
+  display: none;
+  background: rgba(9, 9, 9, 0.55);
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+
+.burger-menu {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 141;
+  width: min(38vw, 520px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 2.4vw, 32px);
+  background: var(--color-white);
+  border-radius: 0 var(--radius-2xl) var(--radius-2xl) 0;
+  padding: clamp(20px, 2.4vw, 32px) clamp(20px, 2.4vw, 36px);
+  overflow-y: auto;
+  transform: translateX(-102%);
+  transition: transform .42s cubic-bezier(.2, .7, .2, 1);
+  box-shadow: 0 24px 70px rgba(9, 9, 9, 0.18);
+}
+@media (max-width: 900px) {
+  .burger-menu {
+    width: min(94vw, 470px);
+  }
+}
+
+.burger-menu__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-16);
+}
+.burger-menu__logo {
+  height: var(--space-24); /* 26→24 */
+  width: auto;
+}
+
+.burger-menu__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8); /* 10→8 (Δ2) */
+}
+
+.burger-menu__nav {
+  display: flex;
+  flex-direction: column;
+}
+.burger-menu__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-16);
+  padding: clamp(14px, 1.6vw, 20px) 0;
+  border-top: var(--bw-1) solid rgba(9, 9, 9, 0.10);
+  font-size: var(--font-size-display-sm); /* clamp(22,2.4vw,28) */
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  /* стартовое скрытое состояние — раскрывается скриптом при открытии меню */
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: opacity .26s ease, transform .26s ease, color .2s ease;
+}
+.burger-menu__item:hover {
+  color: var(--color-green);
+}
+.burger-menu__item-icon {
+  flex: none;
+  display: flex;
+  align-items: center;
+}
+
+.burger-menu__foot {
+  margin-top: auto;
+  padding-top: clamp(20px, 2.4vw, 32px);
+  border-top: var(--bw-1) solid rgba(9, 9, 9, 0.10);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+.burger-menu__phone {
+  font-size: var(--font-size-lead); /* clamp(20,2.2vw,24) */
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--color-text);
+}
+.burger-menu__socials {
+  display: flex;
+  gap: var(--space-8);
+  flex-wrap: wrap;
+}
+.burger-menu__soc {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--control-h-lg); /* 46→48 (Δ2) */
+  height: var(--control-h-lg);
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  transition: opacity .25s ease, background-color .25s ease;
+}
+.burger-menu__soc:hover {
+  background: var(--color-fill);
+}
+.burger-menu__soc img {
+  width: var(--icon-sm); /* 20 */
+  height: var(--icon-sm);
+  object-fit: contain;
+}

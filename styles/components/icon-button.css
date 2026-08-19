@@ -1,0 +1,30 @@
+/* Круглые icon-кнопки (закрытие модалок/меню). Размер = фикс. высота контрола,
+   поэтому квадрат берёт высоту и как ширину. */
+
+.icon-btn {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--control-h-lg); /* 48 */
+  height: var(--control-h-lg);
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  background: transparent;
+}
+
+.icon-btn--xl {
+  width: var(--control-h-xl); /* 56 */
+  height: var(--control-h-xl);
+}
+
+/* Заливка «поверхность» с осветлением на hover (быв. gph-bmclose / rac-close) */
+.icon-btn--fill {
+  background: var(--color-surface);
+  transition: background-color .25s ease;
+}
+.icon-btn--fill:hover {
+  background: var(--color-fill);
+}

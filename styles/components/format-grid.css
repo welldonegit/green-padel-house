@@ -1,0 +1,19 @@
+/* Сетка карточек формата. Колонки 4→2→1 (брейкпоинты 1180/760 — как в исходном
+   applyLayout, но декларативно в CSS вместо inline-JS). */
+
+.format-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-16);
+  align-items: stretch;
+}
+@media (max-width: 1180px) {
+  .format-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 760px) {
+  .format-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

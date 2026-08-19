@@ -1,0 +1,292 @@
+/* Футер (общий). Колонки-аккордеон сворачиваются на мобайле (скрипт
+   footer-accordion.js только переключает data-open; показ/скрытие — CSS). */
+
+.site-footer {
+  padding: 0 var(--space-24) var(--space-24);
+}
+
+.site-footer__panel {
+  background: var(--color-ink);
+  color: var(--color-white);
+  border-radius: var(--radius-2xl);
+  padding: clamp(32px, 4vw, 64px);
+}
+
+.site-footer__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(32px, 4vw, 48px);
+}
+@media (max-width: 1100px) {
+  .site-footer__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 860px) {
+  .site-footer__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Колонка-аккордеон */
+.site-footer__col-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-12);
+  cursor: default;
+}
+.site-footer__col-title {
+  font-size: var(--font-size-xl); /* 22 */
+  font-weight: var(--font-weight-bold);
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  color: var(--color-white);
+}
+.site-footer__chevron {
+  display: none;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.7);
+  transition: transform .3s;
+}
+.site-footer__links {
+  margin-top: var(--space-24);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+.site-footer__link {
+  font-size: var(--font-size-base); /* 16 */
+  font-weight: var(--font-weight-light);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+}
+.site-footer__link:hover {
+  color: var(--color-white);
+}
+
+/* Колонка «Застосунок» */
+.site-footer__app {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+}
+.site-footer__app-text {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-light);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+}
+.site-footer__stores {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: var(--space-8);
+}
+.site-footer__store {
+  min-width: 0;
+  flex: 0 1 auto;
+}
+.site-footer__store-img {
+  height: var(--control-h-lg); /* 48 */
+  width: auto;
+  max-width: 100%;
+}
+
+/* Нижний ряд: соцсети + offer */
+.site-footer__bottom {
+  margin-top: clamp(48px, 6vw, 96px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-32);
+  flex-wrap: wrap;
+}
+.site-footer__social-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  flex-wrap: wrap;
+}
+.site-footer__social-label {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-light);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+}
+.site-footer__social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--control-h-lg);
+  height: var(--control-h-lg);
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.08);
+  transition: background-color .25s ease;
+}
+.site-footer__social:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+.site-footer__social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--icon-sm); /* 22→20 (Δ2) */
+  height: var(--icon-sm);
+  border-radius: var(--radius-sm); /* 8 */
+  overflow: hidden;
+  flex: none;
+}
+.site-footer__social-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.site-footer__offer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  flex: 1 1 332px;
+  max-width: 392px;
+  min-width: 280px;
+}
+.site-footer__offer-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  color: var(--color-white);
+}
+.site-footer__offer-media {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: var(--color-ink);
+  aspect-ratio: 16 / 9;
+}
+.site-footer__offer-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+.site-footer__offer-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(9, 9, 9, 0.55) 0%, rgba(9, 9, 9, 0.25) 45%, rgba(9, 9, 9, 0.60) 100%);
+}
+.site-footer__offer-caption {
+  position: absolute;
+  left: var(--space-24);
+  bottom: var(--space-24);
+  right: var(--space-80); /* 84→80 (Δ4) */
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.6;
+  letter-spacing: -0.02em;
+  color: var(--color-white);
+  white-space: nowrap;
+}
+.site-footer__offer-arrow {
+  position: absolute;
+  right: var(--space-24);
+  bottom: var(--space-24);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--control-h-lg);
+  height: var(--control-h-lg);
+  flex: none;
+  border-radius: var(--radius-full);
+  background: var(--color-white);
+}
+.site-footer__offer-arrow > span {
+  display: flex;
+}
+
+/* Вордмарк */
+.site-footer__wordmark {
+  display: block;
+  margin-top: clamp(48px, 6vw, 96px);
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.site-footer__wordmark text {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-hero-num); /* 118 */
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.04em;
+  fill: rgba(255, 255, 255, 0.10);
+}
+
+/* Legal-полоса */
+.site-footer__legal {
+  margin-top: var(--space-16);
+  background: var(--color-ink);
+  border-radius: var(--radius-2xl);
+  padding: clamp(20px, 2.4vw, 32px) clamp(24px, 3vw, 48px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-16) var(--space-32);
+  flex-wrap: wrap;
+}
+.site-footer__copy,
+.site-footer__legal-link,
+.site-footer__made-text {
+  font-size: var(--font-size-xs); /* 13 */
+  font-weight: var(--font-weight-regular);
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.7);
+}
+.site-footer__legal-links {
+  display: flex;
+  gap: var(--space-24);
+  flex-wrap: wrap;
+}
+.site-footer__legal-link:hover {
+  color: var(--color-white);
+}
+.site-footer__made {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+.site-footer__made-logo {
+  height: var(--space-12); /* 14→12 (Δ2) */
+  width: auto;
+}
+
+/* Мобильные раскладки (быв. applyLayout) */
+@media (max-width: 860px) {
+  .site-footer__col-head {
+    cursor: pointer;
+  }
+  .site-footer__chevron {
+    display: flex;
+  }
+  .site-footer__col[data-open="false"] .site-footer__links {
+    display: none;
+  }
+  .site-footer__col[data-open="true"] .site-footer__chevron {
+    transform: rotate(180deg);
+  }
+  .site-footer__store-img {
+    height: var(--control-h-md); /* 48→40 на мобайле */
+  }
+  .site-footer__offer {
+    max-width: 100%;
+  }
+  .site-footer__legal-links {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-12);
+  }
+}

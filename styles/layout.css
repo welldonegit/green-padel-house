@@ -1,0 +1,19 @@
+/* Каркас страницы и общие раскладочные помощники. */
+
+.page {
+  width: 100%;
+  background: var(--color-surface);
+}
+
+.page__inner {
+  width: 100%;
+  max-width: 1600px; /* layout-константа, вне шкалы */
+  margin: 0 auto;
+  background: var(--color-surface);
+}
+
+/* Секция во всю ширину вьюпорта, вырывается из .page__inner (hero). */
+.full-bleed {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+}

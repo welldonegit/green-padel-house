@@ -1,0 +1,104 @@
+/* Кнопки/CTA. База — пилюля-контрол, варианты добавляют заливку и поведение.
+   Движение/переходы сохранены 1:1 из исходника. */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--control-h-xl); /* 56 — единая высота основных кнопок */
+  padding: 0 var(--space-28);
+  border: none;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm); /* 14 — единый размер текста */
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+/* Лаймовый CTA (быв. gph-cta) */
+.btn--lime {
+  padding: 0 var(--space-24);
+  background: var(--color-lime);
+  color: var(--color-ink);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  transition: background-color .25s ease, color .25s ease, transform .25s ease, box-shadow .25s ease;
+}
+.btn--lime:hover {
+  background: var(--color-green);
+  color: var(--color-white);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(9, 9, 9, 0.18);
+}
+
+/* Прозрачный контур на тёмном фоне (быв. «Замовити дзвінок») */
+.btn--outline-ink {
+  padding: 0 var(--space-24);
+  background: transparent;
+  border: var(--bw-1) solid rgba(9, 9, 9, 0.22);
+  color: var(--color-text);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  transition: background-color .25s ease;
+}
+.btn--outline-ink:hover {
+  background: var(--color-surface);
+}
+
+/* Белая «волна»: зелёная заливка выезжает снизу на hover (быв. gph-wave).
+   Псевдоэлемент — движение, в Figma не экспортируется (см. отчёт о потерях). */
+.btn--wave {
+  position: relative;
+  overflow: hidden;
+  min-width: var(--space-128); /* 120→128 (Δ8); контент шире — визуально без сдвига */
+  background: var(--color-white);
+  color: var(--color-ink);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.btn--wave > span {
+  position: relative;
+  z-index: 2;
+  transition: color .28s ease;
+}
+.btn--wave::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  z-index: 1;
+  width: 150%;
+  height: 230%;
+  background: var(--color-green);
+  border-radius: 44% 48% 0 0 / 56% 62% 0 0;
+  transform: translate(-50%, 100%) scaleX(0.55);
+  transition: transform .32s cubic-bezier(.28, .86, .4, 1);
+  pointer-events: none;
+}
+.btn--wave:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(9, 9, 9, 0.24);
+}
+.btn--wave:hover::before {
+  transform: translate(-50%, 10%) scaleX(1);
+}
+.btn--wave:hover > span {
+  color: var(--color-white);
+}
+
+/* Маленькая «ghost»-кнопка (быв. gph-racbtn «Дізнатись») */
+.btn--ghost-sm {
+  height: var(--control-h-sm); /* 36→32 (Δ4) */
+  padding: 0 var(--space-16);
+  background: var(--color-white);
+  border: var(--bw-1) solid rgba(9, 9, 9, 0.14);
+  color: var(--color-text);
+  font-size: var(--font-size-xs); /* 13 */
+  letter-spacing: -0.01em;
+  transition: background-color .25s ease, color .25s ease, border-color .25s ease;
+}
+.btn--ghost-sm:hover {
+  background: var(--color-ink);
+  color: var(--color-white);
+  border-color: var(--color-ink);
+}

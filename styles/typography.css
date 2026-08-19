@@ -1,0 +1,52 @@
+/* Типографика. font-size/line-height/letter-spacing — faithful (не снапаются).
+   Токены font-size используются там, где значение совпадает 1:1; одиночные
+   clamp-кегли остаются точными значениями. */
+
+/* Заголовок секции (h2) */
+.section-title {
+  font-size: var(--font-size-display-md); /* clamp(40px,4.4vw,56px) */
+  font-weight: var(--font-weight-bold);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+}
+
+.section-title--narrow {
+  max-width: 18ch;
+}
+
+.section-lead {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-light);
+  line-height: 1.6;
+  color: var(--color-text);
+  max-width: 440px; /* layout-константа */
+}
+
+/* Акцентное слово-пилюля в заголовке (зелёный фон) */
+.accent {
+  display: inline-block;
+  padding: 0 0.3em var(--space-4); /* низ 3px→4px (Δ1) */
+  line-height: 1.028;
+  border-radius: var(--radius-full);
+  background: var(--color-green);
+  color: var(--color-white);
+}
+
+/* Заголовок и лид в hero (белые, поверх фото) */
+.hero-title {
+  font-size: clamp(52px, 8vw, 112px); /* faithful, вне токенов */
+  font-weight: var(--font-weight-bold);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--color-white);
+  max-width: 16ch;
+}
+
+.hero-lead {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-light);
+  line-height: 1.6;
+  color: var(--color-white);
+  max-width: 560px; /* layout-константа */
+}

@@ -1,0 +1,21 @@
+/* Инлайн-чипы. Стеклянный чип поверх фото карточки (быв. вложенный span-бейдж).
+   backdrop-filter в Figma экспортируется частично (см. отчёт о потерях). */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs); /* 13 */
+  font-weight: var(--font-weight-regular);
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.chip--glass {
+  padding: var(--space-4) var(--space-12); /* 6 14 → 4 12 (Δ2) */
+  background: rgba(255, 255, 255, 0.22);
+  border: var(--bw-1) solid rgba(255, 255, 255, 0.30);
+  color: var(--color-white);
+  backdrop-filter: blur(18px) saturate(1.2);
+  -webkit-backdrop-filter: blur(18px) saturate(1.2);
+}
