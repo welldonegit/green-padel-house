@@ -1,5 +1,7 @@
 // Разлетающиеся тенісні м'ячі при наведении на кнопку-волну.
 // Перенос assets/ball-fx.js без изменений логики, селектор .gph-wave → .btn--wave.
+// Картинка мяча — через Vite-импорт (строковый путь в проде даёт 404).
+import tennisBall from '../assets/tennis-ball.svg';
 
 export function initCtaBalls() {
   if (window.__gphBalls) return;
@@ -15,7 +17,7 @@ export function initCtaBalls() {
     const r = btn.getBoundingClientRect();
     for (let i = 0; i < PER_VOLLEY; i++) {
       const ball = document.createElement('img');
-      ball.src = 'assets/tennis-ball.svg'; ball.alt = ''; ball.setAttribute('data-gph-ball', '1');
+      ball.src = tennisBall; ball.alt = ''; ball.setAttribute('data-gph-ball', '1');
       const size = 12 + Math.random() * 9;
       const dx = (Math.random() - 0.5) * 190, dy = -(64 + Math.random() * 86), rot = (Math.random() - 0.5) * 560;
       const s = ball.style;
