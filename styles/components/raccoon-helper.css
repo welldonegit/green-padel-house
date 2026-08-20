@@ -215,6 +215,16 @@
   pointer-events: none;
   transition: opacity .32s ease, transform .32s cubic-bezier(.2, .7, .2, 1);
 }
+/* Мягкий оверлей под ответом: вопросы за доком «угасают», ответ читается отдельно.
+   Появляется/скрывается вместе с доком (его opacity). */
+.raccoon-dock::before {
+  content: '';
+  position: absolute;
+  inset: calc(-1 * clamp(40px, 6vw, 72px)) calc(-1 * clamp(20px, 3vw, 40px)) calc(-1 * clamp(20px, 3vw, 40px));
+  background: linear-gradient(to top, var(--color-white) 42%, rgba(255, 255, 255, 0));
+  z-index: -1;
+  pointer-events: none;
+}
 .raccoon-dock__img {
   width: clamp(72px, 8vw, 104px);
   height: auto;
