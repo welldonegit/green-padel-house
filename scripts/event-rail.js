@@ -1,5 +1,7 @@
 // Drag-скролл ленты событий и ig-грида + видео в ig-плитке.
 // Логика 1:1 из dc-runtime (bindDragScroll / initFeed).
+// Ассет видео — через Vite-импорт (корректный хешированный URL в сборке).
+import heroVideoUrl from '../assets/hero.mp4';
 
 function bindDragScroll(g) {
   if (!g || g._dragBound) return;
@@ -26,11 +28,9 @@ export function initEventRail() {
   if (v && !v._igSrc) {
     v._igSrc = 1;
     v.muted = true; v.defaultMuted = true; v.playsInline = true; v.loop = true;
-    fetch('assets/hero.mp4?v=2').then((r) => r.blob()).then((b) => {
-      v.src = URL.createObjectURL(b);
-      try { v.load(); } catch (e) {}
-      const p = v.play();
-      if (p && p.catch) p.catch(() => {});
-    }).catch(() => {});
+    v.src = heroVideoUrl;
+    try { v.load(); } catch (e) {}
+    const p = v.play();
+    if (p && p.catch) p.catch(() => {});
   }
 }
