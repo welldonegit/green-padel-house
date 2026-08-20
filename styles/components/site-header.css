@@ -58,7 +58,7 @@
   gap: clamp(20px, 2.4vw, 36px);
 }
 .site-header__nav-link {
-  font-size: var(--font-size-md); /* 15 */
+  font-size: var(--font-size-base); /* 16 (было 15) */
   font-weight: var(--font-weight-bold);
   line-height: 1;
   letter-spacing: -0.01em;

@@ -43,6 +43,7 @@ export default defineConfig({
         blog: resolve(root, 'blog.html'),
         news: resolve(root, 'news.html'),
         event: resolve(root, 'event.html'),
+        styleguide: resolve(root, 'styleguide.html'),
       },
     },
   },

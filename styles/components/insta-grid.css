@@ -71,7 +71,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-4);
-  font-size: var(--font-size-xs); /* 13 */
+  font-size: var(--font-size-sm); /* 14 (было 13) */
   font-weight: var(--font-weight-regular);
   color: var(--color-white);
 }

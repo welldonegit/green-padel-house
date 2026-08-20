@@ -5,7 +5,7 @@
   display: inline-flex;
   align-items: center;
   border-radius: var(--radius-full);
-  font-size: var(--font-size-xs); /* 13 */
+  font-size: var(--font-size-sm); /* 14 (было 13) */
   font-weight: var(--font-weight-regular);
   line-height: 1.4;
   white-space: nowrap;

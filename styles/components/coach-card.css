@@ -31,7 +31,7 @@
 }
 .coach-card__name {
   margin-top: var(--space-12);
-  font-size: var(--font-size-h3); /* 22 */
+  font-size: var(--font-size-h3); /* 32 */
   font-weight: var(--font-weight-bold);
   line-height: 1.18;
   letter-spacing: -0.02em;

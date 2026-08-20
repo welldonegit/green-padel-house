@@ -1,0 +1,271 @@
+/* Стили страницы-витрины дизайн-системы (styleguide.html).
+   Только оформление самой спецификации; все демонстрируемые значения —
+   из наших токенов/компонентов. «Замороженные» hover — точная копия
+   соответствующих :hover-правил из components/button.css. */
+
+.sg {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: clamp(32px, 6vw, 80px) var(--space-24) clamp(64px, 8vw, 120px);
+  color: var(--color-text);
+}
+
+/* Шапка */
+.sg-head {
+  margin-bottom: clamp(40px, 6vw, 80px);
+  padding-bottom: var(--space-32);
+  border-bottom: var(--bw-1) solid rgba(9, 9, 9, 0.10);
+}
+.sg-head__kicker {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-blue);
+  margin-bottom: var(--space-16);
+}
+.sg-head__title {
+  font-size: clamp(40px, 6vw, 72px);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+}
+.sg-head__desc {
+  margin-top: var(--space-16);
+  max-width: 640px;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-light);
+  line-height: 1.6;
+}
+
+/* Секция спецификации */
+.sg-section {
+  padding: clamp(40px, 5vw, 64px) 0;
+  border-bottom: var(--bw-1) solid rgba(9, 9, 9, 0.10);
+}
+.sg-section__title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-8);
+}
+.sg-section__desc {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-light);
+  line-height: 1.6;
+  color: rgba(50, 50, 53, 0.7);
+  margin-bottom: var(--space-32);
+  max-width: 640px;
+}
+.sg-group {
+  margin-top: var(--space-40);
+}
+.sg-group__label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text);
+  margin-bottom: var(--space-20);
+}
+
+/* ── Кольори ── */
+.sg-swatches {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-20);
+}
+@media (max-width: 720px) {
+  .sg-swatches { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.sg-swatch__chip {
+  height: 96px;
+  border-radius: var(--radius-lg);
+  border: var(--bw-1) solid rgba(9, 9, 9, 0.08);
+}
+.sg-swatch__name {
+  margin-top: var(--space-12);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+}
+.sg-swatch__meta {
+  margin-top: var(--space-4);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-light);
+  line-height: 1.5;
+  color: rgba(50, 50, 53, 0.7);
+}
+.sg-swatch__chip--white   { background: var(--color-white); }
+.sg-swatch__chip--surface { background: var(--color-surface); }
+.sg-swatch__chip--fill    { background: var(--color-fill); }
+.sg-swatch__chip--text    { background: var(--color-text); }
+.sg-swatch__chip--ink     { background: var(--color-ink); }
+.sg-swatch__chip--green   { background: var(--color-green); }
+.sg-swatch__chip--blue    { background: var(--color-blue); }
+.sg-swatch__chip--lime    { background: var(--color-lime); }
+
+/* ── Типографіка ── */
+.sg-type-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-24);
+  padding: var(--space-16) 0;
+  border-top: var(--bw-1) solid rgba(9, 9, 9, 0.08);
+}
+.sg-type-row__specimen {
+  min-width: 0;
+  color: var(--color-text);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.sg-type-row__meta {
+  flex: none;
+  text-align: right;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.5;
+  color: rgba(50, 50, 53, 0.7);
+}
+.sg-type-row__meta b {
+  display: block;
+  color: var(--color-text);
+  font-weight: var(--font-weight-bold);
+}
+.sg-type--hero      { font-size: clamp(48px, 8vw, 98px); }
+.sg-type--display-lg{ font-size: var(--font-size-display-lg); }
+.sg-type--display-md{ font-size: var(--font-size-display-md); }
+.sg-type--h3        { font-size: var(--font-size-h3); }
+.sg-type--display-sm{ font-size: var(--font-size-display-sm); }
+.sg-type--2xl       { font-size: var(--font-size-2xl); }
+.sg-type--lead      { font-size: var(--font-size-lead); font-weight: var(--font-weight-light); letter-spacing: 0; }
+.sg-type--lg        { font-size: var(--font-size-lg); font-weight: var(--font-weight-regular); letter-spacing: 0; }
+.sg-type--base      { font-size: var(--font-size-base); font-weight: var(--font-weight-regular); letter-spacing: 0; }
+.sg-type--sm        { font-size: var(--font-size-sm); font-weight: var(--font-weight-regular); letter-spacing: 0; }
+
+/* ── Відступи ── */
+.sg-space-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-16);
+  padding: var(--space-8) 0;
+}
+.sg-space-row__bar {
+  height: var(--space-16);
+  border-radius: var(--radius-xs);
+  background: var(--color-blue);
+}
+.sg-space-row__label {
+  font-size: var(--font-size-sm);
+  color: rgba(50, 50, 53, 0.7);
+}
+.sg-space-row__label b { color: var(--color-text); font-weight: var(--font-weight-bold); }
+.sg-bar--2   { width: var(--space-2); }
+.sg-bar--4   { width: var(--space-4); }
+.sg-bar--8   { width: var(--space-8); }
+.sg-bar--12  { width: var(--space-12); }
+.sg-bar--16  { width: var(--space-16); }
+.sg-bar--20  { width: var(--space-20); }
+.sg-bar--24  { width: var(--space-24); }
+.sg-bar--28  { width: var(--space-28); }
+.sg-bar--32  { width: var(--space-32); }
+.sg-bar--40  { width: var(--space-40); }
+.sg-bar--48  { width: var(--space-48); }
+.sg-bar--64  { width: var(--space-64); }
+.sg-bar--80  { width: var(--space-80); }
+.sg-bar--96  { width: var(--space-96); }
+.sg-bar--128 { width: var(--space-128); }
+
+/* ── Радіуси ── */
+.sg-radii {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-20);
+}
+@media (max-width: 720px) {
+  .sg-radii { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.sg-radius__box {
+  height: 88px;
+  background: var(--color-fill);
+  border: var(--bw-1) solid rgba(9, 9, 9, 0.10);
+}
+.sg-radius__label {
+  margin-top: var(--space-12);
+  font-size: var(--font-size-sm);
+  color: rgba(50, 50, 53, 0.7);
+}
+.sg-radius__label b { color: var(--color-text); font-weight: var(--font-weight-bold); }
+.sg-radius__box--xs  { border-radius: var(--radius-xs); }
+.sg-radius__box--sm  { border-radius: var(--radius-sm); }
+.sg-radius__box--md  { border-radius: var(--radius-md); }
+.sg-radius__box--lg  { border-radius: var(--radius-lg); }
+.sg-radius__box--xl  { border-radius: var(--radius-xl); }
+.sg-radius__box--2xl { border-radius: var(--radius-2xl); }
+.sg-radius__box--full{ border-radius: var(--radius-full); }
+
+/* ── Специфікація станів (кнопки/чипи) ── */
+.sg-state {
+  display: flex;
+  align-items: center;
+  gap: var(--space-24);
+  padding: var(--space-16) 0;
+  border-top: var(--bw-1) solid rgba(9, 9, 9, 0.08);
+}
+.sg-state__label {
+  flex: none;
+  width: 200px;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  color: rgba(50, 50, 53, 0.7);
+}
+.sg-state__label b { color: var(--color-text); font-weight: var(--font-weight-bold); }
+.sg-state__demo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-16);
+  align-items: center;
+}
+/* Тёмная подложка для кнопок «на hero» */
+.sg-state--dark {
+  background: var(--color-ink);
+  border-radius: var(--radius-lg);
+  padding: var(--space-24);
+  margin-top: var(--space-16);
+}
+.sg-state--dark .sg-state__label { color: rgba(255, 255, 255, 0.7); }
+.sg-state--dark .sg-state__label b { color: var(--color-white); }
+
+@media (max-width: 620px) {
+  .sg-state { flex-direction: column; align-items: flex-start; gap: var(--space-12); }
+  .sg-state__label { width: auto; }
+}
+
+/* «Замороженные» hover-состояния — точная копия :hover из button.css,
+   чтобы состояние было статичным кадром (для Figma). */
+.sg-hover.btn--lime {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(9, 9, 9, 0.18);
+  background: var(--color-green);
+  color: var(--color-white);
+}
+.sg-hover.btn--white {
+  transform: translateY(-2px);
+}
+.sg-hover.btn--outline-ink {
+  background: var(--color-surface);
+}
+.sg-hover.btn--outline-light {
+  background: rgba(255, 255, 255, 0.14);
+  color: var(--color-white);
+  transform: translateY(-2px);
+}
+.sg-hover.btn--ghost-sm {
+  background: var(--color-ink);
+  color: var(--color-white);
+  border-color: var(--color-ink);
+}

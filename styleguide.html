@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Специфікація дизайн-системи — Green Padel House</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/main.css">
+  <link rel="stylesheet" href="/styles/styleguide.css">
+</head>
+<body>
+<main class="sg">
+
+  <!-- ░░ ШАПКА ░░ -->
+  <header class="sg-head">
+    <p class="sg-head__kicker">Дизайн-система</p>
+    <h1 class="sg-head__title">Специфікація</h1>
+    <p class="sg-head__desc">Живий довідник токенів і компонентів Green Padel House. Усі значення взяті напряму з рефакторингової верстки (styles/tokens.css та components/) — без вигаданих чисел.</p>
+  </header>
+
+  <!-- ░░ КОЛЬОРИ ░░ -->
+  <section class="sg-section">
+    <h2 class="sg-section__title">Кольори</h2>
+    <p class="sg-section__desc">8 токенів палітри. У компонентах використовуються тільки через <code>var(--color-*)</code>.</p>
+    <div class="sg-swatches">
+      <div class="sg-swatch">
+        <div class="sg-swatch__chip sg-swatch__chip--white"></div>
+        <p class="sg-swatch__name">White</p>
+        <p class="sg-swatch__meta">#FFFFFF<br>--color-white</p>
+      </div>
+      <div class="sg-swatch">
+        <div class="sg-swatch__chip sg-swatch__chip--surface"></div>
+        <p class="sg-swatch__name">Surface</p>
+        <p class="sg-swatch__meta">#F5F5F8<br>--color-surface</p>
+      </div>
+      <div class="sg-swatch">
+        <div class="sg-swatch__chip sg-swatch__chip--fill"></div>
+        <p class="sg-swatch__name">Fill</p>
+        <p class="sg-swatch__meta">#ECECF2<br>--color-fill</p>
+      </div>
+      <div class="sg-swatch">
+        <div class="sg-swatch__chip sg-swatch__chip--text"></div>
+        <p class="sg-swatch__name">Text</p>
+        <p class="sg-swatch__meta">#323235<br>--color-text</p>
+      </div>
+      <div class="sg-swatch">
+        <div class="sg-swatch__chip sg-swatch__chip--ink"></div>
+        <p class="sg-swatch__name">Ink</p>
+        <p class="sg-swatch__meta">#090909<br>--color-ink</p>
+      </div>
+      <div class="sg-swatch">
+        <div class="sg-swatch__chip sg-swatch__chip--green"></div>
+        <p class="sg-swatch__name">Green</p>
+        <p class="sg-swatch__meta">#014C26<br>--color-green</p>
+      </div>
+      <div class="sg-swatch">
+        <div class="sg-swatch__chip sg-swatch__chip--blue"></div>
+        <p class="sg-swatch__name">Blue</p>
+        <p class="sg-swatch__meta">#295DC5<br>--color-blue</p>
+      </div>
+      <div class="sg-swatch">
+        <div class="sg-swatch__chip sg-swatch__chip--lime"></div>
+        <p class="sg-swatch__name">Lime</p>
+        <p class="sg-swatch__meta">#E1F07B<br>--color-lime</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ ТИПОГРАФІКА ░░ -->
+  <section class="sg-section">
+    <h2 class="sg-section__title">Типографіка</h2>
+    <p class="sg-section__desc">Geologica 300/400/700. Адаптивні кеглі — <code>clamp(моб → десктоп)</code>; десктоп рахуємо від ≥1025px.</p>
+
+    <div class="sg-type-row">
+      <span class="sg-type-row__specimen sg-type--display-lg">Padel 24</span>
+      <span class="sg-type-row__meta"><b>56 → 112 px</b>--font-size-display-lg · число статистики</span>
+    </div>
+    <div class="sg-type-row">
+      <span class="sg-type-row__specimen sg-type--hero">Padel</span>
+      <span class="sg-type-row__meta"><b>48 → 98 px</b>.hero-title · H1 hero</span>
+    </div>
+    <div class="sg-type-row">
+      <span class="sg-type-row__specimen sg-type--display-md">Заголовок секції</span>
+      <span class="sg-type-row__meta"><b>40 → 56 px</b>--font-size-display-md · H2</span>
+    </div>
+    <div class="sg-type-row">
+      <span class="sg-type-row__specimen sg-type--h3">Заголовок картки</span>
+      <span class="sg-type-row__meta"><b>32 px</b>--font-size-h3 · H3</span>
+    </div>
+    <div class="sg-type-row">
+      <span class="sg-type-row__specimen sg-type--display-sm">Підзаголовок</span>
+      <span class="sg-type-row__meta"><b>24 → 32 px</b>--font-size-display-sm</span>
+    </div>
+    <div class="sg-type-row">
+      <span class="sg-type-row__specimen sg-type--2xl">Юніт / акцент</span>
+      <span class="sg-type-row__meta"><b>24 px</b>--font-size-2xl</span>
+    </div>
+    <div class="sg-type-row">
+      <span class="sg-type-row__specimen sg-type--lead">Лід-абзац секції</span>
+      <span class="sg-type-row__meta"><b>16 → 24 px</b>--font-size-lead</span>
+    </div>
+    <div class="sg-type-row">
+      <span class="sg-type-row__specimen sg-type--lg">Підзаголовок hero / стаття</span>
+      <span class="sg-type-row__meta"><b>16 → 18 px</b>--font-size-lg</span>
+    </div>
+    <div class="sg-type-row">
+      <span class="sg-type-row__specimen sg-type--base">Базовий текст, абзаци, значення</span>
+      <span class="sg-type-row__meta"><b>16 px</b>--font-size-base</span>
+    </div>
+    <div class="sg-type-row">
+      <span class="sg-type-row__specimen sg-type--sm">Дрібні підписи, мета, текст кнопок</span>
+      <span class="sg-type-row__meta"><b>14 px</b>--font-size-sm</span>
+    </div>
+  </section>
+
+  <!-- ░░ ВІДСТУПИ ░░ -->
+  <section class="sg-section">
+    <h2 class="sg-section__title">Відступи</h2>
+    <p class="sg-section__desc">Шкала spacing (15 ступенів). &lt;16 → кратне 4; ≥16 → кратне 8; 20 і 28 — виключення за частотою.</p>
+    <div class="sg-space-row"><span class="sg-space-row__bar sg-bar--2"></span><span class="sg-space-row__label"><b>2</b> · --space-2</span></div>
+    <div class="sg-space-row"><span class="sg-space-row__bar sg-bar--4"></span><span class="sg-space-row__label"><b>4</b> · --space-4</span></div>
+    <div class="sg-space-row"><span class="sg-space-row__bar sg-bar--8"></span><span class="sg-space-row__label"><b>8</b> · --space-8</span></div>
+    <div class="sg-space-row"><span class="sg-space-row__bar sg-bar--12"></span><span class="sg-space-row__label"><b>12</b> · --space-12</span></div>
+    <div class="sg-space-row"><span class="sg-space-row__bar sg-bar--16"></span><span class="sg-space-row__label"><b>16</b> · --space-16</span></div>
+    <div class="sg-space-row"><span class="sg-space-row__bar sg-bar--20"></span><span class="sg-space-row__label"><b>20</b> · --space-20 <em>(виключення)</em></span></div>
+    <div class="sg-space-row"><span class="sg-space-row__bar sg-bar--24"></span><span class="sg-space-row__label"><b>24</b> · --space-24</span></div>
+    <div class="sg-space-row"><span class="sg-space-row__bar sg-bar--28"></span><span class="sg-space-row__label"><b>28</b> · --space-28 <em>(виключення)</em></span></div>
+    <div class="sg-space-row"><span class="sg-space-row__bar sg-bar--32"></span><span class="sg-space-row__label"><b>32</b> · --space-32</span></div>
+    <div class="sg-space-row"><span class="sg-space-row__bar sg-bar--40"></span><span class="sg-space-row__label"><b>40</b> · --space-40</span></div>
+    <div class="sg-space-row"><span class="sg-space-row__bar sg-bar--48"></span><span class="sg-space-row__label"><b>48</b> · --space-48</span></div>
+    <div class="sg-space-row"><span class="sg-space-row__bar sg-bar--64"></span><span class="sg-space-row__label"><b>64</b> · --space-64</span></div>
+    <div class="sg-space-row"><span class="sg-space-row__bar sg-bar--80"></span><span class="sg-space-row__label"><b>80</b> · --space-80</span></div>
+    <div class="sg-space-row"><span class="sg-space-row__bar sg-bar--96"></span><span class="sg-space-row__label"><b>96</b> · --space-96</span></div>
+    <div class="sg-space-row"><span class="sg-space-row__bar sg-bar--128"></span><span class="sg-space-row__label"><b>128</b> · --space-128</span></div>
+  </section>
+
+  <!-- ░░ РАДІУСИ ░░ -->
+  <section class="sg-section">
+    <h2 class="sg-section__title">Радіуси</h2>
+    <p class="sg-section__desc">Скруглення кутів.</p>
+    <div class="sg-radii">
+      <div><div class="sg-radius__box sg-radius__box--xs"></div><p class="sg-radius__label"><b>4</b> · --radius-xs</p></div>
+      <div><div class="sg-radius__box sg-radius__box--sm"></div><p class="sg-radius__label"><b>8</b> · --radius-sm</p></div>
+      <div><div class="sg-radius__box sg-radius__box--md"></div><p class="sg-radius__label"><b>12</b> · --radius-md</p></div>
+      <div><div class="sg-radius__box sg-radius__box--lg"></div><p class="sg-radius__label"><b>16</b> · --radius-lg</p></div>
+      <div><div class="sg-radius__box sg-radius__box--xl"></div><p class="sg-radius__label"><b>24</b> · --radius-xl</p></div>
+      <div><div class="sg-radius__box sg-radius__box--2xl"></div><p class="sg-radius__label"><b>32</b> · --radius-2xl</p></div>
+      <div><div class="sg-radius__box sg-radius__box--full"></div><p class="sg-radius__label"><b>9999</b> · --radius-full</p></div>
+    </div>
+  </section>
+
+  <!-- ░░ КНОПКИ — СПЕЦИФІКАЦІЯ СТАНІВ ░░ -->
+  <section class="sg-section">
+    <h2 class="sg-section__title">Кнопки — специфікація станів</h2>
+    <p class="sg-section__desc">Базова висота 56px (ghost — 32px), текст 14px КАПСОМ, радіус full. Реальні стани у верстці — <b>Default</b> і <b>Наведення</b> (:hover). Станів focus/disabled у стилях немає.</p>
+
+    <div class="sg-group">
+      <p class="sg-group__label">Lime · .btn--lime</p>
+      <div class="sg-state">
+        <span class="sg-state__label"><b>Default</b>lime / ink</span>
+        <div class="sg-state__demo"><button type="button" class="btn btn--lime">Забронювати</button></div>
+      </div>
+      <div class="sg-state">
+        <span class="sg-state__label"><b>Наведення</b>green / white, ↑2px, тінь</span>
+        <div class="sg-state__demo"><button type="button" class="btn btn--lime sg-hover">Забронювати</button></div>
+      </div>
+    </div>
+
+    <div class="sg-group">
+      <p class="sg-group__label">White · .btn--white</p>
+      <div class="sg-state">
+        <span class="sg-state__label"><b>Default</b>white / ink</span>
+        <div class="sg-state__demo"><button type="button" class="btn btn--white">Забронювати</button></div>
+      </div>
+      <div class="sg-state">
+        <span class="sg-state__label"><b>Наведення</b>↑2px</span>
+        <div class="sg-state__demo"><button type="button" class="btn btn--white sg-hover">Забронювати</button></div>
+      </div>
+    </div>
+
+    <div class="sg-group">
+      <p class="sg-group__label">Outline ink · .btn--outline-ink</p>
+      <div class="sg-state">
+        <span class="sg-state__label"><b>Default</b>прозорий, кант ink 22%</span>
+        <div class="sg-state__demo"><button type="button" class="btn btn--outline-ink">Замовити дзвінок</button></div>
+      </div>
+      <div class="sg-state">
+        <span class="sg-state__label"><b>Наведення</b>фон surface</span>
+        <div class="sg-state__demo"><button type="button" class="btn btn--outline-ink sg-hover">Замовити дзвінок</button></div>
+      </div>
+    </div>
+
+    <div class="sg-group">
+      <p class="sg-group__label">Outline lime · .btn--outline-lime</p>
+      <div class="sg-state">
+        <span class="sg-state__label"><b>Default</b>white, кант lime 2px</span>
+        <div class="sg-state__demo"><button type="button" class="btn btn--outline-lime">Подивитись ціни</button></div>
+      </div>
+    </div>
+
+    <div class="sg-group">
+      <p class="sg-group__label">Ghost sm · .btn--ghost-sm</p>
+      <div class="sg-state">
+        <span class="sg-state__label"><b>Default</b>32px, кант ink 14%</span>
+        <div class="sg-state__demo"><button type="button" class="btn btn--ghost-sm">Дізнатись</button></div>
+      </div>
+      <div class="sg-state">
+        <span class="sg-state__label"><b>Наведення</b>фон ink, білий текст</span>
+        <div class="sg-state__demo"><button type="button" class="btn btn--ghost-sm sg-hover">Дізнатись</button></div>
+      </div>
+    </div>
+
+    <div class="sg-group">
+      <p class="sg-group__label">Outline light · .btn--outline-light <em>(на темному hero)</em></p>
+      <div class="sg-state sg-state--dark">
+        <span class="sg-state__label"><b>Default</b>прозорий, кант white 75%</span>
+        <div class="sg-state__demo"><button type="button" class="btn btn--outline-light">Дивитись відео</button></div>
+      </div>
+      <div class="sg-state sg-state--dark">
+        <span class="sg-state__label"><b>Наведення</b>фон white 14%, ↑2px</span>
+        <div class="sg-state__demo"><button type="button" class="btn btn--outline-light sg-hover">Дивитись відео</button></div>
+      </div>
+    </div>
+
+    <div class="sg-group">
+      <p class="sg-group__label">Хвиля · .btn--wave (+ --wave-lime / --wave-light)</p>
+      <div class="sg-state">
+        <span class="sg-state__label"><b>Default</b>механізм хвилі поверх фону</span>
+        <div class="sg-state__demo">
+          <a class="btn btn--lime btn--wave btn--wave-lime" href="#"><span>Забронювати</span></a>
+          <a class="btn btn--white btn--wave btn--wave-lime" href="#"><span>Забронювати</span></a>
+        </div>
+      </div>
+      <div class="sg-state">
+        <span class="sg-state__label"><b>Наведення</b>анімація хвилі + тенісні м'ячі (JS)</span>
+        <div class="sg-state__demo"><p class="sg-swatch__meta">Динамічний ефект (псевдоелемент + cta-balls.js). У Figma не переноситься — див. звіт про втрати.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ ЧИПИ ░░ -->
+  <section class="sg-section">
+    <h2 class="sg-section__title">Чипи</h2>
+    <p class="sg-section__desc">Пілюлі-мітки. Текст 14px, радіус full.</p>
+    <div class="sg-group">
+      <p class="sg-group__label">Solid · .chip.chip--solid</p>
+      <div class="sg-state">
+        <span class="sg-state__label"><b>Default</b>фон fill</span>
+        <div class="sg-state__demo"><span class="chip chip--solid">Рівень C-/C</span><span class="chip chip--solid">Americano</span><span class="chip chip--solid">16 гравців</span></div>
+      </div>
+    </div>
+    <div class="sg-group">
+      <p class="sg-group__label">Glass · .chip.chip--glass <em>(поверх фото)</em></p>
+      <div class="sg-state sg-state--dark">
+        <span class="sg-state__label"><b>Default</b>скло, backdrop-blur</span>
+        <div class="sg-state__demo"><span class="chip chip--glass">60 хвилин</span><span class="chip chip--glass">120 хвилин</span></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+</body>
+</html>

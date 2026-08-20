@@ -28,7 +28,7 @@
   z-index: 2;
 }
 .promo-card__title {
-  font-size: var(--font-size-h3); /* 22 */
+  font-size: var(--font-size-h3); /* 32 */
   font-weight: var(--font-weight-bold);
   line-height: 1.35;
   letter-spacing: -0.02em;

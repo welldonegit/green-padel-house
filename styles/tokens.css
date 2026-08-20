@@ -83,22 +83,20 @@
   --font-weight-regular: 400;
   --font-weight-bold:    700;
 
-  /* --- Кегли: дискретные (UI-текст) ------------------------------------- */
-  --font-size-xs:   13px; /* мелкие подписи, мета */
-  --font-size-sm:   14px;
-  --font-size-md:   15px;
+  /* --- Кегли: дискретные (UI-текст) -------------------------------------
+     Шкала сокращена: бывшие xs·13→sm·14, md·15→base·16, xl·22→2xl·24. */
+  --font-size-sm:   14px; /* мелкие подписи, мета, текст кнопок */
   --font-size-base: 16px; /* базовый текст */
-  --font-size-lg:   18px;
-  --font-size-xl:   22px;
+  --font-size-lg:   16px; /* моб/планшет 16; десктоп (≥1025px) → 18 (см. @media ниже) */
   --font-size-2xl:  24px;
-  --font-size-h3:   30px; /* размер заголовков h3 (карточные тайтлы) */
+  --font-size-h3:   32px; /* размер заголовков h3 (карточные тайтлы) */
 
-  /* --- Кегли: адаптивные (заголовки, clamp — значения faithful) ---------- */
-  --font-size-lead:       clamp(20px, 2.2vw, 24px);  /* лид-абзац */
-  --font-size-display-sm: clamp(22px, 2.4vw, 28px);  /* подзаголовок секции */
+  /* --- Кегли: адаптивные (заголовки, clamp) ------------------------------ */
+  --font-size-lead:       clamp(16px, 2.2vw, 24px);  /* лид-абзац (моб. пол 18→16) */
+  --font-size-display-sm: clamp(24px, 2.4vw, 32px);  /* подзаголовок секции (пол 22→24, потолок 28→32) */
   --font-size-display-md: clamp(40px, 4.4vw, 56px);  /* h2 */
   --font-size-display-lg: clamp(56px, 8vw, 112px);   /* hero */
-  --font-size-hero-num:   118px;                     /* крупная цифра-герой */
+  --font-size-hero-num:   112px;                     /* крупная цифра-герой (118→112) */
 
   /* ПРИМЕЧАНИЕ. line-height и letter-spacing здесь НЕ токенизированы
      намеренно: значения дробные и «по своим правилам» — уйдут faithful
@@ -112,5 +110,6 @@
 @media (min-width: 1025px) {
   :root {
     --section-gap: 100px;
+    --font-size-lg: 18px; /* десктоп: подзаголовки hero/лиды — 18 (моб. 16) */
   }
 }

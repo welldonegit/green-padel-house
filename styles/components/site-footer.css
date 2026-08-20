@@ -37,7 +37,7 @@
   cursor: default;
 }
 .site-footer__col-title {
-  font-size: var(--font-size-h3); /* 22 */
+  font-size: var(--font-size-h3); /* 32 */
   font-weight: var(--font-weight-bold);
   line-height: 1.35;
   letter-spacing: -0.02em;
@@ -241,7 +241,7 @@
 .site-footer__copy,
 .site-footer__legal-link,
 .site-footer__made-text {
-  font-size: var(--font-size-xs); /* 13 */
+  font-size: var(--font-size-sm); /* 14 (было 13) */
   font-weight: var(--font-weight-regular);
   line-height: 1.4;
   color: rgba(255, 255, 255, 0.7);

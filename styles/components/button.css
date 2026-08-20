@@ -148,7 +148,7 @@
   background: var(--color-white);
   border: var(--bw-1) solid rgba(9, 9, 9, 0.14);
   color: var(--color-text);
-  font-size: var(--font-size-xs); /* 13 */
+  font-size: var(--font-size-sm); /* 14 (было 13) */
   transition: background-color .25s ease, color .25s ease, border-color .25s ease;
 }
 .btn--ghost-sm:hover {
