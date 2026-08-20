@@ -7,17 +7,10 @@ export function initBurgerMenu() {
   if (!ov || !panel || panel._bound) return;
   panel._bound = 1;
 
-  const items = Array.prototype.slice.call(panel.querySelectorAll('.burger-menu__item'));
-
   const open = () => {
     ov.style.display = 'block';
     requestAnimationFrame(() => { ov.style.opacity = '1'; panel.style.transform = 'translateX(0)'; });
     document.documentElement.style.overflow = 'hidden';
-    items.forEach((el, i) => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateX(-10px)';
-      window.setTimeout(() => { el.style.opacity = '1'; el.style.transform = 'translateX(0)'; }, 120 + i * 35);
-    });
   };
   const close = () => {
     ov.style.opacity = '0';

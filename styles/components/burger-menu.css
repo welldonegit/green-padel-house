@@ -68,10 +68,9 @@
   line-height: 1.2;
   letter-spacing: -0.02em;
   color: var(--color-text);
-  /* стартовое скрытое состояние — раскрывается скриптом при открытии меню */
-  opacity: 0;
-  transform: translateX(-10px);
-  transition: opacity .26s ease, transform .26s ease, color .2s ease;
+  /* Пункты видимы сразу (без reveal-анимации) — иначе при Figma-импорте
+     остаются opacity:0 и «не подтягиваются». */
+  transition: color .2s ease;
 }
 .burger-menu__item:hover {
   color: var(--color-green);

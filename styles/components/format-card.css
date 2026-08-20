@@ -7,8 +7,11 @@
   flex-direction: column;
   justify-content: space-between;
   min-width: 0;
-  aspect-ratio: 3 / 4;
-  min-height: 400px; /* layout-константа */
+  /* Высота по контенту (стеклянная панель с тайтлом + абзацем переменной длины)
+     с полом min-height. Без aspect-ratio: он фиксировал высоту и обрезал текст
+     на узких колонках/WebKit и не интерпретируется импортёром Figma.
+     Одинаковую высоту в ряду держит align-items:stretch у .format-grid. */
+  min-height: 400px;
   border-radius: var(--radius-xl); /* 24 */
   overflow: hidden;
   background: var(--color-ink);
@@ -16,7 +19,6 @@
 }
 @media (max-width: 760px) {
   .format-card {
-    aspect-ratio: auto;
     min-height: 460px;
   }
 }
