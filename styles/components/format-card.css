@@ -132,7 +132,11 @@
    стеклянная панель в один ряд «тайтл + стрелка», без абзаца. */
 .format-card--compact {
   aspect-ratio: 4 / 5;
-  min-height: 0;
+  /* Фолбэк высоты: aspect-ratio не всегда интерпретируется импортёром Figma
+     (html.to.design) и рядом версий Safari/WebKit — без него карточка
+     схлопывается. 280 ≤ реальной высоты по aspect на всех брейкпоинтах,
+     поэтому в нормальных браузерах пропорцию задаёт aspect-ratio. */
+  min-height: 280px;
   border-radius: var(--radius-2xl); /* 32 */
 }
 .format-card--compact .format-card__glass {
@@ -143,8 +147,10 @@
 }
 @media (max-width: 760px) {
   .format-card--compact {
-    aspect-ratio: 4 / 5;
-    min-height: 0;
+    /* На мобиле отключаем aspect-ratio и задаём фиксированную высоту —
+       как у базовой .format-card (надёжно в Figma/WebKit). */
+    aspect-ratio: auto;
+    min-height: 440px;
   }
 }
 
@@ -153,9 +159,14 @@
 .format-card--compact.format-card--square {
   aspect-ratio: 1 / 1;
 }
+/* Квадрат остаётся строго 1:1 (сбрасываем compact-фолбэк, чтобы не тянуть высоту). */
+.format-card--compact.format-card--square {
+  min-height: 0;
+}
 @media (max-width: 760px) {
   .format-card--compact.format-card--square {
     aspect-ratio: 1 / 1;
+    min-height: 0;
   }
 }
 
