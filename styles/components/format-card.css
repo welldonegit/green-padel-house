@@ -92,12 +92,16 @@
 }
 
 .format-card__title {
-  font-size: var(--font-size-h3); /* 32 */
+  font-size: var(--font-size-2xl); /* 24 (formats главной + услуги) */
   font-weight: var(--font-weight-bold);
   line-height: 1.35;
   letter-spacing: -0.02em;
   color: var(--color-white);
   text-wrap: balance;
+}
+/* Карточки тренерів на prices (--square) остаются 32 — не трогаем */
+.format-card--square .format-card__title {
+  font-size: var(--font-size-h3); /* 32 */
 }
 
 .format-card__arrow {

@@ -222,8 +222,8 @@
   display: block;
 }
 .raccoon-dock .raccoon-bubble {
-  flex: 1;
-  min-width: 0;
+  flex: 0 1 auto; /* по ширине текста, не на всю строку */
+  max-width: min(520px, 100%); /* длинные ответы переносятся, а не тянут плашку */
   margin-bottom: var(--space-8);
   box-shadow: 0 14px 36px rgba(9, 9, 9, 0.16);
   font-size: var(--font-size-base); /* 16 */

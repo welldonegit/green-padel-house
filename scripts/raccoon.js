@@ -1,5 +1,8 @@
 // Помічник-раккун: показ пика через 5с в зоне #free-play, модалка, док с ответом.
 // Логика 1:1 из dc-runtime (initRaccoon); ref'ы → querySelector по новым классам.
+// Картинки поз — через Vite-импорт (иначе строковый путь в проде даёт 404).
+import raccoonLeft from '../assets/raccoon-left.png';
+import raccoonRight from '../assets/raccoon-right.png';
 
 export function initRaccoon() {
   const peek = document.querySelector('.raccoon-peek');
@@ -63,7 +66,7 @@ export function initRaccoon() {
       const pose = btn.getAttribute('data-rac-pose') || 'right';
       const text = btn.getAttribute('data-rac-answer') || '';
       const paint = () => {
-        dockImg.src = 'assets/raccoon-' + pose + '.png';
+        dockImg.src = pose === 'left' ? raccoonLeft : raccoonRight;
         dockBubble.textContent = text;
         const bubbleLeft = pose === 'left';
         dock.style.flexDirection = bubbleLeft ? 'row-reverse' : 'row';
