@@ -173,7 +173,7 @@
   gap: var(--space-12);
 }
 .raccoon-card__title {
-  font-size: clamp(20px, 2vw, 24px);
+  font-size: var(--font-size-h3);
   font-weight: var(--font-weight-bold);
   line-height: 1.2;
   letter-spacing: -0.02em;

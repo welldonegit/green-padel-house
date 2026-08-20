@@ -37,7 +37,7 @@
   cursor: default;
 }
 .site-footer__col-title {
-  font-size: var(--font-size-xl); /* 22 */
+  font-size: var(--font-size-h3); /* 22 */
   font-weight: var(--font-weight-bold);
   line-height: 1.35;
   letter-spacing: -0.02em;
@@ -151,7 +151,7 @@
   min-width: 280px;
 }
 .site-footer__offer-title {
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-h3);
   font-weight: var(--font-weight-bold);
   line-height: 1.35;
   letter-spacing: -0.02em;

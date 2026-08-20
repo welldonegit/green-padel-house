@@ -1,530 +1,118 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="uk">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./support.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Клубний турнір Americano — Green Padel House</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/main.css">
 </head>
 <body>
-<x-dc>
-<helmet>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geologica:wght@300;400;700&display=swap" rel="stylesheet">
-<style>
-  * { box-sizing: border-box; }
-  html { scroll-behavior:smooth; scroll-padding-top:96px; }
-  body { margin:0; font-family:'Geologica',-apple-system,BlinkMacSystemFont,sans-serif; background:#F5F5F8;overflow-x:hidden; color:#323235; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
-  a { color:#323235; text-decoration:none; }
-  a:hover { color:#323235; }
-  img { display:block; max-width:100%; }
-  h1,h2,h3,p { margin:0; text-wrap:pretty; }
-  @keyframes gphBubble { 0% { transform:scale(0); opacity:0; } 10% { transform:scale(1.18); opacity:1; } 20% { transform:scale(1); opacity:1; } 66% { transform:scale(1); opacity:1; } 100% { transform:scale(0.25); opacity:0; } }
-  @keyframes gphStepFill { 0% { opacity:0; } 4% { opacity:1; } 28% { opacity:1; } 33% { opacity:0; } 100% { opacity:0; } }
-  @keyframes gphKB { 0%,100% { transform:scale(1); } 50% { transform:scale(1.08); } }
-  @keyframes gphIconPulse { 0%,100% { transform:scale(1); } 50% { transform:scale(1.18); } }
-  @keyframes gphIconBob { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-2.5px); } }
-  @keyframes gphIconSpin { to { transform:rotate(360deg); } }
-  @keyframes gphDiagSlide { 0%,100% { transform:translate(0,0); } 50% { transform:translate(2px,-2px); } }
-  @keyframes gphVoidDraw { 0% { stroke-dashoffset:19; } 40% { stroke-dashoffset:0; } 78% { stroke-dashoffset:0; } 100% { stroke-dashoffset:19; } }
-  @keyframes gphTicker { from { transform:translateX(0); } to { transform:translateX(-50%); } }
-  @keyframes gphRacketFloat { 0%,100% { transform:translateY(0) rotate(0deg); } 50% { transform:translateY(-9px) rotate(3.5deg); } }
-  @keyframes gphIconDraw { 0% { stroke-dashoffset:16; } 35% { stroke-dashoffset:0; } 75% { stroke-dashoffset:0; } 100% { stroke-dashoffset:16; } }
-  .gph-fcard { transition: transform .25s ease; }
-  .gph-fcard:hover { transform: translateY(-3px); }
-  .gph-fcard:hover img { transform: scale(1.05); }
-  .gph-farrow { transition: transform .25s ease; }
-  .gph-fcard:hover .gph-farrow { transform: translateX(4px); }
-  .gph-cta { transition: transform .25s ease, box-shadow .25s ease; }
-  .gph-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(9,9,9,0.18); }
-  .gph-cta > span { transition: background-color .25s ease; }
-  .gph-cta:hover > span { background-color: #090909 !important; }
-  .gph-cta.gph-wave:hover > span { background-color: transparent !important; }
-  .gph-cta > span svg { transition: transform .25s ease; }
-  .gph-cta:hover > span svg { transform: translate(3px,-3px); }
-  .gph-cta > span svg path { transition: stroke .25s ease; }
-  .gph-cta:hover > span svg path { stroke: #E1F07B !important; }
-  .gph-faq { background: #090909; transition: background-color .3s ease; }
-  .gph-faq h3 { color: #FFFFFF; transition: color .3s ease; }
-  .gph-faq [data-faq-body] p { color: #FFFFFF; opacity: 0.7; transition: color .3s ease, opacity .3s ease; }
-  .gph-faq:hover { background: #FFFFFF; }
-  .gph-faq:hover h3 { color: #090909; }
-  .gph-faq:hover [data-faq-body] p { color: #323235; opacity: 1; }
-  .gph-faq [data-faq-icon] { background: #FFFFFF; transition: transform .3s ease, background-color .3s ease; }
-  .gph-faq:hover [data-faq-icon] { background: #090909; }
-  .gph-faq:hover [data-faq-icon] path { stroke: #FFFFFF; }
-  .gph-wave { position:relative; overflow:hidden; }
-  .gph-wave > span { position:relative; z-index:2; transition:color .28s ease; }
-  .gph-wave::before {
-    content:''; position:absolute; left:50%; bottom:0; z-index:1; pointer-events:none;
-    width:150%; height:230%; background:#014C26;
-    border-radius:44% 48% 0 0 / 56% 62% 0 0;
-    transform:translate(-50%,100%) scaleX(0.55);
-    transition:transform .32s cubic-bezier(.28,.86,.4,1);
-  }
-  .gph-wave:hover::before { transform:translate(-50%,10%) scaleX(1); }
-  .gph-wave:hover > span { color:#FFFFFF; }
-  @media (max-width:700px) { [style*="rotate(-4deg)"] { --hhShift:-6px; } }
-  @keyframes gphSwipeHand { 0%,100% { transform:translateX(-4px); } 50% { transform:translateX(6px); } }
-  .gph-navpill { background:#323235; color:#FFFFFF; transition:background-color .25s ease, transform .2s ease; }
-  .gph-navpill:hover { background:#090909; transform:translateY(-1px); }
-  .gph-navpill[data-on="1"] { background:#090909; }
-  .gph-navpill[data-on="1"]:hover { background:#090909; transform:none; }
-  @media (max-width:900px) {
-  }
-  @media (prefers-reduced-motion: reduce) {
-  }
-  @media (max-width:860px) {
-    .gph-hdr2 a[href^="tel:"] { width:48px; padding:0 !important; }
-    .gph-hdr2 a[href^="tel:"] > span:first-child { display:none; }
-    .gph-hdr2 a[href^="tel:"] > span:last-child { display:flex !important; }
-  }
-  .gph-hdr2 [data-hdr2-icon] { display:none; }
-  .gph-hdr2 [data-hdr2-label] { display:inline; }
-  @media (max-width:860px) {
-    .gph-hdr2 [data-hdr2-label] { display:none; }
-    .gph-hdr2 [data-hdr2-icon] { display:flex; }
-    .gph-hdr2 [data-hdr2-call] { width:44px; padding:0; }
-  }
-  .gph-tcard { min-height:420px; }
-  @media (min-width:1101px) { .gph-tcard { aspect-ratio:4/3; min-height:0; } }
-  .gph-tcard { transition:transform .25s ease; }
-  .gph-tcard:hover { transform:translateY(-2px); }
-  .gph-timg { transition:transform .6s cubic-bezier(.2,.6,.2,1); }
-  .gph-tcard:hover .gph-timg { transform:scale(1.04); }
-  .gph-tarrow { transition:transform .25s ease; }
-  .gph-tcard:hover .gph-tarrow { transform:translateX(3px); }
-  .gph-ccard { transition:transform .25s ease; }
-  .gph-ccard:hover { transform:translateY(-2px); }
-  .gph-carrow { transition:transform .25s ease; }
-  .gph-ccard:hover .gph-carrow { transform:translate(3px,-3px); }
-  .gph-wave:hover .gph-wave-label { color:#090909; }
-  .gph-evcard { transition: opacity .32s ease, transform .32s ease; }
-  .gph-evcard .gph-evmedia > img { transition: transform .8s cubic-bezier(.2,.6,.2,1); }
-  .gph-evcard:hover .gph-evmedia > img { transform: scale(1.045); }
-  .gph-evbody { transition: transform .35s cubic-bezier(.2,.7,.2,1); }
-  .gph-evcard:hover .gph-evbody { transform: translateY(-4px); }
-  .gph-bloggrid { grid-template-columns: repeat(4,minmax(0,1fr)); }
-  @media (max-width:1180px) { .gph-bloggrid { grid-template-columns: repeat(3,minmax(0,1fr)); } }
-  @media (max-width:900px) { .gph-bloggrid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
-  @media (max-width:620px) { .gph-bloggrid { grid-template-columns: minmax(0,1fr); } }
-  .gph-tabs { scrollbar-width: none; }
-  .gph-tabs::-webkit-scrollbar { display: none; }
-  .gph-tab { transition: background-color .25s ease, color .25s ease, border-color .25s ease; }
-  .gph-tab[data-on="0"]:hover { background: rgba(9,9,9,0.06); }
-  ::selection { background:#E1F07B; color:#323235; }
-  @media (min-width:901px) {
-    .gph-burger { display: none !important; }
-    .gph-hdrlogo-c { display: none !important; }
-    .gph-hdrlogo-d { display: flex !important; }
-    .gph-hdrnav { display: flex !important; }
-  }
-  @media (max-width:600px) {
-    .gph-evrow { flex-direction: column !important; align-items: flex-start !important; gap: 4px !important; }
-    .gph-evrow span:last-child { text-align: left !important; }
-    .gph-evcta { width: 100%; align-self: stretch !important; }
-  }
-  .gph-evrail { scrollbar-width: none; }
-  .gph-evrail::-webkit-scrollbar { display: none; }
-  @media (max-width:900px) { .gph-evrail { grid-template-columns: repeat(2,minmax(0,1fr)) !important; } }
-  @media (max-width:640px) {
-    .gph-evrail { display:flex !important; overflow-x:auto; scroll-snap-type:x proximity; scroll-padding-left:24px; cursor:grab; gap:14px !important; align-items:stretch; }
-    .gph-evrail > .gph-evcard { flex:none; width:min(78vw,320px); height:auto !important; align-self:stretch; }
-  }
-  .gph-bmpanel { width: min(38vw, 520px); }
-  @media (max-width:900px) { .gph-bmpanel { width: min(94vw, 470px); } }
-  .gph-bmitem { transition: opacity .26s ease, transform .26s ease, color .2s ease; }
-  .gph-bmitem:hover { color: #014C26 !important; }
-  .gph-bmsoc { transition: opacity .25s ease, background-color .25s ease; }
-  .gph-bmsoc:hover { background: #ECECF2 !important; }
-  .gph-bmclose { transition: background-color .25s ease; }
-  .gph-bmclose:hover { background: #ECECF2 !important; }
-</style>
-</helmet>
-<div style="width:100%;background:#F5F5F8;">
-  <div style="width:100%;max-width:1600px;margin:0 auto;background:#F5F5F8;">
+<div class="page">
+  <div class="page__inner">
 
-    <!-- ░░ HERO ░░ -->
-    <section id="hero" style="padding:24px 24px 0;">
-      <div style="position:relative;overflow:hidden;background:#295DC5;border-radius:32px;padding:clamp(14px,1.6vw,20px) clamp(28px,4vw,64px) clamp(14px,1.6vw,20px);">
-<header class="gph-hdr2" style="position:relative;z-index:8;margin:0;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:clamp(6px,0.8vw,10px) clamp(20px,3vw,40px);">
-        <a class="gph-hdrlogo-d" href="index.html" style="flex:none;display:none;align-items:center;"><img src="assets/logo-light.svg" alt="Green Padel House" style="height:26px;width:auto;"></a>
-        <button aria-label="Меню" class="gph-burger" style="flex:none;display:flex;align-items:center;justify-content:center;width:44px;height:44px;background:transparent;border:none;padding:0;cursor:pointer;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M3 7h18M3 12h18M3 17h18" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"></path></svg></button>
-        <a class="gph-hdrlogo-c" href="#" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);height:48px;display:flex;align-items:center;"><img src="assets/logo-light.svg" alt="Green Padel House" style="height:26px;width:auto;"></a>
-        <nav class="gph-hdrnav" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:none;align-items:center;gap:clamp(20px,2.4vw,36px);"><a href="index.html" style="font-size:15px;font-weight:700;line-height:1;letter-spacing:-0.01em;color:#FFFFFF;white-space:nowrap;transition:color .25s ease;" style-hover="color:rgba(255,255,255,0.7);">Головна</a><a href="services.html" style="font-size:15px;font-weight:700;line-height:1;letter-spacing:-0.01em;color:#FFFFFF;white-space:nowrap;transition:color .25s ease;" style-hover="color:rgba(255,255,255,0.7);">Послуги</a><a href="prices.html" style="font-size:15px;font-weight:700;line-height:1;letter-spacing:-0.01em;color:#FFFFFF;white-space:nowrap;transition:color .25s ease;" style-hover="color:rgba(255,255,255,0.7);">Ціни</a><a href="contacts.html" style="font-size:15px;font-weight:700;line-height:1;letter-spacing:-0.01em;color:#FFFFFF;white-space:nowrap;transition:color .25s ease;" style-hover="color:rgba(255,255,255,0.7);">Контакти</a></nav>
-        <a href="tel:+380756368890" data-hdr2-call aria-label="Забронювати корт" style="flex:none;display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 28px;border-radius:999px;border:1px solid rgba(255,255,255,0.7);color:#FFFFFF;font-size:14px;font-weight:700;line-height:1;white-space:nowrap;transition:background-color .25s ease,color .25s ease;" style-hover="background:#FFFFFF;color:#295DC5;"><span data-hdr2-label>Забронювати корт</span><span data-hdr2-icon style="align-items:center;justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" stroke="#FFFFFF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></a>
-      </header>
+    <!-- ░░ HERO · тонкая плашка с хедером ░░ -->
+    <section class="news-topbar" id="hero">
+      <div class="news-topbar__bar">
+        {{> header headerClass="site-header--bar" }}
       </div>
     </section>
 
-    <!-- ░░ EVENT ░░ -->
-    <section id="event" style="padding:clamp(28px,3.4vw,48px) 24px clamp(64px,8vw,120px);">
-      <div class="gph-evsheet" style="width:100%;max-width:880px;margin:0 auto;background:#FFFFFF;border-radius:32px;padding:clamp(20px,2.6vw,40px);display:flex;flex-direction:column;gap:clamp(20px,2.4vw,32px);">
+    <!-- ░░ EVENT · деталь события ░░ -->
+    <section class="event-detail" id="event">
+      <article class="event-sheet">
+        <h1 class="event-sheet__title">Клубний турнір Americano</h1>
 
-        <h1 style="margin-top:10px;font-size:clamp(32px,4vw,52px);font-weight:700;line-height:1.04;letter-spacing:-0.03em;color:#323235;text-wrap:balance;">Клубний турнір Americano</h1>
-
-        <span style="position:relative;display:block;width:100%;aspect-ratio:16/9;border-radius:24px;overflow:hidden;background:#F2F5F0;">
-          <img src="assets/club2.png" alt="Клубний турнір Americano — Green Padel House" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;">
+        <span class="event-sheet__figure">
+          <img src="assets/club2.png" alt="Клубний турнір Americano — Green Padel House">
         </span>
 
-        <div style="display:flex;flex-direction:column;gap:12px;"><span style="display:flex;align-items:center;gap:12px;font-size:18px;font-weight:400;line-height:1.4;color:#323235;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="flex:none;"><rect x="3.5" y="5" width="17" height="15.5" rx="3" stroke="#323235" stroke-width="1.7"></rect><path d="M8 3.5v3M16 3.5v3M3.5 10h17" stroke="#323235" stroke-width="1.7" stroke-linecap="round"></path></svg>23 серпня, субота</span><span style="display:flex;align-items:center;gap:12px;font-size:18px;font-weight:400;line-height:1.4;color:#323235;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="flex:none;"><circle cx="12" cy="12" r="8.6" stroke="#323235" stroke-width="1.7"></circle><path d="M12 7.6V12l3.4 2.2" stroke="#323235" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg>18:00–21:00</span><span style="display:flex;align-items:center;gap:12px;font-size:18px;font-weight:400;line-height:1.4;color:#323235;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="flex:none;"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z" stroke="#323235" stroke-width="1.7" stroke-linejoin="round"></path><circle cx="12" cy="10" r="2.6" stroke="#323235" stroke-width="1.7"></circle></svg>вул. Зелена, 238-з, Львів</span>
+        <div class="event-sheet__meta">
+          <span class="event-sheet__meta-row"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3.5" y="5" width="17" height="15.5" rx="3" stroke="#323235" stroke-width="1.7"></rect><path d="M8 3.5v3M16 3.5v3M3.5 10h17" stroke="#323235" stroke-width="1.7" stroke-linecap="round"></path></svg>23 серпня, субота</span>
+          <span class="event-sheet__meta-row"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.6" stroke="#323235" stroke-width="1.7"></circle><path d="M12 7.6V12l3.4 2.2" stroke="#323235" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg>18:00–21:00</span>
+          <span class="event-sheet__meta-row"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z" stroke="#323235" stroke-width="1.7" stroke-linejoin="round"></path><circle cx="12" cy="10" r="2.6" stroke="#323235" stroke-width="1.7"></circle></svg>вул. Зелена, 238-з, Львів</span>
         </div>
 
-        <div style="display:flex;flex-direction:column;">
-        <div class="gph-evrow" style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 18px;border-radius:16px;background:transparent;">
-          <span style="font-size:16px;font-weight:300;line-height:1.5;color:#323235;">Рівень</span>
-          <span style="font-size:16px;font-weight:700;line-height:1.5;letter-spacing:-0.01em;color:#323235;text-align:right;">C-/C</span>
-        </div>
-        <div class="gph-evrow" style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 18px;border-radius:16px;background:#F5F5F8;">
-          <span style="font-size:16px;font-weight:300;line-height:1.5;color:#323235;">Формат</span>
-          <span style="font-size:16px;font-weight:700;line-height:1.5;letter-spacing:-0.01em;color:#323235;text-align:right;">Americano</span>
-        </div>
-        <div class="gph-evrow" style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 18px;border-radius:16px;background:transparent;">
-          <span style="font-size:16px;font-weight:300;line-height:1.5;color:#323235;">Реєстрація</span>
-          <span style="font-size:16px;font-weight:700;line-height:1.5;letter-spacing:-0.01em;color:#323235;text-align:right;">Одиночна</span>
-        </div>
-        <div class="gph-evrow" style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 18px;border-radius:16px;background:#F5F5F8;">
-          <span style="font-size:16px;font-weight:300;line-height:1.5;color:#323235;">Гравців</span>
-          <span style="font-size:16px;font-weight:700;line-height:1.5;letter-spacing:-0.01em;color:#323235;text-align:right;">16</span>
-        </div>
-        <div class="gph-evrow" style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 18px;border-radius:16px;background:transparent;">
-          <span style="font-size:16px;font-weight:300;line-height:1.5;color:#323235;">Вартість</span>
-          <span style="font-size:16px;font-weight:700;line-height:1.5;letter-spacing:-0.01em;color:#323235;text-align:right;">700 ₴ з гравця</span>
-        </div>
+        <div class="event-specs">
+          <div class="event-specs__row"><span class="event-specs__label">Рівень</span><span class="event-specs__value">C-/C</span></div>
+          <div class="event-specs__row"><span class="event-specs__label">Формат</span><span class="event-specs__value">Americano</span></div>
+          <div class="event-specs__row"><span class="event-specs__label">Реєстрація</span><span class="event-specs__value">Одиночна</span></div>
+          <div class="event-specs__row"><span class="event-specs__label">Гравців</span><span class="event-specs__value">16</span></div>
+          <div class="event-specs__row"><span class="event-specs__label">Вартість</span><span class="event-specs__value">700 ₴ з гравця</span></div>
         </div>
 
-        <div style="display:flex;flex-direction:column;gap:12px;">
-          <h2 style="font-size:22px;font-weight:700;line-height:1.25;letter-spacing:-0.02em;color:#323235;">Про турнір</h2>
-          <p style="font-size:16px;font-weight:300;line-height:1.65;color:#323235;">Мікс-формат на 16 гравців: кожен раунд ви граєте з новим партнером проти нової пари. Підсумок — за особистими балами, тому результат залежить лише від вашої гри.</p>
-          <p style="font-size:16px;font-weight:300;line-height:1.65;color:#323235;">Ракетки та мʼячі є в клубі. Приходьте на 15 хвилин раніше — розкажемо схему ротації та розподілимо корти.</p>
+        <div class="event-sheet__about">
+          <h2 class="event-sheet__subtitle">Про турнір</h2>
+          <p class="event-sheet__p">Мікс-формат на 16 гравців: кожен раунд ви граєте з новим партнером проти нової пари. Підсумок — за особистими балами, тому результат залежить лише від вашої гри.</p>
+          <p class="event-sheet__p">Ракетки та мʼячі є в клубі. Приходьте на 15 хвилин раніше — розкажемо схему ротації та розподілимо корти.</p>
         </div>
 
-        <a href="booking.html" class="gph-cta gph-wave gph-evcta" style="position:relative;overflow:hidden;align-self:flex-start;display:inline-flex;align-items:center;justify-content:center;height:56px;padding:0 28px;border-radius:999px;background:#E1F07B;color:#090909;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;line-height:1;white-space:nowrap;"><span style="position:relative;z-index:2;">Зареєструватися</span></a>
-      </div>
+        <a class="btn btn--lime btn--wave event-sheet__cta" href="booking.html"><span>Зареєструватися</span></a>
+      </article>
     </section>
 
-
-    <!-- ░░ OTHER EVENTS ░░ -->
-    <section id="other-events" style="padding:0 0 clamp(64px,8vw,120px);">
-      <div style="padding:0 24px;">
-        <h2 style="font-size:clamp(30px,4.4vw,56px);font-weight:700;line-height:1.02;letter-spacing:-0.03em;color:#323235;">Інші події</h2>
+    <!-- ░░ OTHER EVENTS · рейл ░░ -->
+    <section class="related" id="other-events">
+      <div class="related__head">
+        <h2 class="section-title">Інші події</h2>
       </div>
-      <div class="gph-evrail" style="margin-top:clamp(24px,3vw,40px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,1.8vw,24px);align-items:stretch;padding:4px 24px 12px;">
-        <article class="gph-evcard" style="scroll-snap-align:start;min-width:0;height:100%;display:flex;flex-direction:column;background:#FFFFFF;border-radius:32px;overflow:hidden;">
-          <span class="gph-evmedia" style="position:relative;display:block;width:100%;aspect-ratio:16/9;overflow:hidden;background:#F2F5F0;">
-            <img src="assets/club4.png" alt="Падел-тайм для новачків" style="width:100%;height:100%;object-fit:cover;object-position:center 35%;display:block;" draggable="false">
-          </span>
-          <span class="gph-evbody" style="flex:1;display:flex;flex-direction:column;gap:12px;padding:clamp(18px,1.8vw,24px);">
-            <span style="font-size:clamp(22px,2vw,28px);font-weight:700;line-height:1.15;letter-spacing:-0.02em;color:#323235;text-wrap:balance;">Падел-тайм для новачків</span>
-            <span style="display:flex;flex-direction:column;gap:8px;"><span style="display:flex;align-items:center;gap:10px;font-size:16px;font-weight:400;line-height:1.4;color:#323235;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex:none;"><rect x="3.5" y="5" width="17" height="15.5" rx="3" stroke="#323235" stroke-width="1.7"></rect><path d="M8 3.5v3M16 3.5v3M3.5 10h17" stroke="#323235" stroke-width="1.7" stroke-linecap="round"></path></svg>29 серпня, пʼятниця</span><span style="display:flex;align-items:center;gap:10px;font-size:16px;font-weight:400;line-height:1.4;color:#323235;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex:none;"><circle cx="12" cy="12" r="8.6" stroke="#323235" stroke-width="1.7"></circle><path d="M12 7.6V12l3.4 2.2" stroke="#323235" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg>19:00–21:00</span></span>
-            <span style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;"><span style="padding:8px 14px;border-radius:999px;background:#ECECF2;font-size:13px;font-weight:700;line-height:1;letter-spacing:-0.01em;color:#323235;white-space:nowrap;">Рівень D</span><span style="padding:8px 14px;border-radius:999px;background:#ECECF2;font-size:13px;font-weight:700;line-height:1;letter-spacing:-0.01em;color:#323235;white-space:nowrap;">2×2</span><span style="padding:8px 14px;border-radius:999px;background:#ECECF2;font-size:13px;font-weight:700;line-height:1;letter-spacing:-0.01em;color:#323235;white-space:nowrap;">8 гравців</span></span>
-            <a href="#booking" class="gph-cta gph-wave" style="position:relative;overflow:hidden;margin-top:auto;align-self:flex-start;display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 26px;border-radius:999px;background:#E1F07B;color:#090909;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;line-height:1;white-space:nowrap;"><span style="position:relative;z-index:2;">Зареєструватися</span></a>
-          </span>
-        </article>
-        <article class="gph-evcard" style="scroll-snap-align:start;min-width:0;height:100%;display:flex;flex-direction:column;background:#FFFFFF;border-radius:32px;overflow:hidden;">
-          <span class="gph-evmedia" style="position:relative;display:block;width:100%;aspect-ratio:16/9;overflow:hidden;background:#F2F5F0;">
-            <img src="assets/club5.png" alt="Жіночий падел-ранок" style="width:100%;height:100%;object-fit:cover;object-position:center 35%;display:block;" draggable="false">
-          </span>
-          <span class="gph-evbody" style="flex:1;display:flex;flex-direction:column;gap:12px;padding:clamp(18px,1.8vw,24px);">
-            <span style="font-size:clamp(22px,2vw,28px);font-weight:700;line-height:1.15;letter-spacing:-0.02em;color:#323235;text-wrap:balance;">Жіночий падел-ранок</span>
-            <span style="display:flex;flex-direction:column;gap:8px;"><span style="display:flex;align-items:center;gap:10px;font-size:16px;font-weight:400;line-height:1.4;color:#323235;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex:none;"><rect x="3.5" y="5" width="17" height="15.5" rx="3" stroke="#323235" stroke-width="1.7"></rect><path d="M8 3.5v3M16 3.5v3M3.5 10h17" stroke="#323235" stroke-width="1.7" stroke-linecap="round"></path></svg>6 вересня, субота</span><span style="display:flex;align-items:center;gap:10px;font-size:16px;font-weight:400;line-height:1.4;color:#323235;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex:none;"><circle cx="12" cy="12" r="8.6" stroke="#323235" stroke-width="1.7"></circle><path d="M12 7.6V12l3.4 2.2" stroke="#323235" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg>10:00–12:00</span></span>
-            <span style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;"><span style="padding:8px 14px;border-radius:999px;background:#ECECF2;font-size:13px;font-weight:700;line-height:1;letter-spacing:-0.01em;color:#323235;white-space:nowrap;">Рівень D+/C-</span><span style="padding:8px 14px;border-radius:999px;background:#ECECF2;font-size:13px;font-weight:700;line-height:1;letter-spacing:-0.01em;color:#323235;white-space:nowrap;">Mexicano</span><span style="padding:8px 14px;border-radius:999px;background:#ECECF2;font-size:13px;font-weight:700;line-height:1;letter-spacing:-0.01em;color:#323235;white-space:nowrap;">12 гравців</span></span>
-            <a href="#booking" class="gph-cta gph-wave" style="position:relative;overflow:hidden;margin-top:auto;align-self:flex-start;display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 26px;border-radius:999px;background:#E1F07B;color:#090909;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;line-height:1;white-space:nowrap;"><span style="position:relative;z-index:2;">Зареєструватися</span></a>
-          </span>
-        </article>
-        <article class="gph-evcard" style="scroll-snap-align:start;min-width:0;height:100%;display:flex;flex-direction:column;background:#FFFFFF;border-radius:32px;overflow:hidden;">
-          <span class="gph-evmedia" style="position:relative;display:block;width:100%;aspect-ratio:16/9;overflow:hidden;background:#F2F5F0;">
-            <img src="assets/coach-group.jpg" alt="Корпоративна ліга" style="width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block;" draggable="false">
-          </span>
-          <span class="gph-evbody" style="flex:1;display:flex;flex-direction:column;gap:12px;padding:clamp(18px,1.8vw,24px);">
-            <span style="font-size:clamp(22px,2vw,28px);font-weight:700;line-height:1.15;letter-spacing:-0.02em;color:#323235;text-wrap:balance;">Корпоративна ліга</span>
-            <span style="display:flex;flex-direction:column;gap:8px;"><span style="display:flex;align-items:center;gap:10px;font-size:16px;font-weight:400;line-height:1.4;color:#323235;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex:none;"><rect x="3.5" y="5" width="17" height="15.5" rx="3" stroke="#323235" stroke-width="1.7"></rect><path d="M8 3.5v3M16 3.5v3M3.5 10h17" stroke="#323235" stroke-width="1.7" stroke-linecap="round"></path></svg>14 вересня, неділя</span><span style="display:flex;align-items:center;gap:10px;font-size:16px;font-weight:400;line-height:1.4;color:#323235;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex:none;"><circle cx="12" cy="12" r="8.6" stroke="#323235" stroke-width="1.7"></circle><path d="M12 7.6V12l3.4 2.2" stroke="#323235" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg>17:00–21:00</span></span>
-            <span style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;"><span style="padding:8px 14px;border-radius:999px;background:#ECECF2;font-size:13px;font-weight:700;line-height:1;letter-spacing:-0.01em;color:#323235;white-space:nowrap;">Будь-який рівень</span><span style="padding:8px 14px;border-radius:999px;background:#ECECF2;font-size:13px;font-weight:700;line-height:1;letter-spacing:-0.01em;color:#323235;white-space:nowrap;">Командний</span><span style="padding:8px 14px;border-radius:999px;background:#ECECF2;font-size:13px;font-weight:700;line-height:1;letter-spacing:-0.01em;color:#323235;white-space:nowrap;">24 гравці</span></span>
-            <a href="#booking" class="gph-cta gph-wave" style="position:relative;overflow:hidden;margin-top:auto;align-self:flex-start;display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 26px;border-radius:999px;background:#E1F07B;color:#090909;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;line-height:1;white-space:nowrap;"><span style="position:relative;z-index:2;">Зареєструватися</span></a>
-          </span>
-        </article>
-      </div>
-    </section>
+      <div class="event-rail related__rail">
 
-    <!-- ░░ BURGER MENU ░░ -->
-    <div data-bm-overlay style="position:fixed;inset:0;z-index:140;display:none;background:rgba(9,9,9,0.55);opacity:0;transition:opacity .3s ease;"></div>
-    <aside class="gph-bmpanel" role="dialog" aria-modal="true" aria-label="Меню" style="position:fixed;left:0;top:0;bottom:0;z-index:141;display:flex;flex-direction:column;gap:clamp(20px,2.4vw,32px);background:#FFFFFF;border-radius:0 32px 32px 0;padding:clamp(20px,2.4vw,32px) clamp(20px,2.4vw,36px);overflow-y:auto;transform:translateX(-102%);transition:transform .42s cubic-bezier(.2,.7,.2,1);box-shadow:0 24px 70px rgba(9,9,9,0.18);">
-      <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;">
-        <img src="assets/logo-dark.svg" alt="Green Padel House" style="height:26px;width:auto;display:block;">
-        <button type="button" data-bm-close aria-label="Закрити меню" class="gph-bmclose" style="flex:none;width:56px;height:56px;border-radius:999px;background:#F5F5F8;border:none;padding:0;cursor:pointer;display:flex;align-items:center;justify-content:center;">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="#323235" stroke-width="1.9" stroke-linecap="round"></path></svg>
-        </button>
-      </div>
-
-      <div style="display:flex;flex-direction:column;gap:10px;">
-        <a href="booking.html" class="gph-cta" style="display:flex;align-items:center;justify-content:center;height:56px;padding:0 24px;border-radius:999px;background:#E1F07B;color:#090909;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;line-height:1;white-space:nowrap;transition:background-color .25s ease,color .25s ease,transform .25s ease;" style-hover="background:#014C26;color:#FFFFFF;">Забронювати корт</a>
-        <a href="tel:+380756368890" style="display:flex;align-items:center;justify-content:center;height:56px;padding:0 24px;border-radius:999px;background:transparent;border:1px solid rgba(9,9,9,0.22);color:#323235;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;line-height:1;white-space:nowrap;transition:background-color .25s ease;" style-hover="background:#F5F5F8;">Замовити дзвінок</a>
-      </div>
-
-      <nav style="display:flex;flex-direction:column;">
-          <a class="gph-bmitem" href="booking.html" style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:clamp(14px,1.6vw,20px) 0;border-top:1px solid rgba(9,9,9,0.10);font-size:clamp(22px,2.4vw,28px);font-weight:700;line-height:1.2;letter-spacing:-0.02em;color:#323235;opacity:0;transform:translateX(-10px);">Бронювання<span style="flex:none;display:flex;align-items:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M7.5 16.5L16.5 7.5M16.5 7.5H9M16.5 7.5V15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></a>
-          <a class="gph-bmitem" href="services.html" style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:clamp(14px,1.6vw,20px) 0;border-top:1px solid rgba(9,9,9,0.10);font-size:clamp(22px,2.4vw,28px);font-weight:700;line-height:1.2;letter-spacing:-0.02em;color:#323235;opacity:0;transform:translateX(-10px);">Послуги<span style="flex:none;display:flex;align-items:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M7.5 16.5L16.5 7.5M16.5 7.5H9M16.5 7.5V15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></a>
-          <a class="gph-bmitem" href="prices.html" style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:clamp(14px,1.6vw,20px) 0;border-top:1px solid rgba(9,9,9,0.10);font-size:clamp(22px,2.4vw,28px);font-weight:700;line-height:1.2;letter-spacing:-0.02em;color:#323235;opacity:0;transform:translateX(-10px);">Ціни<span style="flex:none;display:flex;align-items:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M7.5 16.5L16.5 7.5M16.5 7.5H9M16.5 7.5V15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></a>
-          <a class="gph-bmitem" href="index.html#events" style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:clamp(14px,1.6vw,20px) 0;border-top:1px solid rgba(9,9,9,0.10);font-size:clamp(22px,2.4vw,28px);font-weight:700;line-height:1.2;letter-spacing:-0.02em;color:#323235;opacity:0;transform:translateX(-10px);">Події<span style="flex:none;display:flex;align-items:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M7.5 16.5L16.5 7.5M16.5 7.5H9M16.5 7.5V15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></a>
-          <a class="gph-bmitem" href="blog.html" style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:clamp(14px,1.6vw,20px) 0;border-top:1px solid rgba(9,9,9,0.10);font-size:clamp(22px,2.4vw,28px);font-weight:700;line-height:1.2;letter-spacing:-0.02em;color:#323235;opacity:0;transform:translateX(-10px);">Блог<span style="flex:none;display:flex;align-items:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M7.5 16.5L16.5 7.5M16.5 7.5H9M16.5 7.5V15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></a>
-          <a class="gph-bmitem" href="contacts.html" style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:clamp(14px,1.6vw,20px) 0;border-top:1px solid rgba(9,9,9,0.10);font-size:clamp(22px,2.4vw,28px);font-weight:700;line-height:1.2;letter-spacing:-0.02em;color:#323235;opacity:0;transform:translateX(-10px);">Контакти<span style="flex:none;display:flex;align-items:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M7.5 16.5L16.5 7.5M16.5 7.5H9M16.5 7.5V15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></a>
-      </nav>
-
-      <div style="margin-top:auto;padding-top:clamp(20px,2.4vw,32px);border-top:1px solid rgba(9,9,9,0.10);display:flex;flex-direction:column;gap:16px;">
-        <a href="tel:+380756368890" style="font-size:clamp(20px,2.2vw,24px);font-weight:700;letter-spacing:-0.02em;line-height:1.2;color:#323235;">+380 75 636 8890</a>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;"><a class="gph-bmsoc" href="#" aria-label="Telegram" style="display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:999px;background:#F5F5F8;"><img src="assets/telegram.svg" alt="" style="width:20px;height:20px;object-fit:contain;"></a><a class="gph-bmsoc" href="viber://chat?number=%2B380756368890" aria-label="Viber" style="display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:999px;background:#F5F5F8;"><img src="assets/viber.svg" alt="" style="width:20px;height:20px;object-fit:contain;"></a><a class="gph-bmsoc" href="#" aria-label="Instagram" style="display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:999px;background:#F5F5F8;"><img src="assets/instagram.svg" alt="" style="width:20px;height:20px;object-fit:contain;"></a><a class="gph-bmsoc" href="#" aria-label="TikTok" style="display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:999px;background:#F5F5F8;"><img src="assets/tiktok.svg" alt="" style="width:20px;height:20px;object-fit:contain;"></a>
-        </div>
-      </div>
-    </aside>
-
-    <!-- FOOTER -->
-    <footer id="contacts" style="padding:0 24px 24px;">
-      <div style="background:#090909;color:#FFFFFF;border-radius:32px;padding:clamp(32px,4vw,64px);">
-
-        <div ref="{{ footGridRef }}" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(32px,4vw,48px);">
-        <div>
-          <div onClick="{{ acc0.toggle }}" style="display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:{{ acc0.cursor }};">
-            <span style="font-size:22px;font-weight:700;line-height:1.35;letter-spacing:-0.02em;color:#FFFFFF;">Навігація</span>
-            <span style="display:{{ acc0.chevDisplay }};align-items:center;transform:{{ acc0.chevRot }};transition:transform .3s;color:rgba(255,255,255,0.7);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
-          </div>
-          <div style="margin-top:24px;display:{{ acc0.bodyDisplay }};flex-direction:column;gap:12px;">
-            <a href="index.html" style="font-size:16px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.7);" style-hover="color:#FFFFFF;">Головна</a>
-            <a href="booking.html" style="font-size:16px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.7);" style-hover="color:#FFFFFF;">Бронювання</a>
-            <a href="services.html" style="font-size:16px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.7);" style-hover="color:#FFFFFF;">Послуги</a>
-            <a href="prices.html" style="font-size:16px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.7);" style-hover="color:#FFFFFF;">Ціни</a>
-            <a href="#" style="font-size:16px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.7);" style-hover="color:#FFFFFF;">Події</a>
-            <a href="blog.html" style="font-size:16px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.7);" style-hover="color:#FFFFFF;">Блог</a>
-            <a href="contacts.html" style="font-size:16px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.7);" style-hover="color:#FFFFFF;">Контакти</a>
-          </div>
-        </div>
-        <div>
-          <div onClick="{{ acc1.toggle }}" style="display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:{{ acc1.cursor }};">
-            <span style="font-size:22px;font-weight:700;line-height:1.35;letter-spacing:-0.02em;color:#FFFFFF;">Послуги</span>
-            <span style="display:{{ acc1.chevDisplay }};align-items:center;transform:{{ acc1.chevRot }};transition:transform .3s;color:rgba(255,255,255,0.7);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
-          </div>
-          <div style="margin-top:24px;display:{{ acc1.bodyDisplay }};flex-direction:column;gap:12px;">
-            <a href="#" style="font-size:16px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.7);" style-hover="color:#FFFFFF;">Оренда корту</a>
-            <a href="#" style="font-size:16px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.7);" style-hover="color:#FFFFFF;">Тренування з тренером</a>
-            <a href="#" style="font-size:16px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.7);" style-hover="color:#FFFFFF;">Падел-тайми</a>
-            <a href="#" style="font-size:16px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.7);" style-hover="color:#FFFFFF;">Абонементи</a>
-            <a href="#" style="font-size:16px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.7);" style-hover="color:#FFFFFF;">Оренда інвентарю</a>
-            <a href="#" style="font-size:16px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.7);" style-hover="color:#FFFFFF;">Корпоративи</a>
-          </div>
-        </div>
-        <div>
-          <div onClick="{{ acc2.toggle }}" style="display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:{{ acc2.cursor }};">
-            <span style="font-size:22px;font-weight:700;line-height:1.35;letter-spacing:-0.02em;color:#FFFFFF;">Контакти</span>
-            <span style="display:{{ acc2.chevDisplay }};align-items:center;transform:{{ acc2.chevRot }};transition:transform .3s;color:rgba(255,255,255,0.7);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
-          </div>
-          <div style="margin-top:24px;display:{{ acc2.bodyDisplay }};flex-direction:column;gap:12px;">
-            <a href="tel:+380756368890" style="font-size:16px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.7);" style-hover="color:#FFFFFF;">+380 75 636 8890</a>
-            <span style="font-size:16px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.7);">вул. Зелена, 238-з, Львів</span>
-            <span style="font-size:16px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.7);">Щодня 07:00–23:00</span>
-          </div>
-        </div>
-          <div style="display:flex;flex-direction:column;gap:24px;">
-            <span style="font-size:22px;font-weight:700;line-height:1.35;letter-spacing:-0.02em;color:#FFFFFF;">Застосунок</span>
-            <p style="font-size:16px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.7);">Розклад і бронювання у вашому смартфоні.</p>
-            <div ref="{{ storeRowRef }}" style="display:flex;flex-wrap:nowrap;gap:8px;">
-              <a href="#" aria-label="App Store" style="min-width:0;flex:0 1 auto;"><img ref="{{ storeImg1Ref }}" src="assets/appstore.svg" alt="Завантажити в App Store" style="height:48px;width:auto;max-width:100%;display:block;"></a>
-              <a href="#" aria-label="Google Play" style="min-width:0;flex:0 1 auto;"><img ref="{{ storeImg2Ref }}" src="assets/googleplay.svg" alt="Завантажити в Google Play" style="height:48px;width:auto;max-width:100%;display:block;"></a>
+        <article class="event-card">
+          <span class="event-card__media">
+            <img src="assets/club4.png" alt="Падел-тайм для новачків — Green Padel House" draggable="false">
+          </span>
+          <div class="event-card__body">
+            <span class="event-card__title">Падел-тайм для новачків</span>
+            <div class="event-card__meta">
+              <span class="event-card__meta-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3.5" y="5" width="17" height="15.5" rx="3" stroke="#323235" stroke-width="1.7"></rect><path d="M8 3.5v3M16 3.5v3M3.5 10h17" stroke="#323235" stroke-width="1.7" stroke-linecap="round"></path></svg>29 серпня, пʼятниця</span>
+              <span class="event-card__meta-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.6" stroke="#323235" stroke-width="1.7"></circle><path d="M12 7.6V12l3.4 2.2" stroke="#323235" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg>19:00–21:00</span>
             </div>
+            <div class="event-card__tags"><span class="chip chip--solid">Рівень D</span><span class="chip chip--solid">2×2</span><span class="chip chip--solid">8 гравців</span></div>
+            <a class="btn btn--lime btn--wave event-card__cta" href="booking.html"><span>Зареєструватися</span></a>
           </div>
-        </div>
+        </article>
 
-        <div ref="{{ footBottomRef }}" style="margin-top:clamp(48px,6vw,96px);display:flex;align-items:flex-end;justify-content:space-between;gap:32px;flex-wrap:wrap;">
-          <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
-            <span style="font-size:16px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.7);">Ми тут:</span>
-            <a href="#" aria-label="Instagram" style="display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:999px;background:rgba(255,255,255,0.08);transition:background-color .25s ease;" style-hover="background:rgba(255,255,255,0.18);"><span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:8px;overflow:hidden;flex:none;"><img src="assets/instagram.svg" alt="" style="width:100%;height:100%;object-fit:contain;"></span></a>
-            <a href="#" aria-label="TikTok" style="display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:999px;background:rgba(255,255,255,0.08);transition:background-color .25s ease;" style-hover="background:rgba(255,255,255,0.18);"><span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:8px;overflow:hidden;flex:none;"><img src="assets/tiktok.svg" alt="" style="width:100%;height:100%;object-fit:contain;"></span></a>
-            <a href="#" aria-label="Telegram" style="display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:999px;background:rgba(255,255,255,0.08);transition:background-color .25s ease;" style-hover="background:rgba(255,255,255,0.18);"><span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:8px;overflow:hidden;flex:none;"><img src="assets/telegram.svg" alt="" style="width:100%;height:100%;object-fit:contain;"></span></a>
-            <a href="viber://chat?number=%2B380756368890" aria-label="Viber" style="display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:999px;background:rgba(255,255,255,0.08);transition:background-color .25s ease;" style-hover="background:rgba(255,255,255,0.18);"><span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:8px;overflow:hidden;flex:none;"><img src="assets/viber.svg" alt="" style="width:100%;height:100%;object-fit:contain;"></span></a>
+        <article class="event-card">
+          <span class="event-card__media">
+            <img src="assets/club5.png" alt="Жіночий падел-ранок — Green Padel House" draggable="false">
+          </span>
+          <div class="event-card__body">
+            <span class="event-card__title">Жіночий падел-ранок</span>
+            <div class="event-card__meta">
+              <span class="event-card__meta-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3.5" y="5" width="17" height="15.5" rx="3" stroke="#323235" stroke-width="1.7"></rect><path d="M8 3.5v3M16 3.5v3M3.5 10h17" stroke="#323235" stroke-width="1.7" stroke-linecap="round"></path></svg>6 вересня, субота</span>
+              <span class="event-card__meta-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.6" stroke="#323235" stroke-width="1.7"></circle><path d="M12 7.6V12l3.4 2.2" stroke="#323235" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg>10:00–12:00</span>
+            </div>
+            <div class="event-card__tags"><span class="chip chip--solid">Рівень D+/C-</span><span class="chip chip--solid">Mexicano</span><span class="chip chip--solid">12 гравців</span></div>
+            <a class="btn btn--lime btn--wave event-card__cta" href="booking.html"><span>Зареєструватися</span></a>
           </div>
+        </article>
 
-          <a ref="{{ footOfferRef }}" href="booking.html" style="display:flex;flex-direction:column;gap:16px;flex:1 1 332px;max-width:392px;min-width:280px;">
-            <span style="font-size:22px;font-weight:700;line-height:1.35;letter-spacing:-0.02em;color:#FFFFFF;">Забронюйте корт</span>
-            <span style="position:relative;display:block;width:100%;height:auto;border-radius:24px;overflow:hidden;background:#090909;aspect-ratio:16/9;">
-              <video ref="{{ footVidRef }}" loop="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" aria-label="Гра на корті Green Padel House" style="position:absolute;inset:0;width:100%;height:100%;aspect-ratio:16/9;object-fit:cover;display:block;"></video>
-              <span style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(9,9,9,0.55) 0%, rgba(9,9,9,0.25) 45%, rgba(9,9,9,0.60) 100%);"></span>
-              <span style="position:absolute;left:24px;bottom:24px;right:84px;font-size:16px;font-weight:700;line-height:1.6;letter-spacing:-0.02em;color:#FFFFFF;white-space:nowrap;">Обрати час</span>
-              <span style="position:absolute;right:24px;bottom:24px;display:flex;align-items:center;justify-content:center;width:48px;height:48px;flex:none;border-radius:999px;background:#FFFFFF;">
-                <span class="gph-tarrow" style="display:flex;"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M7.5 16.5L16.5 7.5M16.5 7.5H9M16.5 7.5V15" stroke="#090909" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
-              </span>
-            </span>
-          </a>
-        </div>
+        <article class="event-card">
+          <span class="event-card__media">
+            <img src="assets/coach-group.jpg" alt="Корпоративна ліга — Green Padel House" draggable="false">
+          </span>
+          <div class="event-card__body">
+            <span class="event-card__title">Корпоративна ліга</span>
+            <div class="event-card__meta">
+              <span class="event-card__meta-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3.5" y="5" width="17" height="15.5" rx="3" stroke="#323235" stroke-width="1.7"></rect><path d="M8 3.5v3M16 3.5v3M3.5 10h17" stroke="#323235" stroke-width="1.7" stroke-linecap="round"></path></svg>14 вересня, неділя</span>
+              <span class="event-card__meta-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.6" stroke="#323235" stroke-width="1.7"></circle><path d="M12 7.6V12l3.4 2.2" stroke="#323235" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg>17:00–21:00</span>
+            </div>
+            <div class="event-card__tags"><span class="chip chip--solid">Будь-який рівень</span><span class="chip chip--solid">Командний</span><span class="chip chip--solid">24 гравці</span></div>
+            <a class="btn btn--lime btn--wave event-card__cta" href="booking.html"><span>Зареєструватися</span></a>
+          </div>
+        </article>
 
-        <svg ref="{{ wordmarkRef }}" aria-hidden="true" viewBox="0 0 1000 118" preserveAspectRatio="xMidYMid meet" style="display:block;margin-top:clamp(48px,6vw,96px);width:100%;height:auto;overflow:visible;"><text x="0" y="96" textLength="1000" lengthAdjust="spacingAndGlyphs" style="font-family:'Geologica',sans-serif;font-size:118px;font-weight:700;letter-spacing:-0.04em;fill:rgba(255,255,255,0.10);">Green Padel House</text></svg>
       </div>
+    </section>
 
-      <div style="margin-top:16px;background:#090909;border-radius:32px;padding:clamp(20px,2.4vw,32px) clamp(24px,3vw,48px);display:flex;align-items:center;justify-content:space-between;gap:16px 32px;flex-wrap:wrap;">
-        <span style="font-size:13px;font-weight:400;line-height:1.4;color:rgba(255,255,255,0.7);">© 2026 Green Padel House</span>
-        <div ref="{{ legalRowRef }}" style="display:flex;gap:24px;flex-wrap:wrap;">
-          <a href="#" style="font-size:13px;font-weight:400;line-height:1.4;color:rgba(255,255,255,0.7);" style-hover="color:#FFFFFF;">Політика конфіденційності</a>
-          <a href="#" style="font-size:13px;font-weight:400;line-height:1.4;color:rgba(255,255,255,0.7);" style-hover="color:#FFFFFF;">Публічна оферта</a>
-        </div>
-        <span style="display:flex;align-items:center;gap:8px;">
-          <span style="font-size:13px;font-weight:400;line-height:1.4;color:rgba(255,255,255,0.7);">Створено з душею</span>
-          <img src="assets/welldone.svg" alt="welldone" style="height:14px;width:auto;display:block;">
-        </span>
-      </div>
-    </footer>
+    {{> burger-menu }}
+    {{> footer }}
 
   </div>
 </div>
-</x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: &quot;100%&quot;, &quot;height&quot;: &quot;100%&quot;}}">
-class Component extends DCLogic {
-  initBurger() {
-    const ov = document.querySelector('[data-bm-overlay]'), panel = document.querySelector('.gph-bmpanel');
-    if (!ov || !panel || panel._bound) return;
-    panel._bound = 1;
-    const items = Array.prototype.slice.call(panel.querySelectorAll('.gph-bmitem'));
-    const open = () => {
-      ov.style.display = 'block';
-      requestAnimationFrame(() => { ov.style.opacity = '1'; panel.style.transform = 'translateX(0)'; });
-      document.documentElement.style.overflow = 'hidden';
-      items.forEach((el, i) => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateX(-10px)';
-        window.setTimeout(() => { el.style.opacity = '1'; el.style.transform = 'translateX(0)'; }, 120 + i * 35);
-      });
-    };
-    const close = () => {
-      ov.style.opacity = '0';
-      panel.style.transform = 'translateX(-102%)';
-      document.documentElement.style.overflow = '';
-      window.setTimeout(() => { if (ov.style.opacity === '0') ov.style.display = 'none'; }, 320);
-    };
-    Array.prototype.slice.call(document.querySelectorAll('button[aria-label="Меню"]')).forEach((b) => b.addEventListener('click', (e) => { e.preventDefault(); open(); }));
-    Array.prototype.slice.call(panel.querySelectorAll('[data-bm-close]')).forEach((b) => b.addEventListener('click', (e) => { e.preventDefault(); close(); }));
-    ov.addEventListener('click', close);
-    this._onBmKey = (e) => { if (e.key === 'Escape' && ov.style.display === 'block') close(); };
-    window.addEventListener('keydown', this._onBmKey);
-  }
-
-  state = { acc: [false, false, false], isMobile: false };
-  tabsRef = React.createRef();
-  gridRef = React.createRef();
-  footGridRef = React.createRef();
-  storeRowRef = React.createRef();
-  storeImg1Ref = React.createRef();
-  storeImg2Ref = React.createRef();
-  legalRowRef = React.createRef();
-  footBottomRef = React.createRef();
-  footOfferRef = React.createRef();
-  footVidRef = React.createRef();
-  wordmarkRef = React.createRef();
-
-  initFootVid() {
-    const v = this.footVidRef.current;
-    if (!v || v._init) return;
-    v._init = 1;
-    v.muted = true; v.defaultMuted = true; v.playsInline = true; v.loop = true;
-    fetch('assets/hero.mp4?v=2').then((r) => r.blob()).then((b) => {
-      v.src = URL.createObjectURL(b);
-      try { v.load(); } catch (e) {}
-      const pr = v.play(); if (pr && pr.catch) pr.catch(() => {});
-    }).catch(() => {});
-  }
-
-  componentDidMount() {
-    try { this.initBurger(); } catch (e) { console.warn(e); }
-    try { this.applyLayout(); } catch (e) { console.warn(e); }
-    try { this.initFootVid(); } catch (e) { console.warn(e); }
-    try { this.initTabs(); } catch (e) { console.warn(e); }
-    this._onResize = () => this.applyLayout();
-    window.addEventListener('resize', this._onResize);
-    try { this.initCtaFx(); } catch (e) { console.warn(e); }
-  }
-  componentWillUnmount() { if (this._onResize) window.removeEventListener('resize', this._onResize); }
-
-  initTabs() {
-    const tabs = this.tabsRef.current, grid = this.gridRef.current;
-    if (!tabs || !grid || tabs._bound) return;
-    tabs._bound = 1;
-    const btns = Array.prototype.slice.call(tabs.querySelectorAll('[data-tab]'));
-    const cards = Array.prototype.slice.call(grid.querySelectorAll('[data-cat]'));
-    const paint = (key, animate) => {
-      btns.forEach((b) => {
-        const on = b.getAttribute('data-tab') === key;
-        b.setAttribute('data-on', on ? '1' : '0');
-        b.style.background = on ? '#090909' : 'transparent';
-        b.style.color = on ? '#FFFFFF' : '#323235';
-        b.style.borderColor = on ? '#090909' : 'rgba(9,9,9,0.16)';
-      });
-      let shown = 0;
-      cards.forEach((c) => {
-        const show = key === 'all' || c.getAttribute('data-cat') === key;
-        if (show) {
-          const delay = 30 + shown * 40;
-          shown++;
-          c.style.display = 'flex';
-          if (!animate) { c.style.opacity = '1'; c.style.transform = 'translateY(0)'; return; }
-          c.style.opacity = '0';
-          c.style.transform = 'translateY(14px)';
-          window.setTimeout(() => { c.style.opacity = '1'; c.style.transform = 'translateY(0)'; }, delay);
-        } else {
-          c.style.opacity = '0';
-          c.style.transform = 'translateY(8px)';
-          window.setTimeout(() => { if (c.style.opacity === '0') c.style.display = 'none'; }, 300);
-        }
-      });
-    };
-    btns.forEach((b) => b.addEventListener('click', (e) => {
-      e.preventDefault();
-      paint(b.getAttribute('data-tab'), true);
-    }));
-    paint('all', false);
-  }
-
-  applyLayout() {
-    const compact = window.innerWidth <= 760;
-    if (compact !== this.state.isMobile) this.setState({ isMobile: compact });
-    if (this.footOfferRef.current) this.footOfferRef.current.style.maxWidth = compact ? '100%' : '392px';
-    [this.storeImg1Ref, this.storeImg2Ref].forEach((r) => { if (r.current) r.current.style.height = compact ? '40px' : '48px'; });
-    if (this.legalRowRef.current) { const s = this.legalRowRef.current.style; s.flexDirection = compact ? 'column' : 'row'; s.alignItems = compact ? 'flex-start' : 'center'; s.gap = compact ? '12px' : '24px'; }
-    if (this.footGridRef.current) this.footGridRef.current.style.gridTemplateColumns = compact ? 'minmax(0,1fr)' : (window.innerWidth <= 1100 ? 'repeat(2,minmax(0,1fr))' : 'repeat(4,minmax(0,1fr))');
-  }
-
-  initCtaFx() {
-    Array.prototype.slice.call(document.querySelectorAll('.gph-wave')).forEach((btn) => {
-      if (btn._fx) return;
-      btn._fx = 1;
-      btn.addEventListener('mouseenter', () => {
-        for (let i = 0; i < 3; i++) {
-          const b = document.createElement('span');
-          const dx = (Math.random() * 2 - 1) * 90, dy = -40 - Math.random() * 70, rot = (Math.random() * 2 - 1) * 220;
-          const r = btn.getBoundingClientRect();
-          b.style.cssText = 'position:fixed;left:' + (r.left + r.width * (0.2 + Math.random() * 0.6)) + 'px;top:' + (r.bottom - 14) + 'px;width:12px;height:12px;border-radius:50%;background:#E1F07B;box-shadow:inset -2px -2px 0 rgba(9,9,9,0.18);pointer-events:none;z-index:120;';
-          b.animate([
-            { transform: 'translate(0,0) scale(0.6) rotate(0deg)', opacity: 1 },
-            { transform: 'translate(' + dx * 0.6 + 'px,' + dy + 'px) scale(1) rotate(' + rot * 0.6 + 'deg)', opacity: 1, offset: 0.6 },
-            { transform: 'translate(' + dx + 'px,' + (dy * 0.4) + 'px) scale(0.7) rotate(' + rot + 'deg)', opacity: 0 }
-          ], { duration: 620 + Math.random() * 220, easing: 'cubic-bezier(.25,.6,.3,1)' });
-          document.body.appendChild(b);
-          window.setTimeout(() => b.remove(), 900);
-        }
-      });
-    });
-  }
-
-  renderVals() {
-    const _m = this.state.isMobile, _acc = this.state.acc;
-    const accCol = (i) => ({
-      bodyDisplay: (!_m || _acc[i]) ? 'flex' : 'none',
-      chevDisplay: _m ? 'flex' : 'none',
-      chevRot: _acc[i] ? 'rotate(180deg)' : 'rotate(0deg)',
-      cursor: _m ? 'pointer' : 'default',
-      toggle: () => this.setState((s) => { const a = s.acc.slice(); a[i] = !a[i]; return { acc: a }; })
-    });
-    return {
-      tabsRef: this.tabsRef, gridRef: this.gridRef,
-      footGridRef: this.footGridRef, storeRowRef: this.storeRowRef, storeImg1Ref: this.storeImg1Ref, storeImg2Ref: this.storeImg2Ref, legalRowRef: this.legalRowRef, footBottomRef: this.footBottomRef, footOfferRef: this.footOfferRef, footVidRef: this.footVidRef, wordmarkRef: this.wordmarkRef,
-      acc0: accCol(0), acc1: accCol(1), acc2: accCol(2)
-    };
-  }
-}
-</script>
+<script type="module" src="/scripts/event.js"></script>
 </body>
 </html>

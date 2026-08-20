@@ -6,9 +6,9 @@
 .section-title {
   font-size: var(--font-size-display-md); /* clamp(40px,4.4vw,56px) */
   font-weight: var(--font-weight-bold);
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  color: var(--color-ink);
+  line-height: 1.02; /* эталон — h2 главной (.heading-2) */
+  letter-spacing: -0.03em;
+  color: var(--color-text);
 }
 
 .section-title--narrow {
@@ -47,7 +47,7 @@
 
 /* Заголовок и лид в hero (белые, поверх фото) */
 .hero-title {
-  font-size: clamp(52px, 8vw, 112px); /* faithful, вне токенов */
+  font-size: clamp(48px, 8vw, 98px); /* моб. floor 52→48 */
   font-weight: var(--font-weight-bold);
   line-height: 1.05;
   letter-spacing: -0.02em;
@@ -56,9 +56,17 @@
 }
 
 .hero-lead {
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-light);
+  font-size: var(--font-size-lg); /* 18 (было 16) */
+  font-weight: var(--font-weight-regular);
   line-height: 1.6;
   color: var(--color-white);
   max-width: 560px; /* layout-константа */
+}
+
+/* Утилити-переносы: <br> только на нужном разрешении.
+   Пробел ставить ПЕРЕД <br>, чтобы при скрытии слова не слипались. */
+.br-desktop { display: none; }
+@media (min-width: 901px) {
+  .br-desktop { display: inline; }
+  .br-mobile { display: none; }
 }

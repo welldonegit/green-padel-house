@@ -1,0 +1,54 @@
+/* Sticky-навигация по разделам (пилюли). Активная — data-on="1",
+   ставит scripts/nav-pills.js (scroll-spy). Это навигация, не CTA — регистр
+   обычный. */
+
+.nav-pills {
+  position: sticky;
+  top: var(--space-16);
+  z-index: 20;
+  margin: var(--space-48) var(--space-24) 0;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+.nav-pills__scroller {
+  pointer-events: auto;
+  max-width: 100%;
+  overflow-x: auto;
+  display: flex;
+  gap: var(--space-8);
+  padding: var(--space-8);
+  border-radius: var(--radius-full);
+  background: var(--color-white);
+  scrollbar-width: none;
+}
+.nav-pills__scroller::-webkit-scrollbar {
+  display: none;
+}
+.nav-pills__pill {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  height: var(--control-h-lg); /* 44→48 */
+  padding: 0 var(--space-24); /* 22→24 */
+  border-radius: var(--radius-full);
+  background: var(--color-text);
+  color: var(--color-white);
+  font-size: var(--font-size-sm); /* 14 */
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color .25s ease, transform .2s ease;
+}
+.nav-pills__pill:hover {
+  background: var(--color-ink);
+  transform: translateY(-1px);
+}
+.nav-pills__pill[data-on="1"] {
+  background: var(--color-ink);
+}
+.nav-pills__pill[data-on="1"]:hover {
+  background: var(--color-ink);
+  transform: none;
+}

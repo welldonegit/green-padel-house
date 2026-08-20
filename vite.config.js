@@ -19,6 +19,16 @@ export default defineConfig({
     handlebars({
       partialDirectory: resolve(root, 'partials'),
     }),
+    // vite-plugin-handlebars не отслеживает партиалы для HMR — форсим full-reload.
+    {
+      name: 'reload-on-partial-change',
+      handleHotUpdate({ file, server }) {
+        if (file.replace(/\\/g, '/').includes('/partials/')) {
+          server.ws.send({ type: 'full-reload' });
+          return [];
+        }
+      },
+    },
   ],
   build: {
     outDir: 'dist',
@@ -27,6 +37,12 @@ export default defineConfig({
       input: {
         index: resolve(root, 'index.html'),
         services: resolve(root, 'services.html'),
+        prices: resolve(root, 'prices.html'),
+        booking: resolve(root, 'booking.html'),
+        contacts: resolve(root, 'contacts.html'),
+        blog: resolve(root, 'blog.html'),
+        news: resolve(root, 'news.html'),
+        event: resolve(root, 'event.html'),
       },
     },
   },

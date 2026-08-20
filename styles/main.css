@@ -28,5 +28,9 @@
 @import './components/club-mosaic.css';
 @import './components/sticky-cta.css';
 @import './components/lightbox.css';
+@import './components/nav-pills.css';
+@import './components/gear-card.css';
+@import './components/faq.css';
+@import './components/promo-card.css';
 
 @import './sections.css';
