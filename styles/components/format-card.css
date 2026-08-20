@@ -165,14 +165,17 @@
 .format-card--compact.format-card--square {
   aspect-ratio: 1 / 1;
 }
-/* Квадрат остаётся строго 1:1 (сбрасываем compact-фолбэк, чтобы не тянуть высоту). */
+/* Квадрат 1:1 через aspect-ratio + фолбэк min-height (Figma/WebKit не всегда
+   применяют aspect-ratio → без фолбэка карточка схлопывается). 260 ≤ реальной
+   высоты квадрата на всех брейкпоинтах, поэтому в браузерах пропорцию задаёт
+   aspect-ratio (остаётся 1:1), а в Figma карточка не ломается. */
 .format-card--compact.format-card--square {
-  min-height: 0;
+  min-height: 260px;
 }
 @media (max-width: 760px) {
   .format-card--compact.format-card--square {
     aspect-ratio: 1 / 1;
-    min-height: 0;
+    min-height: 260px;
   }
 }
 
