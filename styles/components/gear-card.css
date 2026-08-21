@@ -26,10 +26,24 @@
   grid-template-rows: var(--control-h-xl) auto auto 1fr; /* 56 */
   row-gap: var(--space-16);
 }
+/* Круглый thumb: клип-контейнер владеет боксом (размер + overflow + радиус),
+   <img> внутри — 100%/100% с object-fit. Это тот же паттерн, что у
+   .coach-card__media-wrap / .insta-tile / .format-card, которые корректно
+   импортируются в Figma. Раньше кроп (object-fit), круглый клип (border-radius)
+   и сильный даунскейл (480×600 → 56×56) висели прямо на «голом» <img>, который
+   к тому же был грид-ячейкой — импортёр html.to.design не захватывал такую
+   картинку при флаттене desktop-грида (4 колонки) и терял её. */
 .gear-card__thumb {
   width: var(--control-h-xl); /* 56 */
   height: var(--control-h-xl);
   border-radius: var(--radius-full);
+  overflow: hidden;
+  display: block;
+  background: var(--color-fill);
+}
+.gear-card__thumb-img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   display: block;
 }
