@@ -44,3 +44,10 @@
 .promo-card__cta {
   margin-top: var(--space-24);
 }
+/* Ряд із кількох кнопок у промо-картці (напр. Telegram + Instagram) */
+.promo-card__actions {
+  margin-top: var(--space-24);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-12);
+}
