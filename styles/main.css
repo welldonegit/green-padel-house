@@ -32,5 +32,7 @@
 @import './components/gear-card.css';
 @import './components/faq.css';
 @import './components/promo-card.css';
+@import './components/booking-builder.css';
+@import './components/error-404.css';
 
 @import './sections.css';

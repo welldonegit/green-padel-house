@@ -34,7 +34,7 @@
   align-items: center;
 }
 .site-header__logo img {
-  height: var(--space-24); /* 26→24 (Δ2) */
+  height: calc(var(--space-24) * 1.2); /* лого +20% (24→28.8px) */
   width: auto;
 }
 
@@ -105,6 +105,10 @@
   }
   .site-header__nav {
     display: flex;
+  }
+  /* Десктоп: лого ще +10% (24 × 1.2 × 1.1 ≈ 31.7px) */
+  .site-header__logo img {
+    height: calc(var(--space-24) * 1.2 * 1.1);
   }
 }
 

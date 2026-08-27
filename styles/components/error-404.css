@@ -1,0 +1,122 @@
+/* Сторінка 404: синя карта-корт з розміткою, контурним числом «404»,
+   заголовком і двома CTA. Шапка (site-header) абсолютна поверх карти. */
+
+@keyframes gphNumDraw {
+  0%   { stroke-dashoffset: 19; }
+  40%  { stroke-dashoffset: 0; }
+  78%  { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: 19; }
+}
+
+.error-404 {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  padding: var(--space-24) var(--space-24) var(--section-gap);
+}
+.error-404__card {
+  position: relative;
+  overflow: hidden;
+  min-height: min(88vh, 880px);
+  border-radius: var(--radius-2xl); /* 32 */
+  background: var(--color-blue);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.error-404__media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.16;
+}
+.error-404__scrim {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 90% at 50% 40%, rgba(41, 93, 197, 0.08) 0%, rgba(9, 9, 9, 0.34) 100%);
+}
+
+/* ── Декоративна розмітка корту ── */
+.error-404__court {
+  position: absolute;
+  left: clamp(20px, 4vw, 72px);
+  right: clamp(20px, 4vw, 72px);
+  top: clamp(96px, 12vw, 168px);
+  bottom: clamp(72px, 8vw, 120px);
+  border: var(--bw-2) solid rgba(255, 255, 255, 0.42);
+  border-radius: var(--radius-xs); /* 6→4 */
+  pointer-events: none;
+}
+.error-404__court-net {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: var(--bw-2);
+  margin-left: -1px;
+  background: rgba(255, 255, 255, 0.42);
+}
+.error-404__court-line {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.28);
+}
+.error-404__court-line--service-l { left: 22%; top: 0; bottom: 0; width: var(--bw-2); }
+.error-404__court-line--service-r { right: 22%; top: 0; bottom: 0; width: var(--bw-2); }
+.error-404__court-line--center-l { left: 0; right: 78%; top: 50%; height: var(--bw-2); margin-top: -1px; }
+.error-404__court-line--center-r { left: 78%; right: 0; top: 50%; height: var(--bw-2); margin-top: -1px; }
+
+/* ── Контент ── */
+.error-404__content {
+  position: relative;
+  z-index: 6;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: clamp(96px, 11vw, 150px) clamp(20px, 3vw, 40px) clamp(64px, 7vw, 104px);
+}
+.error-404__num {
+  display: block;
+  width: min(76vw, 540px);
+  height: auto;
+  overflow: visible;
+}
+.error-404__num text {
+  font-family: var(--font-family-base);
+  font-size: 250px;
+  font-weight: var(--font-weight-bold);
+  fill: none;
+  stroke: var(--color-white);
+  stroke-width: 5;
+}
+.error-404__title {
+  margin-top: clamp(20px, 2.6vw, 36px);
+  font-size: clamp(24px, 3.4vw, 44px);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--color-white);
+  max-width: 22ch;
+}
+.error-404__actions {
+  margin-top: clamp(24px, 3vw, 40px);
+  display: flex;
+  gap: var(--space-12);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+@media (max-width: 700px) {
+  .error-404__card { min-height: min(86vh, 720px); }
+  .error-404__court { top: 84px; bottom: var(--space-32); }
+}
+@media (max-width: 560px) {
+  .error-404__court-line { display: none; }
+  .error-404__num text { stroke-width: 7; }
+  .error-404__actions { flex-direction: column; }
+  .error-404__actions .btn { width: 100%; }
+}

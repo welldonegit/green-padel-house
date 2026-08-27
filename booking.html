@@ -187,6 +187,60 @@
       </div>
     </section>
 
+    <!-- ░░ BOOKING BUILDER · покроковий вибір (дата → корт → інвентар → сума) ░░ -->
+    <section class="booking-builder" id="booking-builder">
+      <h2 class="section-title">Розклад <span class="accent">кортів</span></h2>
+
+      <h3 class="booking-builder__step-title">Дата і тривалість</h3>
+      <div class="booking-builder__top">
+        <div class="booking-builder__top-row">
+          <div class="booking-builder__field">
+            <div class="booking-builder__field-label">Дата</div>
+            <div class="booking-builder__days" data-bb-days></div>
+          </div>
+          <div class="booking-builder__field booking-builder__field--dur">
+            <div class="booking-builder__field-label">Тривалість</div>
+            <div class="booking-builder__durs" data-bb-durs></div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="booking-builder__step-title">Оберіть корт і час</h3>
+      <div class="booking-builder__courts" data-bb-courts></div>
+
+      <h3 class="booking-builder__step-title">Інвентар</h3>
+      <div class="booking-builder__inv-row">
+        <div class="booking-builder__inv-group">
+          <div class="booking-builder__inv-head">
+            <span class="booking-builder__inv-name">Ракетки</span>
+            <span class="booking-builder__inv-note">+100 ₴ за ракетку</span>
+          </div>
+          <div class="booking-builder__counter" data-bb-racks></div>
+        </div>
+        <div class="booking-builder__inv-group">
+          <div class="booking-builder__inv-head">
+            <span class="booking-builder__inv-name">М'ячі</span>
+            <span class="booking-builder__inv-note">+50 ₴ за тубус, 3 м'ячі в тубусі</span>
+          </div>
+          <div class="booking-builder__counter" data-bb-balls></div>
+        </div>
+      </div>
+
+      <h3 class="booking-builder__step-title">Підсумок</h3>
+      <div class="booking-builder__summary">
+        <div class="booking-builder__summary-inner">
+          <div class="booking-builder__summary-fields">
+            <div class="booking-builder__sum"><div class="booking-builder__sum-label">Корт</div><div class="booking-builder__sum-value" data-bb-court>—</div></div>
+            <div class="booking-builder__sum"><div class="booking-builder__sum-label">Дата</div><div class="booking-builder__sum-value" data-bb-date>—</div></div>
+            <div class="booking-builder__sum"><div class="booking-builder__sum-label">Час</div><div class="booking-builder__sum-value" data-bb-time>—</div></div>
+            <div class="booking-builder__sum"><div class="booking-builder__sum-label">Інвентар</div><div class="booking-builder__sum-value" data-bb-gear>Без інвентарю</div></div>
+            <div class="booking-builder__sum"><div class="booking-builder__sum-label">Разом</div><div class="booking-builder__sum-value" data-bb-price>—</div></div>
+          </div>
+          <a class="btn btn--wave booking-builder__cta is-disabled" data-bb-cta href="#"><span>Забронювати корт</span></a>
+        </div>
+      </div>
+    </section>
+
     <!-- ░░ ALT BOOKING ░░ -->
     <section class="alt-booking" id="alt-booking">
       <h2 class="section-title">Альтернативні способи <span class="accent">бронювання</span></h2>

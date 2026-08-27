@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Публічна оферта — Green Padel House</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+<div class="page">
+  <div class="page__inner">
+
+    <!-- ░░ HERO · тонкая плашка с хедером ░░ -->
+    <section class="news-topbar" id="hero">
+      <div class="news-topbar__bar news-topbar__bar--transparent">
+        {{> header headerClass="site-header--bar" }}
+      </div>
+    </section>
+
+    <!-- ░░ OFFER · тело документа (текст-заглушка, замінимо) ░░ -->
+    <section class="news" id="offer">
+      <div class="news__wrap">
+        <article class="news__article">
+          <h1 class="news__title">Публічна оферта</h1>
+          <div class="news__meta">
+            <span class="news__meta-label">Чинна редакція від</span>
+            <span class="news__meta-date">27 серпня 2026</span>
+          </div>
+
+          <p class="news__p">Цей документ є офіційною пропозицією (публічною офертою) Green Padel House укласти договір про надання послуг оренди кортів та супутніх послуг клубу. Оформлюючи бронювання на сайті або в застосунку, ви приймаєте умови цієї оферти в повному обсязі.</p>
+          <p class="news__p">Текст нижче — тимчасовий заповнювач. Остаточну редакцію з юридичними формулюваннями ми додамо пізніше; структуру та верстку сторінки при цьому збережемо.</p>
+
+          <h2 class="news__h2">Загальні положення</h2>
+          <p class="news__p">Послуги надаються на території клубу за адресою вул. Зелена, 238-з, Львів, щодня з 07:00 до 23:00. Клуб залишає за собою право змінювати розклад, вартість та перелік послуг, попередньо повідомляючи про це на сайті.</p>
+
+          <h2 class="news__h2">Бронювання та оплата</h2>
+          <ul class="news__list">
+            <li>бронювання підтверджується після оплати обраного слоту;</li>
+            <li>безкоштовне скасування можливе не пізніше ніж за 24 години до гри;</li>
+            <li>вартість оренди залежить від часу та тривалості слоту й вказана під час бронювання.</li>
+          </ul>
+
+          <p class="news__p">З усіх питань щодо цієї оферти звертайтеся до адміністратора клубу за телефоном +380 75 636 8890.</p>
+        </article>
+      </div>
+    </section>
+
+    {{> burger-menu }}
+    {{> footer }}
+
+  </div>
+</div>
+<script type="module" src="/scripts/offer.js"></script>
+</body>
+</html>

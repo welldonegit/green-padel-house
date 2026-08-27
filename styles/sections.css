@@ -8,6 +8,11 @@
   margin-left: calc(50% - 50vw);
   padding: var(--space-24) var(--space-24) 0;
 }
+/* Hero — єдина секція сторінки (перед футером): додаємо стандартний
+   міжблочний відступ знизу (звичайні сторінки його дає наступна секція). */
+.page-hero--standalone {
+  padding-bottom: var(--section-gap);
+}
 .page-hero__stage {
   position: relative;
   min-height: min(88vh, 880px);
@@ -41,6 +46,17 @@
 }
 .page-hero__cta {
   margin-top: var(--space-32);
+}
+.page-hero__actions {
+  margin-top: var(--space-32);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-12);
+}
+@media (max-width: 700px) {
+  .page-hero__actions {
+    flex-direction: column;
+  }
 }
 
 /* ── Секции с сеткой форматов (coaching / free-play) ── */
@@ -95,7 +111,8 @@
 .hero-home__scrim {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(9, 9, 9, 0.55) 0%, rgba(9, 9, 9, 0.25) 45%, rgba(9, 9, 9, 0.60) 100%);
+  /* Затемнення +10% до кожного стопу (0.55→0.65, 0.25→0.35, 0.60→0.70) */
+  background: linear-gradient(180deg, rgba(9, 9, 9, 0.65) 0%, rgba(9, 9, 9, 0.35) 45%, rgba(9, 9, 9, 0.70) 100%);
 }
 .hero-home__balls {
   position: absolute;
@@ -1680,6 +1697,10 @@
   background: var(--color-blue);
   border-radius: var(--radius-2xl);
   padding: clamp(14px, 1.6vw, 20px) clamp(28px, 4vw, 64px);
+}
+/* Синій фон із прозорістю 90% (лише фон, не контент) — напр. на офертi. */
+.news-topbar__bar--transparent {
+  background: rgba(41, 93, 197, 0.9);
 }
 
 /* ── Тело статьи (узкая колонка по центру) ── */

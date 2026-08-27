@@ -1,20 +1,16 @@
-// Точка входа скриптов страницы «Бронювання».
+// Точка входа скриптов страницы 404.
+// Своей логики у страницы нет — только общие модули шапки/меню/футера
+// и разлетающиеся мячи на CTA-кнопках с волной.
 
 import { initBurgerMenu } from './burger-menu.js';
 import { initFooterAccordion } from './footer-accordion.js';
 import { initFootVideo } from './foot-video.js';
-import { initSchedule } from './schedule.js';
-import { initBookingBuilder } from './booking-builder.js';
-import { initFaq } from './faq.js';
 import { initCtaBalls } from './cta-balls.js';
 
 function boot() {
   initBurgerMenu();
   initFooterAccordion();
   initFootVideo();
-  initSchedule();
-  initBookingBuilder();
-  initFaq();
   initCtaBalls();
 }
 

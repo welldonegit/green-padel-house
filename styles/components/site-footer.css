@@ -205,9 +205,28 @@
   flex: none;
   border-radius: var(--radius-full);
   background: var(--color-white);
+  transition: background-color .28s ease, transform .28s ease;
 }
 .site-footer__offer-arrow > span {
   display: flex;
+}
+.site-footer__offer-arrow svg path {
+  transition: stroke .28s ease;
+}
+/* Ховер стрілки — як у картках «Оберіть свій формат» на головній:
+   фон білий→чорний, зсув, лінія стає білою. */
+.site-footer__offer:hover .site-footer__offer-arrow {
+  background: var(--color-ink);
+  transform: translate(3px, -3px);
+}
+.site-footer__offer:hover .site-footer__offer-arrow svg path {
+  stroke: var(--color-white);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-footer__offer-arrow {
+    transition: none;
+  }
 }
 
 /* Вордмарк */
