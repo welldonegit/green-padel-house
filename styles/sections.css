@@ -123,8 +123,9 @@
 .hero-home__scrim {
   position: absolute;
   inset: 0;
-  /* Затемнення +10% до кожного стопу (0.55→0.65, 0.25→0.35, 0.60→0.70) */
-  background: linear-gradient(180deg, rgba(9, 9, 9, 0.65) 0%, rgba(9, 9, 9, 0.35) 45%, rgba(9, 9, 9, 0.70) 100%);
+  /* Затемнення +10% до кожного стопу (0.55→0.65, 0.25→0.35, 0.60→0.70),
+     потім ще +20% (0.65→0.78, 0.35→0.42, 0.70→0.84) */
+  background: linear-gradient(180deg, rgba(9, 9, 9, 0.78) 0%, rgba(9, 9, 9, 0.42) 45%, rgba(9, 9, 9, 0.84) 100%);
 }
 .hero-home__balls {
   position: absolute;
@@ -165,6 +166,15 @@
   font-weight: var(--font-weight-bold);
   letter-spacing: -0.02em;
   color: var(--color-white);
+}
+/* Перенос перед «у» показываем только на телефоне */
+.hero-home__title-br-mob {
+  display: none;
+}
+@media (max-width: 700px) {
+  .hero-home__title-br-mob {
+    display: inline;
+  }
 }
 .hero-home__lead {
   margin: clamp(24px, 3.4vw, 44px) 0 0;
