@@ -108,6 +108,18 @@
   object-position: center center;
   display: block;
 }
+/* Мобильное видео первого блока показываем только на телефоне */
+.hero-home__video--mob {
+  display: none;
+}
+@media (max-width: 700px) {
+  .hero-home__video--desktop {
+    display: none;
+  }
+  .hero-home__video--mob {
+    display: block;
+  }
+}
 .hero-home__scrim {
   position: absolute;
   inset: 0;
