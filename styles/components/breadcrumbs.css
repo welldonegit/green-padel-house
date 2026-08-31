@@ -1,0 +1,38 @@
+/* Хлебные крошки в hero внутренних страниц. Самый мелкий кегль системы (14). */
+
+.breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-8);
+  margin-bottom: var(--space-16);
+  font-size: var(--font-size-sm); /* 14 — самый маленький кегль дизайн-системы */
+  font-weight: var(--font-weight-regular);
+  line-height: 1.4;
+}
+
+.breadcrumbs__link {
+  color: var(--color-text);
+  opacity: 0.65;
+  text-decoration: none;
+  transition: opacity .2s ease;
+}
+.breadcrumbs__link:hover {
+  opacity: 1;
+}
+.breadcrumbs__sep {
+  color: var(--color-text);
+  opacity: 0.4;
+}
+.breadcrumbs__current {
+  color: var(--color-text);
+}
+
+/* Светлый вариант — поверх фото-hero с тёмным скримом. */
+.breadcrumbs--light .breadcrumbs__link,
+.breadcrumbs--light .breadcrumbs__sep,
+.breadcrumbs--light .breadcrumbs__current {
+  color: var(--color-white);
+}
+.breadcrumbs--light .breadcrumbs__link { opacity: 0.75; }
+.breadcrumbs--light .breadcrumbs__sep { opacity: 0.5; }

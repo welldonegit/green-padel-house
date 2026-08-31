@@ -5,12 +5,22 @@
   display: flex;
   flex-direction: column;
   min-width: 0;
+  /* Белая подложка-панель (как у .event-card): фото сверху во всю ширину,
+     контент — в теле с паддингом. */
+  background: var(--color-white);
+  border-radius: var(--radius-2xl); /* 32 */
+  overflow: hidden;
 }
 .coach-card__media-wrap {
-  border-radius: var(--radius-lg); /* 16 */
-  overflow: hidden;
   aspect-ratio: 4 / 3;
   background: var(--color-fill);
+}
+/* Тело карточки на белом фоне */
+.coach-card__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(18px, 1.8vw, 24px);
 }
 .coach-card__media {
   width: 100%;
@@ -24,7 +34,6 @@
   transform: scale(1.03);
 }
 .coach-card__tags {
-  margin-top: var(--space-16);
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-8);
@@ -63,8 +72,8 @@
   display: flex;
   flex-direction: column;
   background: var(--color-ink);
-  border-radius: var(--radius-xl); /* 24 */
-  padding: var(--space-16);
+  border-radius: var(--radius-2xl); /* 32 — как у белых карточек тренеров */
+  padding: clamp(18px, 1.8vw, 24px);
 }
 .coach-cta__pattern {
   position: absolute;

@@ -9,7 +9,8 @@
 /* ── Спільна картка-панель ── */
 .booking-builder__top,
 .booking-builder__court,
-.booking-builder__inv-group {
+.booking-builder__inv-group,
+.booking-builder__coach-panel {
   background: var(--color-white);
   border-radius: var(--radius-xl); /* 24 */
   box-shadow: 0 16px 38px rgba(9, 9, 9, 0.06);
@@ -292,6 +293,95 @@
 .booking-builder__count.is-active {
   background: var(--color-lime);
   border-color: var(--color-lime);
+}
+
+/* ── Тренер (кнопки з обводкою на білій плашці — як лічильники «Ракетки») ── */
+.booking-builder__coach-panel {
+  /* Паддинг як у плашці «Інвентар» → кнопки починаються на тому ж відступі. */
+  padding: clamp(20px, 2.2vw, 28px);
+}
+.booking-builder__coaches {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-8);
+}
+/* Десктоп: два стовпці, заповнення по колонках (перші 3 — у 1-й колонці,
+   наступні тренери — у 2-й, а не під ними). */
+@media (min-width: 861px) {
+  .booking-builder__coaches {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(3, auto);
+    grid-template-columns: repeat(2, 280px);
+    justify-content: start;
+    align-items: start;
+    gap: var(--space-8) var(--space-16);
+  }
+}
+.booking-builder__coach {
+  width: 100%;
+  max-width: 280px;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-16);
+  padding: var(--space-8) var(--space-12);
+  border-radius: var(--radius-md); /* 12 */
+  border: var(--bw-1) solid rgba(9, 9, 9, 0.14);
+  background: var(--color-white);
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color .2s ease, border-color .2s ease;
+}
+.booking-builder__coach:hover {
+  border-color: var(--color-green);
+}
+.booking-builder__coach.is-active {
+  background: var(--color-lime);
+  border-color: var(--color-lime);
+}
+.booking-builder__coach-photo {
+  flex: none;
+  width: var(--control-h-md); /* 40 */
+  height: var(--control-h-md);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  background: var(--color-fill);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.booking-builder__coach-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.booking-builder__coach-photo--none {
+  background: var(--color-surface);
+  border: var(--bw-1) solid rgba(9, 9, 9, 0.14);
+}
+.booking-builder__coach-info {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.booking-builder__coach-name {
+  font-size: 15px;
+  font-weight: var(--font-weight-bold);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+}
+.booking-builder__coach-note {
+  font-size: 13px;
+  font-weight: var(--font-weight-regular);
+  line-height: 1.35;
+  color: var(--color-text);
+  opacity: 0.6;
 }
 
 /* ── Синя плашка-сума ── */

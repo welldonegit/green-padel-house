@@ -68,12 +68,13 @@ export function initBookingBuilder() {
     date: root.querySelector('[data-bb-date]'),
     time: root.querySelector('[data-bb-time]'),
     gear: root.querySelector('[data-bb-gear]'),
+    coach: root.querySelector('[data-bb-coach-out]'),
     price: root.querySelector('[data-bb-price]'),
   };
   if (!daysBox || !dursBox || !courtsBox) return;
 
   const days = dayList();
-  const state = { date: 0, dur: 60, sel: null, rack: 0, ball: 0 };
+  const state = { date: 0, dur: 60, sel: null, rack: 0, ball: 0, coach: 'Без тренера' };
 
   // ── Дні (будуються один раз) ──
   days.forEach((d) => {
@@ -109,6 +110,15 @@ export function initBookingBuilder() {
   }
   buildCounter(racksBox, 'rack');
   buildCounter(ballsBox, 'ball');
+
+  // ── Тренер (статична розмітка з фото; на суму не впливає — оплата в клубі) ──
+  const coachBtns = Array.prototype.slice.call(root.querySelectorAll('[data-bb-coach]'));
+  coachBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      state.coach = btn.dataset.coachName || 'Без тренера';
+      sync();
+    });
+  });
 
   // ── Корти зі слотами (перебудовуються при зміні дати/тривалості/вибору) ──
   function renderCourts() {
@@ -161,6 +171,7 @@ export function initBookingBuilder() {
     Array.prototype.forEach.call(dursBox.children, (c) => c.classList.toggle('is-active', +c.dataset.dur === state.dur));
     setActive(racksBox, state.rack);
     setActive(ballsBox, state.ball);
+    coachBtns.forEach((btn) => btn.classList.toggle('is-active', (btn.dataset.coachName || 'Без тренера') === state.coach));
     renderCourts();
 
     const sel = state.sel;
@@ -174,6 +185,7 @@ export function initBookingBuilder() {
     if (out.date) out.date.textContent = full || '—';
     if (out.time) out.time.textContent = sel ? sel.time + '–' + sel.end : '—';
     if (out.gear) out.gear.textContent = gear.length ? gear.join(', ') : 'Без інвентарю';
+    if (out.coach) out.coach.textContent = state.coach;
     if (out.price) out.price.textContent = sel ? (sel.price + extras) + ' ₴' : '—';
     if (cta) cta.classList.toggle('is-disabled', !sel);
   }

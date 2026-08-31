@@ -8,6 +8,7 @@
 
 @import './components/button.css';
 @import './components/chip.css';
+@import './components/breadcrumbs.css';
 @import './components/icon-button.css';
 @import './components/format-card.css';
 @import './components/format-grid.css';
@@ -26,6 +27,7 @@
 @import './components/event-rail.css';
 @import './components/insta-grid.css';
 @import './components/club-mosaic.css';
+@import './components/lounge-card.css';
 @import './components/sticky-cta.css';
 @import './components/lightbox.css';
 @import './components/nav-pills.css';
