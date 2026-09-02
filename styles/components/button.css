@@ -56,10 +56,13 @@
   background: transparent;
   border: var(--bw-1) solid rgba(9, 9, 9, 0.22);
   color: var(--color-text);
-  transition: background-color .25s ease;
+  transition: background-color .25s ease, transform .25s ease;
 }
+/* единый ховер контурных кнопок: полупрозрачная заливка + подъём
+   (эталон — .btn--outline-light, кнопка «Дізнатися ціни» на главной) */
 .btn--outline-ink:hover {
-  background: var(--color-surface);
+  background: rgba(9, 9, 9, 0.06);
+  transform: translateY(-2px);
 }
 
 /* Контур на тёмном hero (вторичный CTA hero) */
@@ -80,7 +83,12 @@
   background: var(--color-white);
   border: var(--bw-2) solid var(--color-lime); /* 1.5→2 */
   color: var(--color-text);
-  transition: background-color .25s ease;
+  transition: background-color .25s ease, transform .25s ease;
+}
+/* единый ховер контурных кнопок: полупрозрачная заливка + подъём */
+.btn--outline-lime:hover {
+  background: rgba(225, 240, 123, 0.35);
+  transform: translateY(-2px);
 }
 
 /* ── Волна (механизм, без собственного фона) ────────────────────────── */
