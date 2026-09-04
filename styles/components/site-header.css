@@ -34,7 +34,7 @@
   align-items: center;
 }
 .site-header__logo img {
-  height: calc(var(--space-24) * 1.2); /* лого +20% (24→28.8px) */
+  height: calc(var(--space-24) * 1.2 * 1.1); /* лого +20%, на мобайлі ще +10% (24→31.7px) */
   width: auto;
 }
 
@@ -109,9 +109,9 @@
   .site-header__nav {
     display: flex;
   }
-  /* Десктоп: лого ще +10% (24 × 1.2 × 1.1 ≈ 31.7px) */
+  /* Десктоп: лого ще +10%, потім +20% (24 × 1.2 × 1.1 × 1.2 ≈ 38px) */
   .site-header__logo img {
-    height: calc(var(--space-24) * 1.2 * 1.1);
+    height: calc(var(--space-24) * 1.2 * 1.1 * 1.2);
   }
 }
 
@@ -133,15 +133,12 @@
 /* ── Светлая тема: тёмный текст на белом, шапка в потоке (prices) ── */
 .site-header--light {
   position: relative;
-  height: 100px; /* фикс. высота бара (off-scale layout-константа) */
-  padding: 0; /* карточка hero уже даёт горизонтальный отступ — не дублируем */
-  margin: 0 0 clamp(20px, 2.4vw, 32px);
+  /* Тянем шапку на всю ширину карточки (компенсируем её горизонтальный
+     padding clamp(28→64) отрицательными полями), чтобы геометрия — высота,
+     инсеты элементов, линия под шапкой — совпадала со стандартным хедером
+     остальных страниц. padding и высоту наследуем от .site-header. */
+  margin: 0 calc(-1 * clamp(28px, 4vw, 64px)) clamp(20px, 2.4vw, 32px);
   border-bottom-color: rgba(9, 9, 9, 0.08);
-}
-@media (max-width: 860px) {
-  .site-header--light {
-    height: var(--space-80); /* 80 */
-  }
 }
 .site-header--light .site-header__burger {
   color: var(--color-ink);

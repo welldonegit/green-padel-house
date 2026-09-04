@@ -15,7 +15,8 @@
 }
 .page-hero__stage {
   position: relative;
-  min-height: min(88vh, 880px);
+  min-height: 0;
+  aspect-ratio: 9 / 16; /* моб: вертикальний банер 9:16, як на головній (десктоп нижче → 16:7) */
   overflow: hidden;
   border-radius: var(--radius-2xl); /* 32 */
   display: flex;
@@ -58,6 +59,13 @@
     flex-direction: column;
   }
 }
+/* Десктоп: hero сторінки — те саме співвідношення 16:7, що й на головній */
+@media (min-width: 901px) {
+  .page-hero__stage {
+    min-height: 0;
+    aspect-ratio: 16 / 7;
+  }
+}
 
 /* ── Секции с сеткой форматов (coaching / free-play) ── */
 .section-formats {
@@ -91,13 +99,21 @@
 }
 .hero-home {
   position: relative;
-  min-height: 100vh;
+  min-height: 0;
+  aspect-ratio: 9 / 16; /* моб: вертикальний банер 9:16 (десктоп нижче → 16:7) */
   margin: var(--space-24) var(--space-24) 0;
   border-radius: var(--radius-2xl);
   overflow: hidden;
   display: flex;
   align-items: flex-end;
   background: var(--color-ink);
+}
+/* Десктоп: hero фіксованого співвідношення 16:7 замість повної висоти екрана */
+@media (min-width: 901px) {
+  .hero-home {
+    min-height: 0;
+    aspect-ratio: 16 / 7;
+  }
 }
 .hero-home__video {
   position: absolute;
