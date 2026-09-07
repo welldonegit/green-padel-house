@@ -12,8 +12,10 @@
   overflow: hidden;
 }
 .coach-card__media-wrap {
-  aspect-ratio: 4 / 3;
+  width: 100%; /* WebKit: aspect-ratio у flex/grid потребує явної ширини */
+  aspect-ratio: 1 / 1; /* квадратне фото на всіх розширеннях */
   background: var(--color-fill);
+  overflow: hidden;
 }
 /* Тело карточки на белом фоне */
 .coach-card__body {

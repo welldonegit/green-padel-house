@@ -1,0 +1,100 @@
+/* Модалка «Замовити дзвінок». Оверлей + діалог по центру. Відкриття/закриття —
+   scripts/callback-modal.js (клас .is-open). Поля — компонент .field, телефон
+   з маскою й перевіркою коду (data-phone-mask). */
+
+.callback {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-24);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .25s ease, visibility .25s;
+}
+.callback.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+.callback__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(9, 9, 9, 0.55);
+}
+.callback__dialog {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 440px);
+  max-height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  background: var(--color-white);
+  border-radius: var(--radius-2xl); /* 32 */
+  padding: clamp(24px, 3vw, 40px);
+  box-shadow: 0 24px 70px rgba(9, 9, 9, 0.28);
+  transform: translateY(12px);
+  transition: transform .25s ease;
+}
+.callback.is-open .callback__dialog {
+  transform: translateY(0);
+}
+
+.callback__close {
+  position: absolute;
+  top: var(--space-16);
+  right: var(--space-16);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--control-h-md); /* 40 */
+  height: var(--control-h-md);
+  border: none;
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  color: var(--color-ink);
+  cursor: pointer;
+  transition: background-color .2s ease;
+}
+.callback__close:hover {
+  background: var(--color-fill);
+}
+
+.callback__title {
+  font-size: var(--font-size-h3); /* 32 */
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+  padding-right: var(--space-48); /* місце під кнопку закриття */
+}
+.callback__text {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-light);
+  line-height: 1.5;
+  color: var(--color-text);
+}
+.callback__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+.callback__submit {
+  margin-top: var(--space-8);
+  width: 100%;
+}
+/* Неактивна кнопка при невалідному коді (лайм на білому → приглушений fill). */
+.callback__submit.is-phone-invalid {
+  background: var(--color-fill);
+  color: var(--color-text);
+  pointer-events: none;
+}
+.callback__note {
+  font-size: var(--font-size-sm); /* 14 */
+  line-height: 1.4;
+  color: var(--color-text);
+  opacity: 0.6;
+}

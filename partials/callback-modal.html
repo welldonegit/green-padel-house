@@ -1,0 +1,23 @@
+<div class="callback" data-callback>
+  <div class="callback__overlay" data-callback-close></div>
+  <div class="callback__dialog" role="dialog" aria-modal="true" aria-labelledby="callback-title" data-phone-scope>
+    <button type="button" class="callback__close" data-callback-close aria-label="Закрити">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"></path></svg>
+    </button>
+    <h2 class="callback__title" id="callback-title">Замовити дзвінок</h2>
+    <p class="callback__text">Залиште контакти — передзвонимо, підберемо зручний день, час і корт.</p>
+    <form class="callback__form" novalidate>
+      <label class="field">
+        <span class="field__label">Ім'я</span>
+        <input class="field__input" type="text" name="name" autocomplete="name" placeholder="Ім'я">
+      </label>
+      <label class="field">
+        <span class="field__label">Номер телефону</span>
+        <input class="field__input" type="tel" name="phone" inputmode="tel" autocomplete="tel" placeholder="+38 (___) ___-__-__" data-phone-mask aria-describedby="callback-phone-error">
+        <span class="field__error" id="callback-phone-error" data-phone-error hidden>Перевірте код оператора</span>
+      </label>
+      <button type="submit" class="btn btn--lime callback__submit" data-phone-submit>Замовити дзвінок</button>
+      <p class="callback__note">Натискаючи кнопку, ви погоджуєтесь на обробку персональних даних.</p>
+    </form>
+  </div>
+</div>

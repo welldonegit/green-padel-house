@@ -20,7 +20,9 @@
   display: flex;
   align-items: center;
   gap: clamp(14px, 1.8vw, 22px);
-  padding: var(--space-12) clamp(16px, 3vw, 40px);
+  /* Вертикальний padding 7px (−5 з кожного боку від 12) — плашка на 10px нижча.
+     Значення поза шкалою — точкове рішення під запит. */
+  padding: 7px clamp(16px, 3vw, 40px);
   background: var(--color-white);
   border-top: var(--bw-1) solid rgba(9, 9, 9, 0.10);
   box-shadow: 0 -12px 34px rgba(9, 9, 9, 0.10);

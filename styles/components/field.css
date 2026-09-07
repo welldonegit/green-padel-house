@@ -1,0 +1,48 @@
+/* Поле вводу (label + input) за дизайн-системою: r8, висота 48.
+   Перший компонент форм у проекті — переиспользуемый для інших сторінок. */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  min-width: 0;
+}
+.field__label {
+  font-size: var(--font-size-sm); /* 14 */
+  font-weight: var(--font-weight-bold);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+}
+.field__input {
+  width: 100%;
+  height: var(--control-h-lg); /* 48 */
+  padding: 0 var(--space-16);
+  border-radius: var(--radius-sm); /* 8 */
+  border: var(--bw-1) solid rgba(9, 9, 9, 0.14);
+  background: var(--color-white);
+  font-family: inherit;
+  font-size: var(--font-size-base); /* 16 */
+  font-weight: var(--font-weight-regular);
+  line-height: 1.2;
+  color: var(--color-ink);
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+.field__input::placeholder {
+  color: rgba(9, 9, 9, 0.40);
+}
+.field__input:focus {
+  outline: none;
+  border-color: var(--color-green);
+}
+/* Стан помилки: обводка 1.5px ink (червоного в палітрі немає). */
+.field__input.is-invalid {
+  border-width: 1.5px;
+  border-color: var(--color-ink);
+}
+/* Повідомлення про помилку під полем (відступ 8 дає flex-gap .field). */
+.field__error {
+  font-size: var(--font-size-sm); /* 14 */
+  line-height: 1.3;
+  color: var(--color-ink); /* #090909 */
+}

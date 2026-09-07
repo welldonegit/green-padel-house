@@ -6,6 +6,8 @@ import { initFooterAccordion } from './footer-accordion.js';
 import { initFootVideo } from './foot-video.js';
 import { initSchedule } from './schedule.js';
 import { initBookingBuilder } from './booking-builder.js';
+import { initPhoneMask } from './phone-mask.js';
+import { initCallbackModal } from './callback-modal.js';
 import { initFaq } from './faq.js';
 import { initCtaBalls } from './cta-balls.js';
 
@@ -15,7 +17,9 @@ function boot() {
   initFooterAccordion();
   initFootVideo();
   initSchedule();
+  initPhoneMask();
   initBookingBuilder();
+  initCallbackModal();
   initFaq();
   initCtaBalls();
 }

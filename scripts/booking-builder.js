@@ -41,6 +41,7 @@ function dayList() {
       top: i === 0 ? 'Сьогодні' : (i === 1 ? 'Завтра' : wd[dt.getDay()]),
       bottom: dt.getDate() + ' ' + mo[dt.getMonth()],
       full: dt.getDate() + ' ' + mg[dt.getMonth()],
+      num: pad(dt.getDate()) + '.' + pad(dt.getMonth() + 1), // 12.09 — для підсумку
     });
   }
   return out;
@@ -64,12 +65,17 @@ export function initBookingBuilder() {
   const racksBox = root.querySelector('[data-bb-racks]');
   const ballsBox = root.querySelector('[data-bb-balls]');
   const cta = root.querySelector('[data-bb-cta]');
+  const firstNameInput = root.querySelector('input[name="firstName"]');
+  const lastNameInput = root.querySelector('input[name="lastName"]');
+  const phoneInput = root.querySelector('input[name="phone"]');
   const out = {
     court: root.querySelector('[data-bb-court]'),
     date: root.querySelector('[data-bb-date]'),
     time: root.querySelector('[data-bb-time]'),
     gear: root.querySelector('[data-bb-gear]'),
     coach: root.querySelector('[data-bb-coach-out]'),
+    player: root.querySelector('[data-bb-player]'),
+    phone: root.querySelector('[data-bb-phone]'),
     price: root.querySelector('[data-bb-price]'),
   };
   if (!daysBox || !dursBox || !courtsBox) return;
@@ -177,6 +183,7 @@ export function initBookingBuilder() {
 
     const sel = state.sel;
     const full = days[state.date] ? days[state.date].full : '';
+    const dateShort = days[state.date] ? days[state.date].num : '';
     if (courtsTitle) courtsTitle.textContent = full ? 'Оберіть корт і час на ' + full : 'Оберіть корт і час';
     const extras = state.rack * 100 + state.ball * 50;
     const gear = [];
@@ -184,13 +191,26 @@ export function initBookingBuilder() {
     if (state.ball) gear.push(state.ball + ' ' + pl(state.ball, 'тубус', 'тубуси', 'тубусів'));
 
     if (out.court) out.court.textContent = sel ? sel.court : '—';
-    if (out.date) out.date.textContent = full || '—';
+    if (out.date) out.date.textContent = dateShort || '—';
     if (out.time) out.time.textContent = sel ? sel.time + '–' + sel.end : '—';
     if (out.gear) out.gear.textContent = gear.length ? gear.join(', ') : 'Без інвентарю';
     if (out.coach) out.coach.textContent = state.coach;
+    if (out.player) {
+      const parts = [firstNameInput, lastNameInput]
+        .map((el) => (el ? el.value.trim() : ''))
+        .filter(Boolean);
+      out.player.textContent = parts.length ? parts.join(' ') : '—';
+    }
+    if (out.phone) out.phone.textContent = (phoneInput && phoneInput.value.trim()) || '—';
     if (out.price) out.price.textContent = sel ? (sel.price + extras) + ' ₴' : '—';
     if (cta) cta.classList.toggle('is-disabled', !sel);
   }
+
+  // Дані клієнта → підсумок (телефон уже відформатований маскою, бо
+  // initPhoneMask() у boot викликається раніше за initBookingBuilder()).
+  [firstNameInput, lastNameInput, phoneInput].forEach((el) => {
+    if (el) el.addEventListener('input', sync);
+  });
 
   sync();
 }

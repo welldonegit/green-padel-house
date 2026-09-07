@@ -193,13 +193,19 @@
     </section>
 
     <!-- ░░ BOOKING BUILDER · покроковий вибір (дата → корт → інвентар → сума) ░░ -->
-    <section class="booking-builder" id="booking-builder">
+    <section class="booking-builder" id="booking-builder" data-phone-scope>
       <h2 class="section-title">Розклад <span class="accent">кортів</span></h2>
 
       <h3 class="booking-builder__step-title">Оберіть дату і тривалість</h3>
       <div class="booking-builder__top">
         <div class="booking-builder__top-row">
           <div class="booking-builder__field">
+            <div class="booking-builder__swipe-hint" aria-hidden="true">
+              <span class="booking-builder__swipe-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M8 13V5.5a1.5 1.5 0 0 1 3 0V11m0-1.5a1.5 1.5 0 0 1 3 0V11m0-.5a1.5 1.5 0 0 1 3 0V15c0 3-2 5-5 5h-1.4c-1.5 0-2.4-.6-3.3-1.7l-2.5-3.2a1.5 1.5 0 0 1 2.3-1.9L8 14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              </span>
+              <span>Гортайте</span>
+            </div>
             <div class="booking-builder__field-label">Дата</div>
             <div class="booking-builder__days" data-bb-days></div>
           </div>
@@ -279,6 +285,25 @@
       </div>
       -->
 
+      <h3 class="booking-builder__step-title">Ваші дані</h3>
+      <div class="booking-builder__client-panel">
+        <div class="booking-builder__client-grid">
+          <label class="field">
+            <span class="field__label">Ім'я</span>
+            <input class="field__input" type="text" name="firstName" autocomplete="given-name" placeholder="Ім'я">
+          </label>
+          <label class="field">
+            <span class="field__label">Прізвище</span>
+            <input class="field__input" type="text" name="lastName" autocomplete="family-name" placeholder="Прізвище">
+          </label>
+          <label class="field booking-builder__client-phone">
+            <span class="field__label">Номер телефону</span>
+            <input class="field__input" type="tel" name="phone" inputmode="tel" autocomplete="tel" placeholder="+38 (___) ___-__-__" data-phone-mask aria-describedby="phone-error">
+            <span class="field__error" id="phone-error" data-phone-error hidden>Перевірте код оператора</span>
+          </label>
+        </div>
+      </div>
+
       <h3 class="booking-builder__step-title">Підсумок</h3>
       <div class="booking-builder__summary">
         <div class="booking-builder__summary-inner">
@@ -287,9 +312,11 @@
             <div class="booking-builder__sum"><div class="booking-builder__sum-label">Дата</div><div class="booking-builder__sum-value" data-bb-date>—</div></div>
             <div class="booking-builder__sum"><div class="booking-builder__sum-label">Час</div><div class="booking-builder__sum-value" data-bb-time>—</div></div>
             <div class="booking-builder__sum"><div class="booking-builder__sum-label">Тренер</div><div class="booking-builder__sum-value" data-bb-coach-out>Без тренера</div></div>
+            <div class="booking-builder__sum"><div class="booking-builder__sum-label">Гравець</div><div class="booking-builder__sum-value" data-bb-player>—</div></div>
+            <div class="booking-builder__sum"><div class="booking-builder__sum-label">Телефон</div><div class="booking-builder__sum-value" data-bb-phone>—</div></div>
             <div class="booking-builder__sum"><div class="booking-builder__sum-label">До сплати</div><div class="booking-builder__sum-value" data-bb-price>—</div></div>
           </div>
-          <a class="btn btn--wave booking-builder__cta is-disabled" data-bb-cta href="#"><span>Забронювати корт</span></a>
+          <a class="btn btn--wave booking-builder__cta is-disabled" data-bb-cta data-phone-submit href="#"><span>Забронювати та оплатити</span></a>
         </div>
       </div>
     </section>
@@ -334,7 +361,7 @@
           <div class="promo-card__body">
             <h3 class="promo-card__title">Дзвінок адміністратору</h3>
             <p class="promo-card__text">Підберемо зручний день, час та корт і забронюємо слот за вами.</p>
-            <a class="btn btn--white promo-card__cta" href="tel:+380756368890">Замовити дзвінок</a>
+            <a class="btn btn--white promo-card__cta" href="tel:+380756368890" data-callback-open>Замовити дзвінок</a>
           </div>
         </div>
       </div>
@@ -366,6 +393,7 @@
     <section class="faq" id="faq">
       <div class="faq__grid">
         <div class="faq__title-card">
+          <img class="faq__title-pattern" src="assets/pattern-white.svg" alt="" aria-hidden="true">
           <h2 class="faq__title">FAQ</h2>
         </div>
         <div class="faq__list">
@@ -422,6 +450,7 @@
 
     {{> burger-menu }}
     {{> footer }}
+    {{> callback-modal }}
 
   </div>
 </div>
