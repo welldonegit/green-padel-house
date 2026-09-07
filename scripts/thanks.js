@@ -2,12 +2,14 @@
 // Своей логики нет — общие модули шапки/меню/футера и мячи на CTA-волне.
 
 import { initBurgerMenu } from './burger-menu.js';
+import { initLangSwitch } from './lang-switch.js';
 import { initFooterAccordion } from './footer-accordion.js';
 import { initFootVideo } from './foot-video.js';
 import { initCtaBalls } from './cta-balls.js';
 
 function boot() {
   initBurgerMenu();
+  initLangSwitch();
   initFooterAccordion();
   initFootVideo();
   initCtaBalls();

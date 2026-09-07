@@ -13,6 +13,7 @@
 @import './components/format-card.css';
 @import './components/format-grid.css';
 @import './components/site-header.css';
+@import './components/lang-switch.css';
 @import './components/burger-menu.css';
 @import './components/site-footer.css';
 @import './components/raccoon-helper.css';

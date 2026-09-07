@@ -196,7 +196,7 @@
     <section class="booking-builder" id="booking-builder">
       <h2 class="section-title">Розклад <span class="accent">кортів</span></h2>
 
-      <h3 class="booking-builder__step-title">Дата і тривалість</h3>
+      <h3 class="booking-builder__step-title">Оберіть дату і тривалість</h3>
       <div class="booking-builder__top">
         <div class="booking-builder__top-row">
           <div class="booking-builder__field">
@@ -210,7 +210,7 @@
         </div>
       </div>
 
-      <h3 class="booking-builder__step-title">Оберіть корт і час</h3>
+      <h3 class="booking-builder__step-title" data-bb-courts-title>Оберіть корт і час</h3>
       <div class="booking-builder__courts" data-bb-courts></div>
 
       <h3 class="booking-builder__step-title">Тренер</h3>
@@ -218,44 +218,48 @@
         <div class="booking-builder__coaches" data-bb-coaches>
         <button type="button" class="booking-builder__coach is-active" data-bb-coach data-coach-name="Без тренера">
           <span class="booking-builder__coach-photo booking-builder__coach-photo--none" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 12h12" stroke="#323235" stroke-width="1.8" stroke-linecap="round"></path></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M6 12h12" stroke="#323235" stroke-width="1.8" stroke-linecap="round"></path></svg>
           </span>
-          <span class="booking-builder__coach-info">
-            <span class="booking-builder__coach-name">Ні</span>
-            <span class="booking-builder__coach-note">Граю без тренера</span>
+          <span class="booking-builder__coach-body">
+            <span class="booking-builder__coach-name">Без тренера</span>
           </span>
         </button>
         <button type="button" class="booking-builder__coach" data-bb-coach data-coach-name="Сергій Дон">
           <span class="booking-builder__coach-photo"><img src="assets/coach1.jpg" alt="Сергій Дон — тренер Green Padel House"></span>
-          <span class="booking-builder__coach-info">
+          <span class="booking-builder__coach-body">
             <span class="booking-builder__coach-name">Сергій Дон</span>
-            <span class="booking-builder__coach-note">800–1300 ₴ · Оплата в клубі</span>
+            <span class="booking-builder__coach-price">800 ₴ / год</span>
+            <span class="booking-builder__coach-pay">Оплата в клубі</span>
           </span>
         </button>
         <button type="button" class="booking-builder__coach" data-bb-coach data-coach-name="Олександр Короленко">
           <span class="booking-builder__coach-photo"><img src="assets/coach3.jpg" alt="Олександр Короленко — тренер Green Padel House"></span>
-          <span class="booking-builder__coach-info">
+          <span class="booking-builder__coach-body">
             <span class="booking-builder__coach-name">Олександр Короленко</span>
-            <span class="booking-builder__coach-note">600–1300 ₴ · Оплата в клубі</span>
+            <span class="booking-builder__coach-price">600 ₴ / год</span>
+            <span class="booking-builder__coach-pay">Оплата в клубі</span>
           </span>
         </button>
         <button type="button" class="booking-builder__coach" data-bb-coach data-coach-name="Дмитро Савченко">
           <span class="booking-builder__coach-photo"><img src="assets/coach4.jpg" alt="Дмитро Савченко — тренер Green Padel House"></span>
-          <span class="booking-builder__coach-info">
+          <span class="booking-builder__coach-body">
             <span class="booking-builder__coach-name">Дмитро Савченко</span>
-            <span class="booking-builder__coach-note">700–1200 ₴ · Оплата в клубі</span>
+            <span class="booking-builder__coach-price">700 ₴ / год</span>
+            <span class="booking-builder__coach-pay">Оплата в клубі</span>
           </span>
         </button>
         <button type="button" class="booking-builder__coach" data-bb-coach data-coach-name="Ірина Ткаченко">
           <span class="booking-builder__coach-photo"><img src="assets/coach5.jpg" alt="Ірина Ткаченко — тренер Green Padel House"></span>
-          <span class="booking-builder__coach-info">
+          <span class="booking-builder__coach-body">
             <span class="booking-builder__coach-name">Ірина Ткаченко</span>
-            <span class="booking-builder__coach-note">650–1100 ₴ · Оплата в клубі</span>
+            <span class="booking-builder__coach-price">650 ₴ / год</span>
+            <span class="booking-builder__coach-pay">Оплата в клубі</span>
           </span>
         </button>
         </div>
       </div>
 
+      <!-- Блок «Інвентар» тимчасово прихований на прохання замовника.
       <h3 class="booking-builder__step-title">Інвентар</h3>
       <div class="booking-builder__inv-row">
         <div class="booking-builder__inv-group">
@@ -273,6 +277,7 @@
           <div class="booking-builder__counter" data-bb-balls></div>
         </div>
       </div>
+      -->
 
       <h3 class="booking-builder__step-title">Підсумок</h3>
       <div class="booking-builder__summary">
@@ -281,7 +286,6 @@
             <div class="booking-builder__sum"><div class="booking-builder__sum-label">Корт</div><div class="booking-builder__sum-value" data-bb-court>—</div></div>
             <div class="booking-builder__sum"><div class="booking-builder__sum-label">Дата</div><div class="booking-builder__sum-value" data-bb-date>—</div></div>
             <div class="booking-builder__sum"><div class="booking-builder__sum-label">Час</div><div class="booking-builder__sum-value" data-bb-time>—</div></div>
-            <div class="booking-builder__sum"><div class="booking-builder__sum-label">Інвентар</div><div class="booking-builder__sum-value" data-bb-gear>Без інвентарю</div></div>
             <div class="booking-builder__sum"><div class="booking-builder__sum-label">Тренер</div><div class="booking-builder__sum-value" data-bb-coach-out>Без тренера</div></div>
             <div class="booking-builder__sum"><div class="booking-builder__sum-label">Разом</div><div class="booking-builder__sum-value" data-bb-price>—</div></div>
           </div>

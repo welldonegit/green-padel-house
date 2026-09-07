@@ -2,6 +2,7 @@
 // интерактивности и инициализирует их. Логика — внутри модулей.
 
 import { initBurgerMenu } from './burger-menu.js';
+import { initLangSwitch } from './lang-switch.js';
 import { initRaccoon } from './raccoon.js';
 import { initCtaFx } from './cta-fx.js';
 import { initFooterAccordion } from './footer-accordion.js';
@@ -10,6 +11,7 @@ import { initEqualizeGlass } from './equalize-glass.js';
 
 function boot() {
   initBurgerMenu();
+  initLangSwitch();
   initRaccoon();
   initCtaFx();
   initFooterAccordion();

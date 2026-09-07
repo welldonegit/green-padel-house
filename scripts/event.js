@@ -1,6 +1,7 @@
 // Точка входа скриптов страницы «Подія».
 
 import { initBurgerMenu } from './burger-menu.js';
+import { initLangSwitch } from './lang-switch.js';
 import { initFooterAccordion } from './footer-accordion.js';
 import { initFootVideo } from './foot-video.js';
 import { initEventRail } from './event-rail.js';
@@ -8,6 +9,7 @@ import { initCtaBalls } from './cta-balls.js';
 
 function boot() {
   initBurgerMenu();
+  initLangSwitch();
   initFooterAccordion();
   initFootVideo();
   initEventRail();

@@ -59,6 +59,7 @@ export function initBookingBuilder() {
 
   const daysBox = root.querySelector('[data-bb-days]');
   const dursBox = root.querySelector('[data-bb-durs]');
+  const courtsTitle = root.querySelector('[data-bb-courts-title]');
   const courtsBox = root.querySelector('[data-bb-courts]');
   const racksBox = root.querySelector('[data-bb-racks]');
   const ballsBox = root.querySelector('[data-bb-balls]');
@@ -176,6 +177,7 @@ export function initBookingBuilder() {
 
     const sel = state.sel;
     const full = days[state.date] ? days[state.date].full : '';
+    if (courtsTitle) courtsTitle.textContent = full ? 'Оберіть корт і час на ' + full : 'Оберіть корт і час';
     const extras = state.rack * 100 + state.ball * 50;
     const gear = [];
     if (state.rack) gear.push(state.rack + ' ' + pl(state.rack, 'ракетка', 'ракетки', 'ракеток'));

@@ -1,0 +1,132 @@
+/* Переключатель мови (UA/RU/EN). Единый компонент: используется и в шапке
+   (десктоп), и в меню-бургере (мобайл). Кнопка-пилюля + выпадающий список.
+   Активная мова — акцентный зелёный (--color-green): красного нет в палитре.
+
+   Тема: база рассчитана на светлый фон (бургер, светлая шапка) — заливка
+   --color-fill + тёмный текст. Над тёмным hero шапка перекрашивает триггер
+   в контурно-белый (как соседняя .site-header__call). */
+
+.lang-switch {
+  position: relative;
+  flex: none;
+}
+
+/* ── Кнопка-триггер ─────────────────────────────────────────────────────── */
+.lang-switch__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  height: var(--control-h-lg); /* 48 */
+  padding: 0 var(--space-16);
+  border: var(--bw-1) solid transparent;
+  border-radius: var(--radius-full);
+  background: var(--color-fill);
+  color: var(--color-ink);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm); /* 14 */
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color .25s ease, color .25s ease, border-color .25s ease;
+}
+.lang-switch__toggle:hover {
+  background: var(--color-surface);
+}
+.lang-switch__chevron {
+  display: inline-flex;
+  align-items: center;
+  transition: transform .25s ease;
+}
+.lang-switch__toggle[aria-expanded="true"] .lang-switch__chevron {
+  transform: rotate(180deg);
+}
+
+/* ── Выпадающий список ──────────────────────────────────────────────────── */
+.lang-switch__menu {
+  position: absolute;
+  top: calc(100% + var(--space-8));
+  left: 0;
+  z-index: 20;
+  min-width: 220px;
+  margin: 0;
+  padding: var(--space-8);
+  list-style: none;
+  background: var(--color-white);
+  border-radius: var(--radius-xl); /* 24 */
+  box-shadow: 0 24px 70px rgba(9, 9, 9, 0.18);
+  /* Скрытое состояние — без display:none, чтобы можно было анимировать. */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity .2s ease, transform .2s ease, visibility .2s;
+}
+.lang-switch.is-open .lang-switch__menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.lang-switch__option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-24);
+  width: 100%;
+  padding: var(--space-12) var(--space-16);
+  border: none;
+  border-radius: var(--radius-md); /* 12 */
+  background: transparent;
+  color: var(--color-ink);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base); /* 16 */
+  font-weight: var(--font-weight-regular);
+  line-height: 1.2;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color .2s ease, color .2s ease;
+}
+.lang-switch__option:hover {
+  background: var(--color-surface);
+}
+.lang-switch__code {
+  color: var(--color-text);
+  font-weight: var(--font-weight-bold);
+}
+/* Активная мова — зелёный акцент (и название, и код). */
+.lang-switch__option.is-active,
+.lang-switch__option.is-active .lang-switch__code {
+  color: var(--color-green);
+  font-weight: var(--font-weight-bold);
+}
+
+/* ── Контекст: тёмная шапка над hero (контурно-белый триггер) ───────────── */
+.site-header .lang-switch__toggle {
+  height: var(--control-h-xl); /* 56 — под высоту .site-header__call */
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.7);
+  color: var(--color-white);
+}
+.site-header .lang-switch__toggle:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+/* Выпадашка у правого края шапки — раскрываем влево, чтобы не уезжала за экран. */
+.site-header .lang-switch__menu {
+  left: auto;
+  right: 0;
+}
+
+/* Светлая шапка (prices/contacts): контур тёмный, текст ink. */
+.site-header--light .lang-switch__toggle {
+  border-color: rgba(9, 9, 9, 0.7);
+  color: var(--color-ink);
+}
+.site-header--light .lang-switch__toggle:hover {
+  background: rgba(9, 9, 9, 0.06);
+}
+
+/* ── Контекст: меню-бургер (мобайл) ─────────────────────────────────────── */
+.burger-menu .lang-switch {
+  align-self: flex-start;
+}

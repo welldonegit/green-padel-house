@@ -3,12 +3,14 @@
 // и разлетающиеся мячи на CTA-кнопках с волной.
 
 import { initBurgerMenu } from './burger-menu.js';
+import { initLangSwitch } from './lang-switch.js';
 import { initFooterAccordion } from './footer-accordion.js';
 import { initFootVideo } from './foot-video.js';
 import { initCtaBalls } from './cta-balls.js';
 
 function boot() {
   initBurgerMenu();
+  initLangSwitch();
   initFooterAccordion();
   initFootVideo();
   initCtaBalls();
