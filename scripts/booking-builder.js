@@ -203,7 +203,15 @@ export function initBookingBuilder() {
     }
     if (out.phone) out.phone.textContent = (phoneInput && phoneInput.value.trim()) || '—';
     if (out.price) out.price.textContent = sel ? (sel.price + extras) + ' ₴' : '—';
-    if (cta) cta.classList.toggle('is-disabled', !sel);
+
+    // Кнопка активна лише коли обрано слот І заповнені всі контактні дані:
+    // ім'я, прізвище та повний номер телефону (10 цифр). Валідність коду
+    // оператора перевіряє окремо phone-mask (клас is-phone-invalid).
+    const hasFirst = firstNameInput ? firstNameInput.value.trim() !== '' : true;
+    const hasLast = lastNameInput ? lastNameInput.value.trim() !== '' : true;
+    const phoneDigits = phoneInput ? phoneInput.value.replace(/\D/g, '').replace(/^38/, '') : '';
+    const hasPhone = phoneDigits.length === 10;
+    if (cta) cta.classList.toggle('is-disabled', !(sel && hasFirst && hasLast && hasPhone));
   }
 
   // Дані клієнта → підсумок (телефон уже відформатований маскою, бо
