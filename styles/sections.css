@@ -79,6 +79,65 @@
   }
 }
 
+/* ── Контакты: hero без фонового фото — светлый фон, тёмный текст, контент выше ── */
+/* Не полноширинный (как .prices-hero): держим внутри контейнера, чтобы белая
+   плашка совпадала по ширине с блоком контактов ниже. */
+.page-hero--plain {
+  width: auto;
+  margin-left: 0;
+}
+.page-hero--plain .page-hero__stage {
+  aspect-ratio: auto;
+  min-height: 0;
+  background: var(--color-white); /* белая плашка, как hero-карточка на «Цінах» */
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  display: block;
+}
+.page-hero--plain .page-hero__content {
+  padding-top: clamp(104px, 13vw, 148px); /* место под фикс. абсолютный хедер */
+  padding-bottom: var(--space-24);
+}
+/* Без фонового фото hero короткий — стандартный section-gap до контента ниже
+   даёт огромный провал; сводим к шкале (24 + 48). */
+.page-hero--plain + .contacts {
+  padding-top: var(--space-48);
+}
+.page-hero--plain .hero-title {
+  color: var(--color-ink);
+}
+.page-hero--plain .hero-lead {
+  color: var(--color-text);
+}
+/* Хедер поверх светлого hero — тёмный (без card-геометрии .site-header--light) */
+.page-hero--plain .site-header {
+  border-bottom-color: rgba(9, 9, 9, 0.08);
+}
+.page-hero--plain .site-header__nav-link {
+  color: var(--color-text);
+}
+.page-hero--plain .site-header__nav-link:hover {
+  color: var(--color-green);
+}
+.page-hero--plain .site-header__burger {
+  color: var(--color-ink);
+}
+.page-hero--plain .site-header__call {
+  border-color: rgba(9, 9, 9, 0.7);
+  color: var(--color-ink);
+}
+.page-hero--plain .site-header__call:hover {
+  background: rgba(9, 9, 9, 0.06);
+  color: var(--color-ink);
+}
+.page-hero--plain .lang-switch__toggle {
+  border-color: rgba(9, 9, 9, 0.7);
+  color: var(--color-ink);
+}
+.page-hero--plain .lang-switch__toggle:hover {
+  background: rgba(9, 9, 9, 0.06);
+}
+
 /* ── Секции с сеткой форматов (coaching / free-play) ── */
 .section-formats {
   padding: var(--section-gap) var(--space-24) 0;
@@ -1593,6 +1652,10 @@
 @media (max-width: 860px) {
   .contacts__grid {
     grid-template-columns: minmax(0, 1fr);
+  }
+  /* Моб: плашка «Хочете зіграти?» не залипает при скролле */
+  .contacts-cta {
+    position: static;
   }
 }
 .contacts-cta {
