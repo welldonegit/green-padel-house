@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Падел у Кам'янському — Green Padel House</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+<div class="page">
+  <div class="page__inner">
+
+    <!-- ░░ HERO · заглушка нового клубу ░░ -->
+    <section class="page-hero page-hero--standalone" id="hero">
+      <div class="page-hero__stage">
+        <img class="page-hero__media" src="assets/services-hero.jpg" alt="Green Padel House">
+        <div class="page-hero__scrim"></div>
+        {{> header }}
+        <div class="page-hero__content">
+          <span class="chip chip--glass page-hero__badge">Coming soon</span>
+          <h1 class="hero-title">Кам'янське</h1>
+          <p class="hero-lead page-hero__lead page-hero__lead--wide">Криті корти, тренери та падел-тайми — тепер і в Кам'янському.<br>Залиште номер, і ми напишемо, щойно відкриється бронювання.</p>
+          <button type="button" class="btn btn--white btn--wave btn--wave-lime page-hero__cta" data-callback-open><span>Повідомити мене</span></button>
+        </div>
+      </div>
+    </section>
+
+    {{> callback-modal-kamianske }}
+    {{> burger-menu }}
+    {{> footer }}
+
+  </div>
+</div>
+<script type="module" src="/scripts/kamianske.js"></script>
+</body>
+</html>

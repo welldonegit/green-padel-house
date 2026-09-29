@@ -1,0 +1,71 @@
+/* Слайдер тренеров: горизонтальный drag/scroll-снап на всех ширинах.
+   Сетка не «ломается» от количества карточек — сколько бы их ни было, они
+   просто прокручиваются. На десктопе в контейнер влезает 3 карточки и
+   половина 4-й (подсказка, что список листается); на планшете/мобайле — меньше.
+   Ширина карточки = (видимая ширина − промежутки) / кол-во видимых.
+   Логика перетаскивания — scripts/event-rail.js (bindDragScroll). */
+
+.coach-rail {
+  --rail-gap: var(--space-24);
+  --rail-per: 4.5; /* десктоп: 4 карточки + половина следующей */
+  display: flex;
+  gap: var(--rail-gap);
+  align-items: stretch;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  cursor: grab;
+  scrollbar-width: none;
+  padding-bottom: var(--space-4);
+}
+.coach-rail::-webkit-scrollbar {
+  display: none;
+}
+.coach-rail > * {
+  flex: none;
+  min-width: 0;
+  scroll-snap-align: start;
+  /* 4.5 карточки: 4 полных промежутка между первыми пятью */
+  width: calc((100% - 4 * var(--rail-gap)) / var(--rail-per));
+}
+
+/* Стрелки навигации справа от заголовка (контурные круглые icon-кнопки). */
+.coach-nav {
+  flex: none;
+  display: flex;
+  gap: var(--space-8);
+}
+.coach-nav__btn {
+  border: var(--bw-1) solid rgba(9, 9, 9, 0.22);
+  color: var(--color-ink);
+  transition: background-color .25s ease, border-color .25s ease;
+}
+.coach-nav__btn:hover {
+  background: rgba(9, 9, 9, 0.06);
+}
+.coach-nav__btn svg {
+  display: block;
+}
+@media (max-width: 560px) {
+  /* На мобайле листаем пальцем — стрелки прячем. */
+  .coach-nav {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .coach-rail {
+    --rail-per: 2.3; /* 2 карточки + «краешек» третьей */
+  }
+  .coach-rail > * {
+    width: calc((100% - 2 * var(--rail-gap)) / var(--rail-per));
+  }
+}
+@media (max-width: 560px) {
+  .coach-rail {
+    --rail-gap: var(--space-16);
+    --rail-per: 1.15; /* одна карточка + подглядывание следующей */
+  }
+  .coach-rail > * {
+    width: calc((100% - 1 * var(--rail-gap)) / var(--rail-per));
+  }
+}

@@ -45,6 +45,18 @@
 .page-hero__lead {
   margin-top: var(--space-24);
 }
+/* Плашка-эйбрау над h1 (Coming soon) */
+.page-hero__badge {
+  margin-bottom: var(--space-16);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+/* Кам'янське: на десктопе лид чуть шире стандартных 560px */
+@media (min-width: 901px) {
+  .page-hero__lead--wide {
+    max-width: 680px;
+  }
+}
 .page-hero__cta {
   margin-top: var(--space-32);
 }
@@ -691,7 +703,14 @@
 .coaches {
   padding: var(--section-gap) var(--space-24) 0;
 }
-.coaches__grid {
+.coaches__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-16) var(--space-24);
+  flex-wrap: wrap;
+}
+.coaches__rail {
   margin-top: clamp(28px, 3.4vw, 52px);
 }
 

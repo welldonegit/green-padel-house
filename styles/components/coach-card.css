@@ -12,10 +12,19 @@
   overflow: hidden;
 }
 .coach-card__media-wrap {
+  position: relative;
   width: 100%; /* WebKit: aspect-ratio у flex/grid потребує явної ширини */
-  aspect-ratio: 1 / 1; /* квадратне фото на всіх розширеннях */
+  aspect-ratio: 4 / 5; /* портретне фото 4:5 на всіх розширеннях */
   background: var(--color-fill);
   overflow: hidden;
+}
+/* Лёгкое затемнение фото (ink дизайн-системы): сильнее сверху — под чипы,
+   к низу растворяется, чтобы лицо оставалось чистым. */
+.coach-card__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(9, 9, 9, 0.40) 0%, rgba(9, 9, 9, 0.12) 38%, rgba(9, 9, 9, 0) 68%);
+  pointer-events: none;
 }
 /* Тело карточки на белом фоне */
 .coach-card__body {
@@ -35,36 +44,30 @@
 .coach-card:hover .coach-card__media {
   transform: scale(1.03);
 }
+/* Чипы поверх фото (сверху), над скримом */
 .coach-card__tags {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  padding: var(--space-12);
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-8);
 }
 .coach-card__name {
-  margin-top: var(--space-12);
-  font-size: var(--font-size-h3); /* 32 */
+  font-size: var(--font-size-h3); /* 32 (моб/планшет — карточки широкие) */
   font-weight: var(--font-weight-bold);
   line-height: 1.18;
   letter-spacing: -0.02em;
   color: var(--color-text);
 }
-.coach-card__bio {
-  margin-top: var(--space-8);
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-light);
-  line-height: 1.5;
-  color: var(--color-text);
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-.coach-card__price {
-  margin-top: auto;
-  padding-top: var(--space-16);
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-regular);
-  color: var(--color-text);
+@media (min-width: 901px) {
+  /* Десктоп: карточки узкие (4.5 в ряд) — имя компактнее */
+  .coach-card__name {
+    font-size: var(--font-size-2xl); /* 24 */
+  }
 }
 
 /* Плитка-CTA внутри сетки тренеров */

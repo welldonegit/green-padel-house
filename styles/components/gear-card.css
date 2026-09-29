@@ -53,7 +53,7 @@
   display: block;
 }
 .gear-card__title {
-  font-size: var(--font-size-h3); /* 32 */
+  font-size: var(--font-size-2xl); /* 24 — как заголовки форматів/подій/тренерів */
   font-weight: var(--font-weight-bold);
   line-height: 1.35;
   letter-spacing: -0.02em;

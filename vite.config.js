@@ -40,6 +40,7 @@ export default defineConfig({
         prices: resolve(root, 'prices.html'),
         booking: resolve(root, 'booking.html'),
         contacts: resolve(root, 'contacts.html'),
+        kamianske: resolve(root, 'kamianske.html'),
         blog: resolve(root, 'blog.html'),
         news: resolve(root, 'news.html'),
         event: resolve(root, 'event.html'),

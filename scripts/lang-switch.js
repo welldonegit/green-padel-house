@@ -64,9 +64,21 @@ export function initLangSwitch() {
           e.preventDefault();
           select(opt.getAttribute(group.code));
           closeAll(null);
+          // Если у опции есть ссылка (переключатель города) — переходим на страницу.
+          const href = opt.getAttribute('data-href');
+          if (href) window.location.href = href;
         });
       });
     });
+
+    // Подсветка активного по текущему URL (для опций с data-href, напр. город).
+    const page = window.location.pathname.split('/').pop() || 'index.html';
+    let current = null;
+    instances[0].querySelectorAll('.lang-switch__option').forEach((opt) => {
+      const href = opt.getAttribute('data-href');
+      if (href && href === page) current = opt.getAttribute(group.code);
+    });
+    if (current) select(current);
   });
 
   document.addEventListener('click', (e) => {
