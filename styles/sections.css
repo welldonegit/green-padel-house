@@ -200,6 +200,12 @@
   color: var(--color-white);
   max-width: 520px;
 }
+/* На мобайлі лід-абзац ховаємо */
+@media (max-width: 900px) {
+  .hero-home__lead {
+    display: none;
+  }
+}
 .hero-home__actions {
   margin-top: clamp(28px, 3.4vw, 44px);
   display: flex;
@@ -227,6 +233,16 @@
   display: none;
 }
 @media (min-width: 901px) {
+  .advantages__intro {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .advantages__intro p {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    max-width: 1040px; /* десктоп: −80px від базових 1120 */
+  }
   .advantages__intro br {
     display: inline;
   }
@@ -685,6 +701,14 @@
 }
 .events__head {
   padding: 0 var(--space-24);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-16) var(--space-24);
+  flex-wrap: wrap;
+}
+.events__all {
+  flex: none;
 }
 .events__rail {
   margin-top: clamp(24px, 3vw, 40px);
@@ -1057,22 +1081,9 @@
 @media (max-width: 900px) {
   .coach-pricing__grid { grid-template-columns: minmax(0, 1fr); }
 }
-.coach-pricing__cta {
-  margin-top: var(--space-48);
-  display: flex;
-  justify-content: center;
-}
-
 /* ── GEAR · аренда инвентаря ── */
 .gear {
   padding: var(--section-gap) var(--space-24) var(--section-gap);
-}
-.gear__note {
-  margin-top: var(--space-32);
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-light);
-  line-height: 1.6;
-  color: var(--color-text);
 }
 
 /* Заголовок-строка секций prices (h2 + описание справа) */
@@ -1314,7 +1325,7 @@
 .alt-app {
   margin-top: var(--space-48);
   border-radius: var(--radius-2xl);
-  background: var(--color-ink);
+  background: var(--color-white);
   overflow: hidden;
   display: grid;
   grid-template-columns: 1fr;
@@ -1338,15 +1349,14 @@
   font-weight: var(--font-weight-bold);
   line-height: 1.35;
   letter-spacing: -0.02em;
-  color: var(--color-white);
+  color: var(--color-ink);
 }
 .alt-app__text {
   margin-top: var(--space-24);
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-light);
   line-height: 1.6;
-  color: var(--color-white);
-  opacity: 0.7;
+  color: var(--color-text);
   max-width: 44ch;
 }
 .alt-app__stores {
@@ -1367,13 +1377,15 @@
   justify-content: center;
   align-items: flex-end;
   align-self: end;
-  margin-bottom: calc(clamp(320px, 34vw, 480px) * -0.72);
+  margin-bottom: calc(clamp(320px, 34vw, 480px) * -0.72 + 50px); /* поднимаем телефон: верхняя часть выглядывает на 50px больше */
 }
 .alt-app__phone-img {
   position: relative;
   z-index: 2;
-  width: clamp(320px, 34vw, 480px);
-  height: auto;
+  /* Высоту фиксируем (как у прежней картинки: ширина×1.5 = 480..720),
+     ширина — авто. Иначе более «высокая» картинка растягивала блок. */
+  height: clamp(480px, 51vw, 720px);
+  width: auto;
   display: block;
 }
 .alt-app__glow {

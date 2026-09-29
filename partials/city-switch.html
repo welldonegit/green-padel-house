@@ -1,0 +1,20 @@
+<div class="lang-switch" data-city-switch>
+  <button type="button" class="lang-switch__toggle" aria-haspopup="listbox" aria-expanded="false" aria-label="Місто">
+    <span class="lang-switch__current" data-city-current>Львів</span>
+    <span class="lang-switch__chevron" aria-hidden="true">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+    </span>
+  </button>
+  <ul class="lang-switch__menu" role="listbox" aria-label="Вибір міста">
+    <li>
+      <button type="button" class="lang-switch__option is-active" role="option" aria-selected="true" data-city="lviv" data-city-code="Львів">
+        <span class="lang-switch__name">Львів</span>
+      </button>
+    </li>
+    <li>
+      <button type="button" class="lang-switch__option" role="option" aria-selected="false" data-city="kamianske" data-city-code="Камʼянське">
+        <span class="lang-switch__name">Камʼянське</span>
+      </button>
+    </li>
+  </ul>
+</div>

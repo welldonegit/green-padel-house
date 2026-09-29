@@ -36,8 +36,9 @@
   align-items: center;
   gap: var(--space-16);
 }
-/* На мобайле переключатель живёт в меню-бургере, в шапке скрыт. */
-.site-header__lang {
+/* На мобайле переключатели (мова + місто) живут в меню-бургере, в шапке скрыты. */
+.site-header__lang,
+.site-header__city {
   display: none;
 }
 
@@ -46,7 +47,7 @@
   align-items: center;
 }
 .site-header__logo img {
-  height: calc(var(--space-24) * 1.2 * 1.1); /* лого +20%, на мобайлі ще +10% (24→31.7px) */
+  height: calc(var(--space-24) * 1.2 * 1.1 * 1.2); /* лого на мобайлі ще +20% (24→38px) */
   width: auto;
 }
 
@@ -121,12 +122,13 @@
   .site-header__nav {
     display: flex;
   }
-  .site-header__lang {
+  .site-header__lang,
+  .site-header__city {
     display: block;
   }
-  /* Десктоп: лого ще +10%, потім +20% (24 × 1.2 × 1.1 × 1.2 ≈ 38px) */
+  /* Десктоп: лого ще +10% (24 × 1.2 × 1.1 × 1.2 × 1.1 ≈ 46px) */
   .site-header__logo img {
-    height: calc(var(--space-24) * 1.2 * 1.1 * 1.2);
+    height: calc(var(--space-24) * 1.2 * 1.1 * 1.2 * 1.1);
   }
 }
 
