@@ -503,6 +503,28 @@
   .steps__num-col { display: none; }
   .step-card__num { display: block; }
   .step-card__frame { aspect-ratio: 16 / 9; } /* моб: то же соотношение, что и на десктопе */
+
+  /* Моб: отступ между карточками как в блоке «Простір поза кортом» */
+  .steps__list { gap: calc(clamp(14px, 1.6vw, 20px) + var(--space-32)); }
+
+  /* Моб: плашка с текстом — под изображением, без стекла и затемнения картинки */
+  .step-card__scrim { display: none; }
+  .step-card__chip {
+    position: static;
+    inset: auto;
+    margin-top: var(--space-16);
+  }
+  .step-card__glass {
+    display: block;
+    max-width: none;
+    padding: clamp(14px, 2.4vw, 22px) clamp(16px, 3vw, 26px);
+    background: var(--color-ink); /* моб: фон как у футера — белый текст читается */
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-radius: var(--radius-xl);
+  }
 }
 
 /* ── BOOKING (плашка-расписание) ── */
