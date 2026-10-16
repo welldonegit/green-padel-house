@@ -181,9 +181,13 @@
   align-items: center;
   gap: var(--space-8);
 }
+.site-footer__made-link {
+  display: inline-flex;
+}
 .site-footer__made-logo {
   height: var(--space-12); /* 14→12 (Δ2) */
   width: auto;
+  display: block;
 }
 
 /* Мобильные раскладки (быв. applyLayout) */

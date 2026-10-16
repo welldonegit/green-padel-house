@@ -502,7 +502,7 @@
 @media (max-width: 860px) {
   .steps__num-col { display: none; }
   .step-card__num { display: block; }
-  .step-card__frame { aspect-ratio: 4 / 5; }
+  .step-card__frame { aspect-ratio: 16 / 9; } /* моб: то же соотношение, что и на десктопе */
 }
 
 /* ── BOOKING (плашка-расписание) ── */
