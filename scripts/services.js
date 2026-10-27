@@ -8,6 +8,9 @@ import { initCtaFx } from './cta-fx.js';
 import { initFooterAccordion } from './footer-accordion.js';
 import { initFootVideo } from './foot-video.js';
 import { initEqualizeGlass } from './equalize-glass.js';
+import { initPhoneMask } from './phone-mask.js';
+import { initTimeMask } from './time-mask.js';
+import { initCallbackModal } from './callback-modal.js';
 
 function boot() {
   initBurgerMenu();
@@ -17,6 +20,9 @@ function boot() {
   initFooterAccordion();
   initFootVideo();
   initEqualizeGlass();
+  initPhoneMask();
+  initTimeMask();
+  initCallbackModal();
 }
 
 if (document.readyState !== 'loading') boot();

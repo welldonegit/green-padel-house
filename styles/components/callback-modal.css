@@ -82,6 +82,12 @@
   flex-direction: column;
   gap: var(--space-16);
 }
+/* Два поля в один ряд (напр. дата + час). */
+.callback__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+}
 .callback__submit {
   margin-top: var(--space-8);
   width: 100%;
