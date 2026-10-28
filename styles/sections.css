@@ -704,11 +704,11 @@
   color: var(--color-text);
   max-width: 320px;
 }
-/* 4 карточки 4:5 в ряд → 2 колонки на планшете → 1 на мобайле. */
+/* 5 карточек 4:5 в ряд → 2 колонки на планшете → 1 на мобайле. */
 .lounge__grid {
   margin-top: clamp(28px, 3.4vw, 48px);
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: clamp(14px, 1.6vw, 20px);
   align-items: stretch;
 }
